@@ -1,0 +1,67 @@
+{
+  "name": "express-template-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "nodemonConfig": {
+    "ignore": [
+      "node_modules",
+      "dist",
+      "*.test.ts"
+    ],
+    "watch": [
+      "src"
+    ],
+    "exec": "node -r tsconfig-paths/register -r ts-node/register src/index.ts",
+    "ext": "ts"
+  },
+  "scripts": {
+    "dev": "nodemon",
+    "clean": "rm -r dist; exit 0",
+    "start": "node -r tsconfig-paths/register -r ts-node/register ./dist/src/index.js",
+    "build": "npm run build:clean && npm run build:tsc",
+    "build:clean": "rm -r dist; exit 0",
+    "build:tsc": "tsc -p tsconfig.json",
+    "eslint": "eslint \"./**/*.ts\" --quiet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eljoe182/express-template-ts.git"
+  },
+  "keywords": [],
+  "author": "Joise Garcia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eljoe182/express-template-ts/issues"
+  },
+  "homepage": "https://github.com/eljoe182/express-template-ts#readme",
+  "dependencies": {
+    "axios": "1.2.1",
+    "body-parser": "^1.20.1",
+    "cors": "2.8.5",
+    "dotenv": "16.0.3",
+    "express": "4.18.2",
+    "glob": "^8.0.3",
+    "node-dependency-injection": "3.0.3",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "4.1.1",
+    "winston": "^3.8.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "17.3.0",
+    "@commitlint/config-conventional": "17.3.0",
+    "@types/cors": "2.8.13",
+    "@types/express": "^4.17.15",
+    "@types/glob": "^8.0.0",
+    "@types/node": "18.11.17",
+    "@typescript-eslint/eslint-plugin": "5.47.0",
+    "@typescript-eslint/parser": "5.47.0",
+    "eslint": "8.30.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "helmet": "6.0.1",
+    "husky": "8.0.2",
+    "nodemon": "2.0.20",
+    "prettier": "2.8.1",
+    "typescript": "4.9.4"
+  }
+}
