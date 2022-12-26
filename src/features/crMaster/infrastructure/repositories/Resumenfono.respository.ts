@@ -5,9 +5,9 @@ import { IResumenfonoRepository } from '@feat/crMaster/domain/interface/IResumen
 export default class ResumenfonoRepository implements IResumenfonoRepository {
   constructor(private orm: DataSource) {}
 
-  public async getInfoResumenfono(period: string) {
+  public async getInfoResumenfono(phoneNumber: string): Promise<Resumenfono> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(Resumenfono);
-    return repository.find({ where: { period }, take: 10 });
+    return repository.findOneBy({ phoneNumber }) as unknown as Resumenfono;
   }
 }

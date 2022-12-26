@@ -9,11 +9,11 @@ container
   .addArgument(new Reference('DataSource.CRMaster.Client'));
 
 container
-  .register('CRMaster.Resumenfono.GetInfo', GetInfoResumenfonoUseCase)
+  .register('CRMaster.Resumenfono.UseCase.GetInfo', GetInfoResumenfonoUseCase)
   .addArgument(new Reference('Resumenfono.Repository'));
 
 container
-  .register('Controller.CRMaster.GetInfoResumenfono', GetInfoResumenfono)
-  .addArgument(new Reference('CRMaster.Resumenfono.GetInfo'));
+  .register('CRMaster.Resumenfono.Controller.GetInfo', GetInfoResumenfono)
+  .addArgument(new Reference('CRMaster.Resumenfono.UseCase.GetInfo'));
 
 export default container;

@@ -8,6 +8,6 @@ export default class ClaroRepository implements IClaroRepository {
   async getByNumber(phoneNumber: number): Promise<Claro> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(Claro);
-    return repository.findBy({ phoneNumber }) as unknown as Claro;
+    return repository.findOneBy({ phoneNumber }) as unknown as Claro;
   }
 }

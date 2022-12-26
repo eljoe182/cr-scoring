@@ -8,6 +8,6 @@ export default class EntelRepository implements IEntelRepository {
   async getByNumber(phoneNumber: number): Promise<Entel> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(Entel);
-    return repository.findBy({ phoneNumber }) as unknown as Entel;
+    return repository.findOneBy({ phoneNumber }) as unknown as Entel;
   }
 }

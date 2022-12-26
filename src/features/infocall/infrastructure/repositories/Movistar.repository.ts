@@ -8,6 +8,6 @@ export default class MovistarRepository implements IMovistarRepository {
   async getByNumber(phoneNumber: number): Promise<Movistar> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(Movistar);
-    return repository.findBy({ phoneNumber }) as unknown as Movistar;
+    return repository.findOneBy({ phoneNumber }) as unknown as Movistar;
   }
 }

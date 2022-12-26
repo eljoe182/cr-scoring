@@ -1,3 +1,5 @@
+import { Resumenfono } from '@shared/domain/entities/CRMaster/Resumenfono.entity';
+
 export interface IGetInfoResumenfonoUseCase {
-  execute(params: unknown): Promise<unknown>;
+  execute(phoneNumber: string): Promise<Resumenfono>;
 }

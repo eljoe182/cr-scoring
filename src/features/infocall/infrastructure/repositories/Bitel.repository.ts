@@ -8,6 +8,6 @@ export default class BitelRepository implements IBitelRepository {
   async getByNumber(phoneNumber: number): Promise<Bitel> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(Bitel);
-    return repository.findBy({ phoneNumber }) as unknown as Bitel;
+    return repository.findOneBy({ phoneNumber }) as unknown as Bitel;
   }
 }
