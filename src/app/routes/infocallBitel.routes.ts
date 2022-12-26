@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import container from '@app/dependencyInjection/infocall';
 import { IBaseController } from '@shared/domain/BaseController';
+import { bitelDependency as container } from '@app/dependencyInjection/infocall';
 
 export const register = (router: Router) => {
   const controller: IBaseController = container.get('Infocall.Bitel.Controller.GetInfo');

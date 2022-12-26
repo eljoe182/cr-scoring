@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { IBaseController } from '@shared/domain/BaseController';
-import container from '@app/dependencyInjection/infocall';
+import { movistarDependency as container } from '@app/dependencyInjection/infocall';
 
 export const register = (router: Router) => {
   const controller: IBaseController = container.get('Infocall.Movistar.Controller.GetInfo');
