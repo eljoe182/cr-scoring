@@ -2,11 +2,13 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import 'reflect-metadata';
+
 import { ErrorHandler } from './errorHandler';
+import { RoutesErrorHandler } from './routesErrorHandler';
 import ILogger from '@shared/domain/ILogger';
 import container from '@app/dependencyInjection/shared';
 import { registerRoutes } from '@app/routes';
-import { RoutesErrorHandler } from './routesErrorHandler';
 
 export class Server {
   private readonly port: number;
@@ -26,6 +28,7 @@ export class Server {
     registerRoutes(router);
     this.app.use(router, ErrorHandler);
     this.app.use(router, RoutesErrorHandler);
+    this.databases();
   }
 
   start = async (): Promise<void> => {
@@ -36,5 +39,16 @@ export class Server {
         resolve();
       });
     });
+  };
+
+  databases = async (): Promise<void> => {
+    this.logger.info('Initializing databases...');
+    const crMasterConfig = container.get('DataSource.CRMaster.Client');
+    crMasterConfig
+      .initialize()
+      .then(() => {
+        this.logger.info('Databases mssql initialized');
+      })
+      .catch((error: any) => this.logger.error(error));
   };
 }

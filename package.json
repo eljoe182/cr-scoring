@@ -18,7 +18,7 @@
   "scripts": {
     "dev": "nodemon",
     "clean": "rm -r dist; exit 0",
-    "start": "node -r tsconfig-paths/register -r ts-node/register ./dist/src/index.js",
+    "start": "node -r tsconfig-paths/register -r ts-node/register ./dist/index.js",
     "build": "npm run build:clean && npm run build:tsc",
     "build:clean": "rm -r dist; exit 0",
     "build:tsc": "tsc -p tsconfig.json",
@@ -42,9 +42,13 @@
     "dotenv": "16.0.3",
     "express": "4.18.2",
     "glob": "^8.0.3",
+    "mssql": "^7.3.5",
+    "mysql2": "^2.3.3",
     "node-dependency-injection": "3.0.3",
+    "reflect-metadata": "^0.1.13",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "4.1.1",
+    "typeorm": "^0.3.11",
     "winston": "^3.8.2"
   },
   "devDependencies": {

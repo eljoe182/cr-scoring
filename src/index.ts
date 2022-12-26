@@ -8,6 +8,7 @@ try {
   process.exit(1);
 }
 
-process.on('uncaughtException', (_err) => {
+process.on('uncaughtException', (error) => {
+  console.log(error);
   process.exit(1);
 });
