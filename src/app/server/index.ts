@@ -43,11 +43,19 @@ export class Server {
 
   databases = async (): Promise<void> => {
     this.logger.info('Initializing databases...');
-    const crMasterConfig = container.get('DataSource.CRMaster.Client');
-    crMasterConfig
+    const crMasterClient = container.get('DataSource.CRMaster.Client');
+    const infocallClient = container.get('DataSource.Infocall.Client');
+    crMasterClient
       .initialize()
       .then(() => {
         this.logger.info('Databases mssql initialized');
+      })
+      .catch((error: any) => this.logger.error(error));
+    
+    infocallClient
+      .initialize()
+      .then(() => {
+        this.logger.info('Databases mysql initialized');
       })
       .catch((error: any) => this.logger.error(error));
   };

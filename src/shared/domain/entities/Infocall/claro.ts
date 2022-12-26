@@ -1,25 +1,22 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, PrimaryColumn } from 'typeorm';
 
 @Entity('claro')
 export class Claro {
   @Column({
     name: 'documento',
     type: 'bigint',
-    length: 20,
   })
   document!: number;
 
   @Column({
     name: 'nombre',
     type: 'varchar',
-    length: 120,
   })
   fullName!: string;
 
-  @Column({
+  @PrimaryColumn({
     name: 'numero',
     type: 'int',
-    length: 11,
   })
   phoneNumber!: number;
 
