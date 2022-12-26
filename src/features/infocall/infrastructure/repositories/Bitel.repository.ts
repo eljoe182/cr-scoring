@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { IBitelRepository } from '@feat/infocall/domain/interface/IBitelRepository';
+import { IBitelRepository } from '@feat/infocall/infrastructure/interface/IBitelRepository';
 import { Bitel } from '@shared/domain/entities/Infocall/bitel';
 
 export default class BitelRepository implements IBitelRepository {

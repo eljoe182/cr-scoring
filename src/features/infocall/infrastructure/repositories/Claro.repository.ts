@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { IClaroRepository } from '@feat/infocall/domain/interface/IClaroRepository';
+import { IClaroRepository } from '@feat/infocall/infrastructure/interface/IClaroRepository';
 import { Claro } from '@shared/domain/entities/Infocall';
 
 export default class ClaroRepository implements IClaroRepository {

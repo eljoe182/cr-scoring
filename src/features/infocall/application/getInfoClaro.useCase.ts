@@ -1,6 +1,7 @@
-import { IClaroRepository } from '../domain/interface/IClaroRepository';
+import { IGetInfoClaroUseCase } from '../domain/interface/IGetInfoClaroUseCase';
+import { IClaroRepository } from '../infrastructure/interface/IClaroRepository';
 
-export default class GetInfoClaroUseCase {
+export default class GetInfoClaroUseCase implements IGetInfoClaroUseCase {
   constructor(private repository: IClaroRepository) {}
 
   async execute(phoneNumber: number) {

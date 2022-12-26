@@ -3,8 +3,8 @@ import container from '@app/dependencyInjection/infocall';
 import { IBaseController } from '@shared/domain/BaseController';
 
 export const register = (router: Router) => {
-  const controller: IBaseController = container.get('Infocall.Bitel.Controller.GetInfo');
-  router.get('/infocall/bitel/get-info/:phoneNumber', (req: Request, res: Response, next: NextFunction) => {
+  const controller: IBaseController = container.get('Infocall.Entel.Controller.GetInfo');
+  router.get('/infocall/entel/get-info/:phoneNumber', (req: Request, res: Response, next: NextFunction) => {
     return controller.run(req, res, next);
   });
 };

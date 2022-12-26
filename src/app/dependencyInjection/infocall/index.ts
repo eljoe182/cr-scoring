@@ -1,24 +1,36 @@
 import { Reference } from 'node-dependency-injection';
 import container from '@shared/infrastructure/dependency';
 
-import GetInfoBitel from '@controller/infocall/getBitel.controller';
+import GetInfoBitelController from '@controller/infocall/getBitel.controller';
 import GetInfoBitelUseCase from '@feat/infocall/application/getInfoBitel.useCase';
 import BitelRepository from '@feat/infocall/infrastructure/repositories/Bitel.repository';
+
+import GetInfoClaroController from '@controller/infocall/getClaro.controller';
 import ClaroRepository from '@feat/infocall/infrastructure/repositories/Claro.repository';
 import GetInfoClaroUseCase from '@feat/infocall/application/getInfoClaro.useCase';
 
+import GetInfoEntelController from '@controller/infocall/getEntel.controller';
+import EntelRepository from '@feat/infocall/infrastructure/repositories/Entel.repository';
+import GetInfoEntelUseCase from '@feat/infocall/application/getInfoEntel.useCase';
+
 container.register('Bitel.Repository', BitelRepository).addArgument(new Reference('DataSource.Infocall.Client'));
 container.register('Claro.Repository', ClaroRepository).addArgument(new Reference('DataSource.Infocall.Client'));
+container.register('Entel.Repository', EntelRepository).addArgument(new Reference('DataSource.Infocall.Client'));
 
-container.register('Infocall.Bitel.GetInfo', GetInfoBitelUseCase).addArgument(new Reference('Bitel.Repository'));
-container.register('Infocall.Claro.GetInfo', GetInfoClaroUseCase).addArgument(new Reference('Claro.Repository'));
+container.register('Infocall.Bitel.UseCase.GetInfo', GetInfoBitelUseCase).addArgument(new Reference('Bitel.Repository'));
+container.register('Infocall.Claro.UseCase.GetInfo', GetInfoClaroUseCase).addArgument(new Reference('Claro.Repository'));
+container.register('Infocall.Entel.UseCase.GetInfo', GetInfoEntelUseCase).addArgument(new Reference('Entel.Repository'));
 
 container
-  .register('Controller.Infocall.GetInfoBitel', GetInfoBitel)
-  .addArgument(new Reference('Infocall.Bitel.GetInfo'));
+  .register('Infocall.Bitel.Controller.GetInfo', GetInfoBitelController)
+  .addArgument(new Reference('Infocall.Bitel.UseCase.GetInfo'));
 
   container
-  .register('Controller.Infocall.GetInfoClaro', GetInfoBitel)
-  .addArgument(new Reference('Infocall.Claro.GetInfo'));
+  .register('Infocall.Claro.Controller.GetInfo', GetInfoClaroController)
+  .addArgument(new Reference('Infocall.Claro.UseCase.GetInfo'));
+  
+  container
+  .register('Infocall.Entel.Controller.GetInfo', GetInfoEntelController)
+  .addArgument(new Reference('Infocall.Entel.UseCase.GetInfo'));
 
 export default container;
