@@ -10,4 +10,15 @@ export default class ResumenfonoRepository implements IResumenfonoRepository {
     const repository = orm.manager.getRepository(Resumenfono);
     return repository.findOneBy({ phoneNumber }) as unknown as Resumenfono;
   }
+
+  public async getByPeriod(period: string): Promise<Resumenfono[]> {
+    const orm = await this.orm.initialize();
+    const repository = orm.manager.getRepository(Resumenfono);
+    return repository.find({
+      where: {
+        period,
+      },
+      take: 10,
+    }) as unknown as Resumenfono[];
+  }
 }
