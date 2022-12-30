@@ -21,4 +21,14 @@ export default class ResumenfonoRepository implements IResumenfonoRepository {
       take: 10,
     }) as unknown as Resumenfono[];
   }
+
+  async getFields(): Promise<unknown> {
+    const orm = await this.orm.initialize();
+    const repository = await orm.manager.query(`
+      SELECT COLUMN_NAME
+      FROM INFORMATION_SCHEMA.COLUMNS
+      WHERE TABLE_NAME = N'RS_OP_FG_RESUMENFONO'
+    `);
+    return repository;
+  }
 }

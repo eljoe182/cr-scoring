@@ -1,12 +1,12 @@
+import { IBaseUseCase } from '@shared/domain/BaseUseCase';
 import { IResumenfonoRepository } from '@feat/crMaster/domain/interface/IResumenfonoRepository';
 import { IBitelRepository } from '@feat/infocall/infrastructure/interface/IBitelRepository';
 import { IClaroRepository } from '@feat/infocall/infrastructure/interface/IClaroRepository';
 import { IEntelRepository } from '@feat/infocall/infrastructure/interface/IEntelRepository';
 import { IMovistarRepository } from '@feat/infocall/infrastructure/interface/IMovistarRepository';
 import { Evaluation } from '../domain/class/Evaluation';
-import { IGetScoringUseCase } from '../domain/interface/IGetScoringUseCase';
 
-export default class GetScoringUseCase implements IGetScoringUseCase {
+export default class GetScoringUseCase implements IBaseUseCase {
   constructor(
     private readonly repositoryResumenfono: IResumenfonoRepository,
     private readonly repositoryBitel: IBitelRepository,

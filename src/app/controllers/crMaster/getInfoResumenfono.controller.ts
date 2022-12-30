@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 import { IBaseController } from '@shared/domain/BaseController';
-import { IGetInfoResumenfonoUseCase } from '@feat/crMaster/domain/interface/IGetInfoResumenfonoUseCase';
+import { IBaseUseCase } from '@shared/domain/BaseUseCase';
 
 export default class GetInfoResumenfonoController implements IBaseController {
-  constructor(private useCase: IGetInfoResumenfonoUseCase) {}
+  constructor(private useCase: IBaseUseCase) {}
 
   async run(req: Request, res: Response, _next: NextFunction) {
     const { phoneNumber } = req.params;

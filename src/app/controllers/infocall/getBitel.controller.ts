@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
-import { IGetInfoBitelUseCase } from '@feat/infocall/domain/interface/IGetInfoBitelUseCase';
 import { IBaseController } from '@shared/domain/BaseController';
+import { IBaseUseCase } from '@shared/domain/BaseUseCase';
 
 export default class GetBitelController implements IBaseController {
-  constructor(private useCase: IGetInfoBitelUseCase) {}
+  constructor(private useCase: IBaseUseCase) {}
 
   async run(req: Request, res: Response, _next: NextFunction) {
     const { phoneNumber } = req.params;

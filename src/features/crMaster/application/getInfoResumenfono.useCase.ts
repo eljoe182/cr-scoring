@@ -1,8 +1,8 @@
 import { Resumenfono } from '@shared/domain/entities/CRMaster/Resumenfono.entity';
-import { IGetInfoResumenfonoUseCase } from '../domain/interface/IGetInfoResumenfonoUseCase';
 import { IResumenfonoRepository } from '../domain/interface/IResumenfonoRepository';
+import { IBaseUseCase } from '@shared/domain/BaseUseCase';
 
-export default class GetInfoResumenfonoUseCase implements IGetInfoResumenfonoUseCase {
+export default class GetInfoResumenfonoUseCase implements IBaseUseCase {
 
   constructor(private repository: IResumenfonoRepository) {}
 

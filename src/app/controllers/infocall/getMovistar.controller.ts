@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import { IBaseController } from '@shared/domain/BaseController';
-import { IGetInfoMovistarUseCase } from '@feat/infocall/domain/interface/IGetInfoMovistarUseCase';
+import { IBaseUseCase } from '@shared/domain/BaseUseCase';
 
 export default class GetInfoMovistarController implements IBaseController {
-  constructor(private useCase: IGetInfoMovistarUseCase) {}
+  constructor(private useCase: IBaseUseCase) {}
 
   async run(req: Request, res: Response, _next: NextFunction) {
     const { phoneNumber } = req.params;

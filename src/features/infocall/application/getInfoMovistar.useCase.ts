@@ -1,7 +1,7 @@
-import { IGetInfoMovistarUseCase } from '../domain/interface/IGetInfoMovistarUseCase';
+import { IBaseUseCase } from '@shared/domain/BaseUseCase';
 import { IMovistarRepository } from '../infrastructure/interface/IMovistarRepository';
 
-export default class GetInfoMovistarUseCase implements IGetInfoMovistarUseCase {
+export default class GetInfoMovistarUseCase implements IBaseUseCase {
   constructor(private repository: IMovistarRepository) {}
 
   async execute(phoneNumber: number) {
