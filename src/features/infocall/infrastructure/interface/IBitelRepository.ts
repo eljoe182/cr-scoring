@@ -1,4 +1,4 @@
-import { Bitel } from '@shared/domain/entities/Infocall/bitel';
+import { Bitel } from '@shared/domain/entities/Infocall/Bitel.entity';
 import { CellProviderTable } from '@feat/infocall/domain/contracts/CellProviderTable';
 
 export interface IBitelRepository {

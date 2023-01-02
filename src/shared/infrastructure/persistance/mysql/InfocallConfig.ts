@@ -8,11 +8,11 @@ export class InfocallConfig {
   constructor() {
     this.config = {
       type: 'mysql',
-      host: config.INFOCALL.HOST,
-      port: Number(config.INFOCALL.PORT),
-      username: config.INFOCALL.USERNAME,
-      password: config.INFOCALL.PASSWORD,
-      database: config.INFOCALL.DATABASE,
+      host: config.DATABASES.INFOCALL.HOST,
+      port: Number(config.DATABASES.INFOCALL.PORT),
+      username: config.DATABASES.INFOCALL.USERNAME,
+      password: config.DATABASES.INFOCALL.PASSWORD,
+      database: config.DATABASES.INFOCALL.DATABASE,
       entities: [Bitel, Claro, Entel, Movistar],
       logging: true,
       synchronize: false,

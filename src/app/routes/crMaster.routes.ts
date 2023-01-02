@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import container from '@app/dependencyInjection/crMaster';
+import { resumenfonoDependency as container } from '@app/dependencyInjection/crMaster';
 import { IBaseController } from '@shared/domain/BaseController';
 
 export const register = (router: Router) => {

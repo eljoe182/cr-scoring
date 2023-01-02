@@ -45,17 +45,26 @@ export class Server {
     this.logger.info('Initializing databases...');
     const crMasterClient = container.get('DataSource.CRMaster.Client');
     const infocallClient = container.get('DataSource.Infocall.Client');
+    const scoringClient = container.get('DataSource.Scoring.Client');
+
     crMasterClient
       .initialize()
       .then(() => {
         this.logger.info('Databases mssql initialized');
       })
       .catch((error: any) => this.logger.error(error));
-    
+
     infocallClient
       .initialize()
       .then(() => {
         this.logger.info('Databases mysql initialized');
+      })
+      .catch((error: any) => this.logger.error(error));
+
+    scoringClient
+      .initialize()
+      .then(() => {
+        this.logger.info('Databases mongodb initialized');
       })
       .catch((error: any) => this.logger.error(error));
   };

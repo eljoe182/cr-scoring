@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { IBaseController } from '@shared/domain/BaseController';
-import container from '@app/dependencyInjection/scoring';
+import { scoringDependency as container } from '@app/dependencyInjection/scoring';
 
 export const register = (router: Router) => {
   const getScoringController: IBaseController = container.get('Scoring.Controller.Get');
