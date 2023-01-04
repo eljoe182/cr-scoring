@@ -2,11 +2,11 @@ import { DataSource } from 'typeorm';
 import { ISettingsFieldsRepository } from '../interface/ISettingsFieldsRepository';
 import { FieldConfig } from '@feat/infocall/domain/contracts/FieldConfig';
 import { SettingsFields } from '@shared/domain/entities/Scoring/SettingsFields.entity';
-import { IResponseRepository } from '@shared/domain/contracts/ResponseRepository.contracts';
+import { ResponseRepositoryContract } from '@shared/domain/contracts/ResponseRepository.contracts';
 
 export default class SettingsFieldsRepository implements ISettingsFieldsRepository {
   constructor(private orm: DataSource) {}
-  async saveSettingsFields(fieldsConfig: FieldConfig): Promise<IResponseRepository> {
+  async saveSettingsFields(fieldsConfig: FieldConfig): Promise<ResponseRepositoryContract> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(SettingsFields);
     const data = repository.create({
@@ -24,7 +24,7 @@ export default class SettingsFieldsRepository implements ISettingsFieldsReposito
     };
   }
 
-  async getSettingsFields(): Promise<IResponseRepository> {
+  async getSettingsFields(): Promise<ResponseRepositoryContract> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(SettingsFields);
     const data = await repository.find();
@@ -34,7 +34,7 @@ export default class SettingsFieldsRepository implements ISettingsFieldsReposito
     };
   }
 
-  async destroySettingsFields(id: string): Promise<IResponseRepository> {
+  async destroySettingsFields(id: string): Promise<ResponseRepositoryContract> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(SettingsFields);
     const data = await (await repository.delete(id)).affected;

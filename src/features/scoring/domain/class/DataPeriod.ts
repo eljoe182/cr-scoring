@@ -2,8 +2,9 @@ import { Resumenfono } from '@shared/domain/entities/CRMaster/Resumenfono.entity
 import { Bitel, Claro, Entel, Movistar } from '@shared/domain/entities/Infocall';
 import { AttemptContract } from '../contracts/Attempts.contract';
 import { Attempt } from './Attempt';
+import { DataPeriodContract } from '../contracts/DataPeriod.contract';
 
-export class Evaluation {
+export class DataPeriod {
   constructor(
     private readonly info: Resumenfono,
     private readonly bitel: Bitel,
@@ -12,7 +13,7 @@ export class Evaluation {
     private readonly movistar: Movistar
   ) {}
 
-  public getScore(): any {
+  public transform(): DataPeriodContract {
     const beastAttempt: AttemptContract = {
       value: this.info.valueAttempt,
       regular: this.info.regularAttempt,

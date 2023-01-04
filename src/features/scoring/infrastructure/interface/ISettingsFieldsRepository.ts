@@ -1,8 +1,8 @@
 import { FieldConfig } from '@feat/infocall/domain/contracts/FieldConfig';
-import { IResponseRepository } from '@shared/domain/contracts/ResponseRepository.contracts';
+import { ResponseRepositoryContract } from '@shared/domain/contracts/ResponseRepository.contracts';
 
 export interface ISettingsFieldsRepository {
-  saveSettingsFields(fieldsConfig: FieldConfig): Promise<IResponseRepository>;
-  getSettingsFields(): Promise<IResponseRepository>;
-  destroySettingsFields(id: string): Promise<IResponseRepository>;
+  saveSettingsFields(fieldsConfig: FieldConfig): Promise<ResponseRepositoryContract>;
+  getSettingsFields(): Promise<ResponseRepositoryContract>;
+  destroySettingsFields(id: string): Promise<ResponseRepositoryContract>;
 }

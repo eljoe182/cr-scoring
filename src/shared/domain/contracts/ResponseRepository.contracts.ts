@@ -1,4 +1,4 @@
-export interface IResponseRepository {
+export interface ResponseRepositoryContract {
   message: string;
   data: unknown;
 }
