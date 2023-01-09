@@ -1,6 +1,6 @@
 import config from '@app/config';
 import { DataSourceOptions } from 'typeorm';
-import { SettingsFields } from '@shared/domain/entities/Scoring';
+import { ScoringHistoric, SettingsFields } from '@shared/domain/entities/Scoring';
 
 export class ScoringConfig {
   public config: DataSourceOptions;
@@ -14,7 +14,7 @@ export class ScoringConfig {
       useUnifiedTopology: true,
       logging: true,
       ssl: true,
-      entities: [SettingsFields],
+      entities: [SettingsFields, ScoringHistoric],
     };
   }
 

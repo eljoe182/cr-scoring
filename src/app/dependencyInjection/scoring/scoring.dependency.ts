@@ -10,6 +10,7 @@ import NumberEvaluationUseCase from '@feat/scoring/application/numberEvaluation.
 import BeastDateUseCase from '@feat/scoring/application/beastDate.useCase';
 import SaveScoringUseCase from '@feat/scoring/application/saveSocring.useCase';
 import SaveScoringController from '@app/controllers/scoring/saveScoring.controller';
+import SaveHistoricUseCase from '@feat/scoring/application/saveHistoric.useCase';
 
 container.register('Scoring.UseCase.NumberEvaluation', NumberEvaluationUseCase);
 
@@ -47,7 +48,13 @@ container
 
 // Save Scoring
 container.register('Scoring.UseCase.Save', SaveScoringUseCase).addArgument(new Reference('Scoring.Repository'));
+container
+  .register('Scoring.UseCase.SaveHistoric', SaveHistoricUseCase)
+  .addArgument(new Reference('ScoringHistoric.Repository'));
 
-container.register('Scoring.Controller.Save', SaveScoringController).addArgument(new Reference('Scoring.UseCase.Save'));
+container
+  .register('Scoring.Controller.Save', SaveScoringController)
+  .addArgument(new Reference('Scoring.UseCase.Save'))
+  .addArgument(new Reference('Scoring.UseCase.SaveHistoric'));
 
 export default container;

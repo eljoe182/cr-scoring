@@ -27,9 +27,6 @@ export default class ScoringRepository implements IScoringRepository {
     const result = await repository.upsert(data, ['phoneNumber']);
 
     orm.destroy();
-    return {
-      message: 'Scoring saved successfully',
-      data: result,
-    };
+    return result;
   }
 }
