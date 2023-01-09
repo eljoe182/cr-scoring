@@ -9,12 +9,15 @@ export default class EntelRepository implements IEntelRepository {
   async getByNumber(phoneNumber: number): Promise<Entel> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(Entel);
-    return repository.findOneBy({ phoneNumber }) as unknown as Entel;
+    const result = await repository.findOneBy({ phoneNumber }) as unknown as Entel;
+    orm.destroy();
+    return result;
   }
 
   async getFields(): Promise<CellProviderTable[]> {
     const orm = await this.orm.initialize();
     const repository = await orm.manager.query('SHOW COLUMNS FROM entel');
+    orm.destroy();
     return repository;
   }
 }

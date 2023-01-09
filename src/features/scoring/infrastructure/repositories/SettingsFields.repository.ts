@@ -17,7 +17,7 @@ export default class SettingsFieldsRepository implements ISettingsFieldsReposito
     });
 
     const result = await repository.save(data);
-
+    orm.destroy();
     return {
       message: 'SettingsFields saved successfully',
       data: result,
@@ -28,6 +28,7 @@ export default class SettingsFieldsRepository implements ISettingsFieldsReposito
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(SettingsFields);
     const data = await repository.find();
+    orm.destroy();
     return {
       message: 'SettingsFields fetched successfully',
       data,
@@ -38,6 +39,7 @@ export default class SettingsFieldsRepository implements ISettingsFieldsReposito
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(SettingsFields);
     const data = await (await repository.delete(id)).affected;
+    orm.destroy();
     return {
       message: 'SettingsFields deleted successfully',
       data: {

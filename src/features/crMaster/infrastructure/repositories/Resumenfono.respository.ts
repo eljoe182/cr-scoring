@@ -14,12 +14,14 @@ export default class ResumenfonoRepository implements IResumenfonoRepository {
   public async getByPeriod(period: string): Promise<Resumenfono[]> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(Resumenfono);
-    return repository.find({
+    const result = await repository.find({
       where: {
         period,
       },
       take: 10,
     }) as unknown as Resumenfono[];
+    orm.destroy();
+    return result;
   }
 
   async getFields(): Promise<unknown> {

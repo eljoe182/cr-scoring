@@ -2,6 +2,7 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import morgan from 'morgan';
 import 'reflect-metadata';
 
 import { ErrorHandler } from './errorHandler';
@@ -25,6 +26,7 @@ export class Server {
     this.app.use(helmet.xssFilter());
     this.app.use(helmet.noSniff());
     this.app.use(helmet.hidePoweredBy());
+    this.app.use(morgan('dev'))
     registerRoutes(router);
     this.app.use(router, ErrorHandler);
     this.app.use(router, RoutesErrorHandler);

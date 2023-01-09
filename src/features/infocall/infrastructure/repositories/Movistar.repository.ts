@@ -9,12 +9,15 @@ export default class MovistarRepository implements IMovistarRepository {
   async getByNumber(phoneNumber: number): Promise<Movistar> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(Movistar);
-    return repository.findOneBy({ phoneNumber }) as unknown as Movistar;
+    const result = await repository.findOneBy({ phoneNumber }) as unknown as Movistar;
+    orm.destroy();
+    return result;
   }
 
   async getFields(): Promise<CellProviderTable[]> {
     const orm = await this.orm.initialize();
     const repository = await orm.manager.query('SHOW COLUMNS FROM movistar');
+    orm.destroy();
     return repository;
   }
 }

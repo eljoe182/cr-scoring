@@ -1,6 +1,6 @@
 import winston, { Logger as WinstonLoggerType } from 'winston';
 import ILogger from '@shared/domain/ILogger';
-import config from '@app/config';
+import DateFormat from '@shared/data-values/DateFormat';
 
 class WinstonLogger implements ILogger {
   private logger: WinstonLoggerType;
@@ -36,16 +36,7 @@ class WinstonLogger implements ILogger {
 
   private template(message: string) {
     const date = new Date();
-    const locale = config.LOCALE || 'es-CL';
-    const dateFormatted = new Intl.DateTimeFormat(locale, {
-      timeZone: config.TIME_ZONE || 'America/Santiago',
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-    }).format(new Date(date !== null ? date : new Date()));
+    const dateFormatted = DateFormat.dateTime(date);
 
     return `${dateFormatted} | ${message}`;
   }

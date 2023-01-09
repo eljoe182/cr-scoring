@@ -9,12 +9,15 @@ export default class ClaroRepository implements IClaroRepository {
   async getByNumber(phoneNumber: number): Promise<Claro> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(Claro);
-    return repository.findOneBy({ phoneNumber }) as unknown as Claro;
+    const result = await repository.findOneBy({ phoneNumber }) as unknown as Claro;
+    orm.destroy();
+    return result;
   }
 
   async getFields(): Promise<CellProviderTable[]> {
     const orm = await this.orm.initialize();
     const repository = await orm.manager.query('SHOW COLUMNS FROM claro');
+    orm.destroy();
     return repository;
   }
 }

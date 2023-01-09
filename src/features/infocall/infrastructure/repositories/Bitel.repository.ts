@@ -9,12 +9,15 @@ export default class BitelRepository implements IBitelRepository {
   async getByNumber(phoneNumber: number): Promise<Bitel> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(Bitel);
-    return repository.findOneBy({ phoneNumber }) as unknown as Bitel;
+    const result = await repository.findOneBy({ phoneNumber }) as unknown as Bitel;
+    orm.destroy();
+    return result;
   }
 
   async getFields(): Promise<CellProviderTable[]> {
     const orm = await this.orm.initialize();
     const repository = await orm.manager.query('SHOW COLUMNS FROM bitel');
+    orm.destroy();
     return repository;
   }
 }

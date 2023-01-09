@@ -12,13 +12,11 @@ import { InfocallConfig } from '@shared/infrastructure/persistance/mysql/Infocal
 container.register('Logger', WinstonLogger);
 
 container.register('DataSource.CRMaster.Config', CRMasterConfig);
-
 container
   .register('DataSource.CRMaster.Client', CRMasterClient)
   .addArgument(new Reference('DataSource.CRMaster.Config'));
 
 container.register('DataSource.Infocall.Config', InfocallConfig);
-
 container
   .register('DataSource.Infocall.Client', InfocallClient)
   .addArgument(new Reference('DataSource.Infocall.Config'));
