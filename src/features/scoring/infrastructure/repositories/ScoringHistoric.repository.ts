@@ -1,6 +1,8 @@
 import { DataSource } from 'typeorm';
 import { IScoringHistoricRepository } from '../interface/IScoringHistoricRepository';
 import { ScoringHistoric } from '@shared/domain/entities/Scoring/ScoringHistoric.entity';
+import { IPagination } from '@feat/scoring/domain/interface/IPagination';
+import { IResultPagination } from '@feat/scoring/domain/interface/IResultPagination';
 
 export default class ScoringHistoricRepository implements IScoringHistoricRepository {
   constructor(private orm: DataSource) {}
@@ -16,6 +18,22 @@ export default class ScoringHistoricRepository implements IScoringHistoricReposi
     return {
       message: 'SettingsFields saved successfully',
       data: result,
+    };
+  }
+
+  async findAll(pagination: IPagination): Promise<IResultPagination> {
+    const orm = await this.orm.initialize();
+    const repository = orm.manager.getRepository(ScoringHistoric);
+    const [rows, rowsCount] = await repository.findAndCount({
+      take: pagination.limit,
+      skip: pagination.limit * (pagination.page - 1),
+    });
+    orm.destroy();
+    return {
+      page: pagination.page,
+      limit: pagination.limit,
+      rowsCount,
+      rows,
     };
   }
 }
