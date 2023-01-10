@@ -21,11 +21,17 @@ export class DataPeriod {
       invalid: this.info.invalidAttempt,
       intermediate: this.info.intermediateStates,
     };
+
+    const bitel = this.bitel;
+    const claro = this.claro;
+    const entel = this.entel;
+    const movistar = this.movistar;
+
     const attempt = new Attempt(beastAttempt);
-    const bitelCreated = this.bitel?.validataCreatedAt;
-    const claroCreated = this.claro?.validataCreatedAt;
-    const entelCreated = this.entel?.validataCreatedAt;
-    const movistarCreated = this.movistar?.validataCreatedAt;
+    const bitelCreated = bitel?.validataCreatedAt;
+    const claroCreated = claro?.validataCreatedAt;
+    const entelCreated = entel?.validataCreatedAt;
+    const movistarCreated = movistar?.validataCreatedAt;
 
     return {
       phoneNumber: this.info.phoneNumber,

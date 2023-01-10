@@ -1,7 +1,7 @@
 {
-  "name": "express-template-ts",
+  "name": "ms-cr-scoring",
   "version": "1.0.0",
-  "description": "",
+  "description": "Microservices of Scoring for infocall system's CR Abohados",
   "main": "build/index.js",
   "nodemonConfig": {
     "ignore": [
@@ -26,15 +26,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eljoe182/express-template-ts.git"
+    "url": "git+https://github.com/eljoe182/cr-scoring.git"
   },
   "keywords": [],
   "author": "Joise Garcia",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/eljoe182/express-template-ts/issues"
+    "url": "https://github.com/eljoe182/cr-scoring/issues"
   },
-  "homepage": "https://github.com/eljoe182/express-template-ts#readme",
+  "homepage": "https://github.com/eljoe182/cr-scoring#readme",
   "dependencies": {
     "axios": "1.2.1",
     "body-parser": "^1.20.1",
