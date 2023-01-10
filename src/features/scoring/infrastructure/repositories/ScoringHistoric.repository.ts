@@ -27,6 +27,9 @@ export default class ScoringHistoricRepository implements IScoringHistoricReposi
     const [rows, rowsCount] = await repository.findAndCount({
       take: pagination.limit,
       skip: pagination.limit * (pagination.page - 1),
+      order: {
+        createdAt: 'DESC',
+      }
     });
     orm.destroy();
     return {
