@@ -7,7 +7,6 @@ export class Attempt {
   public getBestAttempt(): any {
     const attempts = this.attempts;
     const attemptsArray = Object.entries(attempts);
-    const bestAttempt = attemptsArray.reduce((a, b) => (a[1] > b[1] ? a : b));
-    return bestAttempt;
+    return attemptsArray.reduce((a, b) => (a[1] > b[1] ? a : b));
   }
 }

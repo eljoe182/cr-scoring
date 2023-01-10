@@ -5,7 +5,7 @@ import DateFormat from '@shared/data-values/DateFormat';
 export default class BeastDateUseCase implements IBaseUseCase {
   execute(params: DataPeriodContract): Promise<unknown> {
     return new Promise((resolve) => {
-      const { bitelCreated, claroCreated, entelCreated, movistarCreated, phoneNumber } = params;
+      const { bitelCreated, claroCreated, entelCreated, movistarCreated, phoneNumber, operator } = params;
 
       const dates = [bitelCreated, claroCreated, entelCreated, movistarCreated];
 
@@ -15,6 +15,7 @@ export default class BeastDateUseCase implements IBaseUseCase {
 
       resolve({
         phoneNumber,
+        operator,
         beastDate: dateFormatted,
       });
     });

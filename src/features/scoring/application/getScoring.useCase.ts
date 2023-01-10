@@ -31,8 +31,8 @@ export default class GetScoringUseCase implements IBaseUseCase {
           score: number;
         };
         this.logger.info(`${evaluation.phoneNumber} - ${evaluation.score}`);
-        const beastDate = (await this.beastDateUseCase.execute(data)) as { phoneNumber: string; beastDate: Date };
-        this.logger.info(`${beastDate.beastDate}`);
+        const beastDate = (await this.beastDateUseCase.execute(data)) as { phoneNumber: string; beastDate: Date, operator: string };
+        this.logger.info(`${beastDate.beastDate} - ${beastDate.operator}`);
         return { ...evaluation, ...beastDate };
       })
     ).then((results) => {

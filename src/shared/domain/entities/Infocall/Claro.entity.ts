@@ -1,7 +1,13 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, VirtualColumn } from 'typeorm';
 
 @Entity('claro')
 export class Claro {
+  @VirtualColumn({
+    type: 'string',
+    query: () => "select 'claro' as operator",
+  })
+  operator!: string;
+
   @Column({
     name: 'documento',
     type: 'bigint',
