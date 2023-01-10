@@ -8,13 +8,17 @@ export default class SaveScoringController implements IBaseController {
 
   async run(req: Request, res: Response, _next: NextFunction): Promise<void> {
     const { period, data } = req.body;
+
     const result = await this.saveScoringUseCase.execute(data);
     const historic = await this.saveHistoricUseCase.execute({
       period,
       data,
       result,
     } as SaveHistoricDataContract);
-    console.log(historic);
-    res.status(200).json(result);
+
+    res.status(200).json({
+      result,
+      historic,
+    });
   }
 }

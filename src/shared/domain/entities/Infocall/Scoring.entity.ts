@@ -7,6 +7,12 @@ export class Scoring extends BaseEntity {
     type: 'bigint',
   })
   phoneNumber!: string;
+  
+  @Column({
+    name: 'operator',
+    type: 'varchar',
+  })
+  operator!: string;
 
   @Column({
     name: 'score',
