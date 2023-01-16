@@ -28,13 +28,13 @@ export class Entel {
 
   @Column({
     name: 'validata_updated_at',
-    type: 'datetime',
+    type: 'date',
   })
   validataUpdatedAt!: Date;
 
   @Column({
     name: 'validata_created_at',
-    type: 'datetime',
+    type: 'date',
   })
   validataCreatedAt!: Date;
 

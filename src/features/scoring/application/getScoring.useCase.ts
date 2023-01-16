@@ -3,6 +3,7 @@ import { DataPeriodContract } from '../domain/contracts/DataPeriod.contract';
 import { ISettingsFieldsRepository } from '../infrastructure/interface/ISettingsFieldsRepository';
 import { ParamsNumberEvaluationContract } from '../domain/contracts/NumberEvaluation.contract';
 import { SettingsFieldsContract } from '../domain/contracts/SettingsFields.contract';
+import DateFormat from '@shared/data-values/DateFormat';
 
 export default class GetScoringUseCase implements IBaseUseCase {
   constructor(
@@ -37,7 +38,7 @@ export default class GetScoringUseCase implements IBaseUseCase {
             phoneNumber: result.value.info.phoneNumber,
             score: result.value.score,
             operator: result.value.operator.operator,
-            beastDate: result.value.operator.validataCreatedAt ?? new Date(0),
+            beastDate: DateFormat.date(result.value.operator.validataCreatedAt) ?? DateFormat.date(new Date(0)),
           });
         }
         if (result.status === 'rejected') {
