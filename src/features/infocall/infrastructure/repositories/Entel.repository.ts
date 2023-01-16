@@ -20,4 +20,12 @@ export default class EntelRepository implements IEntelRepository {
     orm.destroy();
     return repository;
   }
+
+  async getInByPhoneNumber(phoneNumbers: number[]): Promise<Entel[]> {
+    const orm = await this.orm.initialize();
+    const repository = orm.manager.getRepository(Entel);
+    const result = await repository.createQueryBuilder().where('numero IN (:...phoneNumbers)', { phoneNumbers }).getMany() as unknown as Entel[];
+    orm.destroy();
+    return result;
+  }
 }

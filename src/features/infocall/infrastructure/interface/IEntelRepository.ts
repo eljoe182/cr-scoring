@@ -4,4 +4,5 @@ import { CellProviderTable } from '@feat/infocall/domain/contracts/CellProviderT
 export interface IEntelRepository {
   getByNumber(phoneNumber: number): Promise<Entel>;
   getFields(): Promise<CellProviderTable[]>;
+  getInByPhoneNumber(phoneNumbers: number[]): Promise<Entel[]>;
 }

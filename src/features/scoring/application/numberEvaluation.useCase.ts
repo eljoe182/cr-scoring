@@ -1,20 +1,26 @@
 import { IBaseUseCase } from '@shared/domain/BaseUseCase';
 import { ParamsNumberEvaluationContract } from '../domain/contracts/NumberEvaluation.contract';
-import { Attempt } from '../domain/Attempt.enum';
+import { AttemptContract } from '../domain/contracts/Attempts.contract';
+import { Attempt } from '../domain/class/Attempt';
+import { AttemptENUM } from '../domain/Attempt.enum';
 
 export default class NumberEvaluationUseCase implements IBaseUseCase {
   async execute(params: ParamsNumberEvaluationContract): Promise<unknown> {
     return new Promise((resolve) => {
-      let score = 0;
+      const beastAttempt: AttemptContract = {
+        value: params.dataPeriod.info.valueAttempt,
+        regular: params.dataPeriod.info.regularAttempt,
+        alert: params.dataPeriod.info.alertAttempt,
+        invalid: params.dataPeriod.info.invalidAttempt,
+        intermediate: params.dataPeriod.info.intermediateStates,
+      };
 
-      const attemptValue = Attempt[params.dataPeriod.bestAttempt[0].toString().toUpperCase() as keyof typeof Attempt];
-
-      if (attemptValue > 0) {
-        score += attemptValue;
-      }
+      const bestAttempt = Attempt.getBestAttempt(beastAttempt);
+      const attemptValue = AttemptENUM[bestAttempt.toUpperCase() as keyof typeof AttemptENUM];
       resolve({
-        phoneNumber: params.dataPeriod.phoneNumber,
-        score,
+        phoneNumber: params.dataPeriod.info.phoneNumber,
+        score: attemptValue,
+        bestAttempt,
       });
     });
   }

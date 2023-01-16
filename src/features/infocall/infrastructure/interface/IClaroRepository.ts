@@ -4,4 +4,5 @@ import { CellProviderTable } from '@feat/infocall/domain/contracts/CellProviderT
 export interface IClaroRepository {
   getByNumber(phoneNumber: number): Promise<Claro>;
   getFields(): Promise<CellProviderTable[]>;
+  getInByPhoneNumber(phoneNumbers: number[]): Promise<Claro[]>;
 }

@@ -20,4 +20,12 @@ export default class BitelRepository implements IBitelRepository {
     orm.destroy();
     return repository;
   }
+
+  async getInByPhoneNumber(phoneNumbers: number[]): Promise<Bitel[]> {
+    const orm = await this.orm.initialize();
+    const repository = orm.manager.getRepository(Bitel);
+    const result = await repository.createQueryBuilder().where('numero IN (:...phoneNumbers)', { phoneNumbers }).getMany() as unknown as Bitel[];
+    orm.destroy();
+    return result;
+  }
 }

@@ -3,19 +3,13 @@ import { DataPeriodContract } from '../domain/contracts/DataPeriod.contract';
 import { ISettingsFieldsRepository } from '../infrastructure/interface/ISettingsFieldsRepository';
 import { ParamsNumberEvaluationContract } from '../domain/contracts/NumberEvaluation.contract';
 import { SettingsFieldsContract } from '../domain/contracts/SettingsFields.contract';
-import container from '@app/dependencyInjection/shared';
-import ILogger from '@shared/domain/ILogger';
 
 export default class GetScoringUseCase implements IBaseUseCase {
-  private logger: ILogger;
   constructor(
     private readonly retrievePeriodUseCase: IBaseUseCase,
     private readonly numberEvaluationUseCase: IBaseUseCase,
-    private readonly settingsFieldsRepository: ISettingsFieldsRepository,
-    private readonly beastDateUseCase: IBaseUseCase
-  ) {
-    this.logger = container.get('Logger');
-  }
+    private readonly settingsFieldsRepository: ISettingsFieldsRepository
+  ) {}
 
   async execute(period: string) {
     const dataPeriod = (await this.retrievePeriodUseCase.execute(period)) as DataPeriodContract[];
@@ -30,10 +24,8 @@ export default class GetScoringUseCase implements IBaseUseCase {
           phoneNumber: string;
           score: number;
         };
-        this.logger.info(`${evaluation.phoneNumber} - ${evaluation.score}`);
-        const beastDate = (await this.beastDateUseCase.execute(data)) as { phoneNumber: string; beastDate: Date, operator: string };
-        this.logger.info(`${beastDate.beastDate} - ${beastDate.operator}`);
-        return { ...evaluation, ...beastDate };
+
+        return { ...data, ...evaluation };
       })
     ).then((results) => {
       const success: unknown[] = [];
@@ -41,7 +33,12 @@ export default class GetScoringUseCase implements IBaseUseCase {
 
       results.forEach((result) => {
         if (result.status === 'fulfilled') {
-          success.push(result.value);
+          success.push({
+            phoneNumber: result.value.info.phoneNumber,
+            score: result.value.score,
+            operator: result.value.operator.operator,
+            beastDate: result.value.operator.validataCreatedAt ?? new Date(0),
+          });
         }
         if (result.status === 'rejected') {
           errors.push(result.reason);
@@ -56,7 +53,7 @@ export default class GetScoringUseCase implements IBaseUseCase {
 
     return {
       message: 'Scoring',
-      data: resultEvaluation,
+      data: resultEvaluation.success,
     };
   }
 }

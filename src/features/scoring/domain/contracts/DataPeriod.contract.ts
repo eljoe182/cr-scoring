@@ -1,9 +1,7 @@
+import { Resumenfono } from '@shared/domain/entities/CRMaster';
+import { Bitel, Claro, Entel, Movistar } from '@shared/domain/entities/Infocall';
+
 export interface DataPeriodContract {
-  phoneNumber: string;
-  operator: string;
-  bestAttempt: Array<string | number>;
-  bitelCreated: Date;
-  claroCreated: Date;
-  entelCreated: Date;
-  movistarCreated: Date;
+  info: Resumenfono;
+  operator: Bitel | Claro | Entel | Movistar;
 }

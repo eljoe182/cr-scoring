@@ -3,7 +3,6 @@ import { IBitelRepository } from '@feat/infocall/infrastructure/interface/IBitel
 import { IClaroRepository } from '@feat/infocall/infrastructure/interface/IClaroRepository';
 import { IEntelRepository } from '@feat/infocall/infrastructure/interface/IEntelRepository';
 import { IMovistarRepository } from '@feat/infocall/infrastructure/interface/IMovistarRepository';
-import { DataPeriod } from '../domain/class/DataPeriod';
 import { IResumenfonoRepository } from '@feat/crMaster/domain/interface/IResumenfonoRepository';
 import { DataPeriodContract } from '../domain/contracts/DataPeriod.contract';
 
@@ -19,51 +18,58 @@ export default class RetrieveDataPeriodUseCase implements IBaseUseCase {
   async execute(period: string): Promise<DataPeriodContract[]> {
     const resumenfonoPeriod = await this.repositoryResumenfono.getByPeriod(period);
 
+    const phoneNumbers = resumenfonoPeriod.map((info) => Number(info.phoneNumber));
+
+    const bitelNumbers = await this.repositoryBitel.getInByPhoneNumber(phoneNumbers);
+    const claroNumbers = await this.repositoryClaro.getInByPhoneNumber(phoneNumbers);
+    const entelNumbers = await this.repositoryEntel.getInByPhoneNumber(phoneNumbers);
+    const movistarNumbers = await this.repositoryMovistar.getInByPhoneNumber(phoneNumbers);
+
+    const numbersValid = [...bitelNumbers, ...claroNumbers, ...entelNumbers, ...movistarNumbers];
+
     const resultPeriod = await Promise.allSettled(
-      resumenfonoPeriod.map(async (info) => {
+      resumenfonoPeriod.map((info) => {
         const phoneNumber = Number(info.phoneNumber);
 
         if (isNaN(phoneNumber) || phoneNumber === 0) {
-          throw new Error('Phone number is not valid');
+          return Promise.reject('Phone number is not valid')
         }
 
-        const bitel = await this.repositoryBitel.getByNumber(phoneNumber);
-        const claro = await this.repositoryClaro.getByNumber(phoneNumber);
-        const entel = await this.repositoryEntel.getByNumber(phoneNumber);
-        const movistar = await this.repositoryMovistar.getByNumber(phoneNumber);
+        const operator = numbersValid.filter((number) => number.phoneNumber === phoneNumber);
 
-        return {
+        if (operator.length === 0) {
+          return Promise.reject(`The phone number ${phoneNumber} does not have an operator`)
+        }
+
+        if (operator.length > 1) {
+          const bestRow = operator.reduce((a, b) => (a.validataCreatedAt > b.validataCreatedAt ? a : b));
+          return Promise.resolve({
+            info,
+            operator: bestRow,
+          });
+        }
+
+        return Promise.resolve({
           info,
-          bitel,
-          claro,
-          entel,
-          movistar,
-        };
+          operator: operator[0],
+        });
       })
     ).then((results) => {
       const success: DataPeriodContract[] = [];
+      const errors: unknown[] = [];
 
       results.forEach((result) => {
         if (result.status === 'fulfilled') {
-          const data = new DataPeriod(
-            result.value?.info,
-            result.value?.bitel,
-            result.value?.claro,
-            result.value?.entel,
-            result.value?.movistar
-          ).transform();
-          success.push(data);
+          success.push(result.value);
         }
-      });
-      const error = results.map((result) => {
         if (result.status === 'rejected') {
-          return result.reason;
+          errors.push(result.reason);
         }
       });
 
       return {
         success,
-        error,
+        errors,
       };
     });
 

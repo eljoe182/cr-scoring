@@ -1,4 +1,4 @@
-export enum Attempt {
+export enum AttemptENUM {
   VALUE = 1,
   REGULAR = 2,
   ALERT = 3,

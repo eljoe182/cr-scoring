@@ -20,4 +20,12 @@ export default class MovistarRepository implements IMovistarRepository {
     orm.destroy();
     return repository;
   }
+
+  async getInByPhoneNumber(phoneNumbers: number[]): Promise<Movistar[]> {
+    const orm = await this.orm.initialize();
+    const repository = orm.manager.getRepository(Movistar);
+    const result = await repository.createQueryBuilder().where('numero IN (:...phoneNumbers)', { phoneNumbers }).getMany() as unknown as Movistar[];
+    orm.destroy();
+    return result;
+  }
 }

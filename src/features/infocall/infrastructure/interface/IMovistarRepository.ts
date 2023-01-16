@@ -4,4 +4,5 @@ import { CellProviderTable } from '@feat/infocall/domain/contracts/CellProviderT
 export interface IMovistarRepository {
   getByNumber(phoneNumber: number): Promise<Movistar>;
   getFields(): Promise<CellProviderTable[]>;
+  getInByPhoneNumber(phoneNumbers: number[]): Promise<Movistar[]>;
 }

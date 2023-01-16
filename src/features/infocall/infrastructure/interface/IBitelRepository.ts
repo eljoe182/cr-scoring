@@ -4,4 +4,5 @@ import { CellProviderTable } from '@feat/infocall/domain/contracts/CellProviderT
 export interface IBitelRepository {
   getByNumber(phoneNumber: number): Promise<Bitel>;
   getFields(): Promise<CellProviderTable[]>;
+  getInByPhoneNumber(phoneNumbers: number[]): Promise<Bitel[]>;
 }

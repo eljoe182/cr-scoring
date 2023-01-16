@@ -1,12 +1,9 @@
 import { AttemptContract } from '../contracts/Attempts.contract';
 
-export class Attempt {
-  constructor(private readonly attempts: AttemptContract) {}
-
+export abstract class Attempt {
   // Get beast attempt return object with key and value
-  public getBestAttempt(): any {
-    const attempts = this.attempts;
+  static getBestAttempt(attempts: AttemptContract): string {
     const attemptsArray = Object.entries(attempts);
-    return attemptsArray.reduce((a, b) => (a[1] > b[1] ? a : b));
+    return attemptsArray.reduce((a, b) => (a[1] > b[1] ? a : b))[0];
   }
 }
