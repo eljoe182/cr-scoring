@@ -7,6 +7,12 @@ export class Bitel {
     query: () => "select 'bitel' as operator",
   })
   operator!: string;
+
+  @PrimaryColumn({
+    name: 'numero',
+    type: 'int',
+  })
+  phoneNumber!: number;
   
   @Column({
     name: 'documento',
@@ -20,23 +26,11 @@ export class Bitel {
   })
   fullName!: string;
 
-  @PrimaryColumn({
-    name: 'numero',
-    type: 'int',
+  @VirtualColumn({
+    type: 'string',
+    query: () => "select false as 'moreThanOne'",
   })
-  phoneNumber!: number;
-
-  @Column({
-    name: 'validata_updated_at',
-    type: 'date',
-  })
-  validataUpdatedAt!: Date;
-
-  @Column({
-    name: 'validata_created_at',
-    type: 'date',
-  })
-  validataCreatedAt!: Date;
+  moreThanOne!: boolean;
 
   @Column({
     name: 'created_at',

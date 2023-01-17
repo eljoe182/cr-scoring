@@ -32,17 +32,18 @@ export default class RetrieveDataPeriodUseCase implements IBaseUseCase {
         const phoneNumber = Number(info.phoneNumber);
 
         if (isNaN(phoneNumber) || phoneNumber === 0) {
-          return Promise.reject('Phone number is not valid')
+          return Promise.reject('Phone number is not valid');
         }
 
         const operator = numbersValid.filter((number) => number.phoneNumber === phoneNumber);
 
         if (operator.length === 0) {
-          return Promise.reject(`The phone number ${phoneNumber} does not have an operator`)
+          return Promise.reject(`The phone number ${phoneNumber} does not have an operator`);
         }
 
         if (operator.length > 1) {
-          const bestRow = operator.reduce((a, b) => (a.validataCreatedAt > b.validataCreatedAt ? a : b));
+          const bestRow = operator.reduce((a, b) => (a.updatedAt > b.updatedAt ? a : b));
+          bestRow.moreThanOne = true;
           return Promise.resolve({
             info,
             operator: bestRow,

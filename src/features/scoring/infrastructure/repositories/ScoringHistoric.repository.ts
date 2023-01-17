@@ -29,7 +29,7 @@ export default class ScoringHistoricRepository implements IScoringHistoricReposi
       skip: pagination.limit * (pagination.page - 1),
       order: {
         createdAt: 'DESC',
-      }
+      },
     });
     orm.destroy();
     return {

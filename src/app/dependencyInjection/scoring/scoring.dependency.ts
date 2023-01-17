@@ -7,16 +7,13 @@ import GetFieldsUseCase from '@feat/scoring/application/getFields.useCase';
 import GetFieldsController from '@controller/scoring/getFields.controller';
 import RetrieveDataPeriodUseCase from '@feat/scoring/application/retrieveDataPeriod.useCase';
 import NumberEvaluationUseCase from '@feat/scoring/application/numberEvaluation.useCase';
-import BeastDateUseCase from '@feat/scoring/application/beastDate.useCase';
-import SaveScoringUseCase from '@feat/scoring/application/saveSocring.useCase';
+import SaveScoringUseCase from '@feat/scoring/application/saveScoring.useCase';
 import SaveScoringController from '@app/controllers/scoring/saveScoring.controller';
 import SaveHistoricUseCase from '@feat/scoring/application/saveHistoric.useCase';
 import ShowScoringHistoricUseCase from '@feat/scoring/application/showScoringHistoric.useCase';
 import ShowScoringHistoricController from '@app/controllers/scoring/showScoringHistoric.controller';
 
 container.register('Scoring.UseCase.NumberEvaluation', NumberEvaluationUseCase);
-
-container.register('Scoring.UseCase.BeastDate', BeastDateUseCase);
 
 container
   .register('Scoring.UseCase.DataPeriod', RetrieveDataPeriodUseCase)
@@ -30,8 +27,7 @@ container
   .register('Scoring.UseCase.Get', GetScoringUseCase)
   .addArgument(new Reference('Scoring.UseCase.DataPeriod'))
   .addArgument(new Reference('Scoring.UseCase.NumberEvaluation'))
-  .addArgument(new Reference('SettingsFields.Repository'))
-  .addArgument(new Reference('Scoring.UseCase.BeastDate'));
+  .addArgument(new Reference('SettingsFields.Repository'));
 
 container.register('Scoring.Controller.Get', GetScoringController).addArgument(new Reference('Scoring.UseCase.Get'));
 

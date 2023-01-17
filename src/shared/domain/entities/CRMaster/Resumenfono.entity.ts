@@ -47,23 +47,23 @@ export class Resumenfono {
   period!: string;
 
   @Column({
-    name: 'Fecha_MejorGestion',
+    name: 'CD',
     type: 'nvarchar',
     length: 8,
   })
-  bestManagementDate!: string;
+  CD!: string;
 
   @Column({
-    name: 'fecha_registro',
+    name: 'CNE',
     type: 'nvarchar',
     length: 8,
   })
-  registrationDate!: string;
+  CNE!: string;
 
   @Column({
-    name: 'fecha_modificacion',
+    name: 'MEJOR_GEST',
     type: 'nvarchar',
     length: 8,
   })
-  modificationDate!: string;
+  betterManagement!: string;
 }

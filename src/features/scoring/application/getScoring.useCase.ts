@@ -38,7 +38,8 @@ export default class GetScoringUseCase implements IBaseUseCase {
             phoneNumber: result.value.info.phoneNumber,
             score: result.value.score,
             operator: result.value.operator.operator,
-            beastDate: DateFormat.date(result.value.operator.validataCreatedAt) ?? DateFormat.date(new Date(0)),
+            beastDate: result.value.operator.updatedAt ? DateFormat.date(result.value.operator.updatedAt) : DateFormat.date(new Date(0)),
+            moreThanOne: Boolean(result.value.operator.moreThanOne),
           });
         }
         if (result.status === 'rejected') {
