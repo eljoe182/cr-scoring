@@ -21,12 +21,12 @@ export class Server {
     const router = express.Router();
     this.port = port;
     this.app.use(cors({ origin: true }));
-    this.app.use(bodyParser.urlencoded({ extended: true }));
-    this.app.use(bodyParser.json());
+    this.app.use(bodyParser.json({ limit: '50mb' }));
+    this.app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
     this.app.use(helmet.xssFilter());
     this.app.use(helmet.noSniff());
     this.app.use(helmet.hidePoweredBy());
-    this.app.use(morgan('dev'))
+    this.app.use(morgan('dev'));
     registerRoutes(router);
     this.app.use(router, ErrorHandler);
     this.app.use(router, RoutesErrorHandler);

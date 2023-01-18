@@ -24,6 +24,8 @@ export default class GetScoringUseCase implements IBaseUseCase {
         const evaluation = (await this.numberEvaluationUseCase.execute(params)) as {
           phoneNumber: string;
           score: number;
+          betterManagement: string;
+          beastTry: string;
         };
 
         return { ...data, ...evaluation };
@@ -37,8 +39,10 @@ export default class GetScoringUseCase implements IBaseUseCase {
           success.push({
             phoneNumber: result.value.info.phoneNumber,
             score: result.value.score,
-            operator: result.value.operator.operator,
+            operator: result.value.operator.operator.toUpperCase(),
             beastDate: result.value.operator.updatedAt ? DateFormat.date(result.value.operator.updatedAt) : DateFormat.date(new Date(0)),
+            betterManagement: result.value.betterManagement,
+            beastTry: result.value.beastTry,
             moreThanOne: Boolean(result.value.operator.moreThanOne),
           });
         }

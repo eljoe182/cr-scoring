@@ -18,13 +18,17 @@ export default class NumberEvaluationUseCase implements IBaseUseCase {
       const bestAttempt = Attempt.getBestAttempt(beastAttempt);
       let score = AttemptENUM[bestAttempt.toUpperCase() as keyof typeof AttemptENUM];
 
-      if(params.dataPeriod.info.betterManagement === 'CD') {
+      if (params.dataPeriod.info.betterManagement === 'CD') {
         score = score + 1;
       }
+
+      const beastTry = params.dataPeriod.info.beastTry.slice(2).toUpperCase();
 
       resolve({
         phoneNumber: params.dataPeriod.info.phoneNumber,
         score,
+        betterManagement: params.dataPeriod.info.betterManagement,
+        beastTry,
       });
     });
   }

@@ -7,7 +7,7 @@ export class Scoring extends BaseEntity {
     type: 'bigint',
   })
   phoneNumber!: string;
-  
+
   @Column({
     name: 'operator',
     type: 'varchar',
@@ -26,18 +26,30 @@ export class Scoring extends BaseEntity {
   })
   beastDate!: Date;
 
+  @Column({
+    name: 'better_management',
+    type: 'varchar',
+  })
+  betterManagement!: string;
+  
+  @Column({
+    name: 'beast_try',
+    type: 'varchar',
+  })
+  beastTry!: string;
+
   @CreateDateColumn({
     name: 'created_at',
     type: 'datetime',
-    default: () => 'CURRENT_TIMESTAMP',
+    default: () => 'NOW()',
   })
   createdAt!: Date;
 
   @UpdateDateColumn({
     name: 'updated_at',
     type: 'datetime',
-    default: () => 'CURRENT_TIMESTAMP',
-    onUpdate: 'CURRENT_TIMESTAMP',
+    default: () => 'NOW()',
+    onUpdate: 'NOW()',
     nullable: true,
   })
   updatedAt!: Date;

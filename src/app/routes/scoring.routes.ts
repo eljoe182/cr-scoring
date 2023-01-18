@@ -7,6 +7,7 @@ export const register = (router: Router) => {
   const getFieldsController: IBaseController = container.get('Scoring.Controller.GetFields');
   const saveController: IBaseController = container.get('Scoring.Controller.Save');
   const showHistoricController: IBaseController = container.get('Scoring.Controller.ShowHistory');
+  const resultScoringController: IBaseController = container.get('Scoring.Controller.Result');
 
   router.get('/scoring/period/:period', (req: Request, res: Response, next: NextFunction) => {
     return getScoringController.run(req, res, next);
@@ -22,5 +23,9 @@ export const register = (router: Router) => {
   
   router.get('/scoring/show-historic', (req: Request, res: Response, next: NextFunction) => {
     return showHistoricController.run(req, res, next);
+  });
+  
+  router.get('/scoring/result/:core/:listId', (req: Request, res: Response, next: NextFunction) => {
+    return resultScoringController.run(req, res, next);
   });
 };

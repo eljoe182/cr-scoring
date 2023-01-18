@@ -14,11 +14,11 @@ export default class ResumenfonoRepository implements IResumenfonoRepository {
   public async getByPeriod(period: string): Promise<Resumenfono[]> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(Resumenfono);
-    const result = await repository.find({
+    const result = (await repository.find({
       where: {
         period,
       },
-    }) as unknown as Resumenfono[];
+    })) as unknown as Resumenfono[];
     orm.destroy();
     return result;
   }
@@ -31,5 +31,16 @@ export default class ResumenfonoRepository implements IResumenfonoRepository {
       WHERE TABLE_NAME = N'RS_OP_FG_RESUMENFONO'
     `);
     return repository;
+  }
+
+  async getInByPhoneNumber(phoneNumbers: string[]): Promise<Resumenfono[]> {
+    const orm = await this.orm.initialize();
+    const repository = orm.manager.getRepository(Resumenfono);
+    const result = (await repository
+      .createQueryBuilder()
+      .where('phone_number IN (:...phoneNumbers)', { phoneNumbers })
+      .getMany()) as unknown as Resumenfono[];
+    orm.destroy();
+    return result;
   }
 }

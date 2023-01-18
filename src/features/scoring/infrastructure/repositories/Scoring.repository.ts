@@ -29,4 +29,15 @@ export default class ScoringRepository implements IScoringRepository {
     orm.destroy();
     return result;
   }
+
+  async getInByPhoneNumber(phoneNumbers: string[]): Promise<Scoring[]> {
+    const orm = await this.orm.initialize();
+    const repository = orm.manager.getRepository(Scoring);
+    const result = (await repository
+      .createQueryBuilder()
+      .where('phone_number IN (:...phoneNumbers)', { phoneNumbers })
+      .getMany()) as unknown as Scoring[];
+    orm.destroy();
+    return result;
+  }
 }

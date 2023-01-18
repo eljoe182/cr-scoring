@@ -66,4 +66,11 @@ export class Resumenfono {
     length: 8,
   })
   betterManagement!: string;
+  
+  @Column({
+    name: 'MEJOR_INTEN',
+    type: 'nvarchar',
+    length: 25,
+  })
+  beastTry!: string;
 }
