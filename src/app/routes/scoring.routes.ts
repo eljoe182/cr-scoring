@@ -25,7 +25,7 @@ export const register = (router: Router) => {
     return showHistoricController.run(req, res, next);
   });
   
-  router.get('/scoring/result/:core/:listId', (req: Request, res: Response, next: NextFunction) => {
+  router.get('/scoring/match-dial/:core/:listId', (req: Request, res: Response, next: NextFunction) => {
     return resultScoringController.run(req, res, next);
   });
 };

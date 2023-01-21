@@ -5,3 +5,5 @@ package-*
 logs/*
 restClient
 dist
+.DS_Store
+.vscode

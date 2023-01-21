@@ -11,11 +11,6 @@ export default class ResultScoringUseCase implements IBaseUseCase {
       core,
       listId,
     }) as unknown as GetInfoVicidialDataContract;
-
-    // const phoneNumbers = vicidialData..map((item) => item.phoneNumber);
-
-    // const scoringData = await this.scoringRepository.getInPhoneNumbers(vicidialData);
-
     return vicidialData;
   }
 }
