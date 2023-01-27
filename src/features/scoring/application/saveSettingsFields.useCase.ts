@@ -4,10 +4,7 @@ import { ISettingsFieldsRepository } from '../infrastructure/interface/ISettings
 
 export default class SaveSettingsFieldsUseCase implements IBaseUseCase {
   constructor(private readonly repository: ISettingsFieldsRepository) {}
-  async execute(fieldsConfig: FieldConfig[]) {
-    const result = await Promise.allSettled(
-      fieldsConfig.map(async (config) => this.repository.saveSettingsFields(config))
-    );
-    return result;
+  async execute(fieldsConfig: FieldConfig) {
+    return this.repository.save(fieldsConfig);
   }
 }

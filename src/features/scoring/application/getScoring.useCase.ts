@@ -15,7 +15,7 @@ export default class GetScoringUseCase implements IBaseUseCase {
   async execute(period: string) {
     const dataPeriod = (await this.retrievePeriodUseCase.execute(period)) as DataPeriodContract[];
     const dataFields = (await (
-      await this.settingsFieldsRepository.getSettingsFields()
+      await this.settingsFieldsRepository.getAll()
     ).data) as SettingsFieldsContract[];
 
     const resultEvaluation = await Promise.allSettled(

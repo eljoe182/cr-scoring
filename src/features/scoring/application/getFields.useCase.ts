@@ -22,18 +22,37 @@ export default class GetFieldsUseCase implements IBaseUseCase {
     const fieldsEntel = (await this.repositoryEntel.getFields()) as unknown as CellProviderTable[];
     const fieldsMovistar = (await this.repositoryMovistar.getFields()) as unknown as CellProviderTable[];
 
-    const resumenfono = fieldsResumenfono.map((field: { COLUMN_NAME: string }) => field.COLUMN_NAME);
-    const bitel = fieldsBitel.map((field: CellProviderTable) => field.Field);
-    const claro = fieldsClaro.map((field: CellProviderTable) => field.Field);
-    const entel = fieldsEntel.map((field: CellProviderTable) => field.Field);
-    const movistar = fieldsMovistar.map((field: CellProviderTable) => field.Field);
+    const resumenfono = fieldsResumenfono.map((field: { COLUMN_NAME: string }) => ({
+      database: 'DB_CR_MAESTRA',
+      table: 'RS_OP_FG_RESUMENFONO',
+      field: field.COLUMN_NAME,
+      value: 0,
+    }));
+    const bitel = fieldsBitel.map((field: CellProviderTable) => ({
+      database: 'infocall',
+      table: 'bitel',
+      field: field.Field,
+      value: 0,
+    }));
+    const claro = fieldsClaro.map((field: CellProviderTable) => ({
+      database: 'infocall',
+      table: 'claro',
+      field: field.Field,
+      value: 0,
+    }));
+    const entel = fieldsEntel.map((field: CellProviderTable) => ({
+      database: 'infocall',
+      table: 'entel',
+      field: field.Field,
+      value: 0,
+    }));
+    const movistar = fieldsMovistar.map((field: CellProviderTable) => ({
+      database: 'infocall',
+      table: 'movistar',
+      field: field.Field,
+      value: 0,
+    }));
 
-    return {
-      resumenfono,
-      bitel,
-      claro,
-      entel,
-      movistar,
-    };
+    return Array.prototype.concat(resumenfono, bitel, claro, entel, movistar);
   }
 }

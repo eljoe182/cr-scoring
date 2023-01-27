@@ -4,9 +4,13 @@ import { scoringSettingFieldsDependency as container } from '@app/dependencyInje
 
 export const register = (router: Router) => {
   const getController: IBaseController = container.get('Scoring.Controller.SettingFields.GetAll');
+  const getFieldsController: IBaseController = container.get('Scoring.Controller.SettingFields.GetFields');
   const saveController: IBaseController = container.get('Scoring.Controller.SettingFields.Save');
   const destroyController: IBaseController = container.get('Scoring.Controller.SettingFields.Destroy');
 
+  router.get('/scoring/settings/fields/get-fields', (req: Request, res: Response, next: NextFunction) => {
+    return getFieldsController.run(req, res, next);
+  });
   router.get('/scoring/settings/fields/get-all', (req: Request, res: Response, next: NextFunction) => {
     return getController.run(req, res, next);
   });

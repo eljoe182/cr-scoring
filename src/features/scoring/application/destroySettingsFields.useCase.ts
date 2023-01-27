@@ -4,6 +4,6 @@ import { ISettingsFieldsRepository } from '../infrastructure/interface/ISettings
 export default class DestroySettingsFieldsUseCase implements IBaseUseCase {
   constructor(private readonly repository: ISettingsFieldsRepository) {}
   async execute(id: string) {
-    return this.repository.destroySettingsFields(id);
+    return this.repository.destroy(id);
   }
 }
