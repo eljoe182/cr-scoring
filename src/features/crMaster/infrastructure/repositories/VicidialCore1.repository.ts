@@ -12,6 +12,7 @@ export default class VicidialCore1Repository implements IVicidialCoreRepository 
       where: {
         listId,
       },
+      take: 100,
     });
     orm.destroy();
     return result;

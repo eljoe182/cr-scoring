@@ -25,6 +25,12 @@ export class Movistar {
     type: 'varchar',
   })
   fullName!: string;
+  
+  @Column({
+    name: 'with_whatsapp',
+    type: 'tinyint',
+  })
+  withWhatsapp!: boolean;
 
   @VirtualColumn({
     type: 'string',

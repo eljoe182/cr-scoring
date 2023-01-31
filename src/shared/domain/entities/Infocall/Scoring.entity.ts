@@ -37,6 +37,12 @@ export class Scoring extends BaseEntity {
     type: 'varchar',
   })
   beastTry!: string;
+  
+  @Column({
+    name: 'with_whatsapp',
+    type: 'tinyint',
+  })
+  withWhatsapp!: boolean;
 
   @CreateDateColumn({
     name: 'created_at',

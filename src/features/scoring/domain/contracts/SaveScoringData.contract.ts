@@ -3,6 +3,7 @@ export interface SaveScoringDataContract {
   operator: string;
   score: number;
   beastDate: Date;
+  withWhatsapp: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }

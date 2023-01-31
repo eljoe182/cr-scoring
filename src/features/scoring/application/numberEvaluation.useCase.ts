@@ -22,6 +22,10 @@ export default class NumberEvaluationUseCase implements IBaseUseCase {
         score = score + 1;
       }
 
+      if(params.dataPeriod.operator.withWhatsapp) {
+        score = score + 1;
+      }
+
       const beastTry = params.dataPeriod.info.beastTry.slice(2).toUpperCase();
 
       resolve({
@@ -29,6 +33,7 @@ export default class NumberEvaluationUseCase implements IBaseUseCase {
         score,
         betterManagement: params.dataPeriod.info.betterManagement,
         beastTry,
+        withWhatsapp: params.dataPeriod.operator.withWhatsapp,
       });
     });
   }

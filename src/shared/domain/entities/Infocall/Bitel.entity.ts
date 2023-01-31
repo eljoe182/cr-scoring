@@ -25,6 +25,12 @@ export class Bitel {
     type: 'varchar',
   })
   fullName!: string;
+  
+  @Column({
+    name: 'with_whatsapp',
+    type: 'tinyint',
+  })
+  withWhatsapp!: boolean;
 
   @VirtualColumn({
     type: 'string',

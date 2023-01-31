@@ -44,6 +44,7 @@ export default class GetScoringUseCase implements IBaseUseCase {
             betterManagement: result.value.betterManagement,
             beastTry: result.value.beastTry,
             moreThanOne: Boolean(result.value.operator.moreThanOne),
+            withWhatsapp: Boolean(result.value.operator.withWhatsapp),
           });
         }
         if (result.status === 'rejected') {

@@ -18,6 +18,7 @@ export default class ResumenfonoRepository implements IResumenfonoRepository {
       where: {
         period,
       },
+      take: 10,
     })) as unknown as Resumenfono[];
     orm.destroy();
     return result;
