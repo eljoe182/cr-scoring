@@ -9,4 +9,6 @@ export interface GetInfoVicidialDataContract {
   beastDate?: Date;
   betterManagement?: string;
   beastTry?: string;
+  withWhatsapp?: boolean;
+  rank?: number;
 }

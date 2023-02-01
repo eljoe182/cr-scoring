@@ -2,18 +2,18 @@ import { IBaseUseCase } from '@shared/domain/BaseUseCase';
 import { IVicidialCoreRepository } from '../domain/interface/IVicidialCoreRepository';
 import { paramsVicidial } from '@feat/infocall/domain/contracts/ResulScoringParamsContract';
 import { FRVicidialList, FRVicidialList1121, FRVicidialList2121 } from '@shared/domain/entities/CRMaster';
-import { GetInfoVicidialDataContract } from '../domain/contracts/GetInfoVicidialResponseContract';
 import { IScoringRepository } from '@feat/scoring/infrastructure/interface/IScoringRepository';
 
 export default class GetInfoVicidialUseCase implements IBaseUseCase {
   constructor(
     private scoringRepository: IScoringRepository,
+    private rankNumberIUseCase: IBaseUseCase,
     private vicidialCore1Repository: IVicidialCoreRepository,
     private vicidialCore11Repository: IVicidialCoreRepository,
     private vicidialCore21Repository: IVicidialCoreRepository
   ) {}
 
-  public async execute(params: paramsVicidial): Promise<GetInfoVicidialDataContract[] | null> {
+  public async execute(params: paramsVicidial): Promise<unknown | null> {
     let vicidialData: FRVicidialList[] | FRVicidialList1121[] | FRVicidialList2121[] = [];
     const listId = Number(params.listId);
 
@@ -42,11 +42,12 @@ export default class GetInfoVicidialUseCase implements IBaseUseCase {
         phoneNumber: item.phoneNumber,
         sourceId: item.sourceId,
         vendorLeadCode: item.vendorLeadCode,
-        operator: scoringItem?.operator || '',
+        operator: scoringItem?.operator || 'SIN VALIDAR',
         score: scoringItem?.score || 0,
         beastDate: scoringItem?.beastDate || new Date(0),
-        betterManagement: scoringItem?.betterManagement || '',
-        beastTry: scoringItem?.beastTry || '',
+        betterManagement: scoringItem?.betterManagement || '-',
+        beastTry: scoringItem?.beastTry || '-',
+        withWhatsapp: scoringItem?.withWhatsapp || 0,
       };
     });
 
@@ -62,6 +63,8 @@ export default class GetInfoVicidialUseCase implements IBaseUseCase {
       return 0;
     });
 
-    return sortedData;
+    const dataRanked = await this.rankNumberIUseCase.execute(sortedData);
+
+    return dataRanked;
   }
 }

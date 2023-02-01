@@ -12,8 +12,10 @@ export default class ExportRepository implements IExportRepository {
       TELEFONO: item.phoneNumber,
       OPERADORA: item.operator,
       SCORE: item.score,
+      PRIORIDAD: item.rank,
       TIPO_CONTACTO: item.betterManagement,
       MEJOR_INTENTO: item.beastTry,
+      WHATSAPP: item.withWhatsapp ? 'SI' : 'NO',
     }));
 
     return json2csvAsync(renameHeaders, {
