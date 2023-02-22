@@ -7,6 +7,7 @@ import {
   FRVicidialList2121,
   VicidialLists,
 } from '@shared/domain/entities/CRMaster';
+import { ManagementHistory } from '@shared/domain/entities/CRMaster/FRManagmentHistory.entity';
 
 export class CRMasterConfig {
   public config: DataSourceOptions;
@@ -19,7 +20,7 @@ export class CRMasterConfig {
       username: config.DATABASES.CR_MASTER.USERNAME,
       password: config.DATABASES.CR_MASTER.PASSWORD,
       database: config.DATABASES.CR_MASTER.DATABASE,
-      entities: [Resumenfono, FRVicidialList, FRVicidialList1121, FRVicidialList2121, VicidialLists],
+      entities: [Resumenfono, FRVicidialList, FRVicidialList1121, FRVicidialList2121, VicidialLists, ManagementHistory],
       logging: true,
       synchronize: false,
       options: {

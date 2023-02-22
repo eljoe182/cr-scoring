@@ -31,7 +31,7 @@ export class ManagementHistory {
     type: 'char',
     length: 30,
   })
-  trnDate!: string;
+  phoneNumber!: string;
   
   @Column({
     name: 'TRN_AGENTNAME',
@@ -66,12 +66,5 @@ export class ManagementHistory {
     length: 30,
   })
   typeOfAttempt!: string;
-
-  @Column({
-    name: 'TIPO_CONTACTO',
-    type: 'nvarchar',
-    length: 30,
-  })
-  typeContact!: string;
 
 }
