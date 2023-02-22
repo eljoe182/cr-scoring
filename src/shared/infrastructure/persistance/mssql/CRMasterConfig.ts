@@ -1,6 +1,12 @@
 import { DataSourceOptions } from 'typeorm';
 import config from '@app/config';
-import { Resumenfono, FRVicidialList, FRVicidialList1121, FRVicidialList2121 } from '@shared/domain/entities/CRMaster';
+import {
+  Resumenfono,
+  FRVicidialList,
+  FRVicidialList1121,
+  FRVicidialList2121,
+  VicidialLists,
+} from '@shared/domain/entities/CRMaster';
 
 export class CRMasterConfig {
   public config: DataSourceOptions;
@@ -13,7 +19,7 @@ export class CRMasterConfig {
       username: config.DATABASES.CR_MASTER.USERNAME,
       password: config.DATABASES.CR_MASTER.PASSWORD,
       database: config.DATABASES.CR_MASTER.DATABASE,
-      entities: [Resumenfono, FRVicidialList, FRVicidialList1121, FRVicidialList2121],
+      entities: [Resumenfono, FRVicidialList, FRVicidialList1121, FRVicidialList2121, VicidialLists],
       logging: true,
       synchronize: false,
       options: {

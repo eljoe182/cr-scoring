@@ -3,7 +3,7 @@ import { IBitelRepository } from '@feat/infocall/infrastructure/interface/IBitel
 import { IClaroRepository } from '@feat/infocall/infrastructure/interface/IClaroRepository';
 import { IEntelRepository } from '@feat/infocall/infrastructure/interface/IEntelRepository';
 import { IMovistarRepository } from '@feat/infocall/infrastructure/interface/IMovistarRepository';
-import { IResumenfonoRepository } from '@feat/crMaster/domain/interface/IResumenfonoRepository';
+import { IResumenfonoRepository } from '@feat/crMaster/infrastructure/interface/IResumenfonoRepository';
 import { DataPeriodContract } from '../domain/contracts/DataPeriod.contract';
 
 export default class RetrieveDataPeriodUseCase implements IBaseUseCase {

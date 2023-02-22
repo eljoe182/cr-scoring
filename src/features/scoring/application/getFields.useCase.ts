@@ -1,4 +1,4 @@
-import { IResumenfonoRepository } from '@feat/crMaster/domain/interface/IResumenfonoRepository';
+import { IResumenfonoRepository } from '@feat/crMaster/infrastructure/interface/IResumenfonoRepository';
 import { IBaseUseCase } from '@shared/domain/BaseUseCase';
 import { IBitelRepository } from '@feat/infocall/infrastructure/interface/IBitelRepository';
 import { IClaroRepository } from '@feat/infocall/infrastructure/interface/IClaroRepository';

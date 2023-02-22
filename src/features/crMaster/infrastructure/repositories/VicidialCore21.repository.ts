@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { IVicidialCoreRepository } from '@feat/crMaster/domain/interface/IVicidialCoreRepository';
+import { IVicidialCoreRepository } from '@feat/crMaster/infrastructure/interface/IVicidialCoreRepository';
 import { FRVicidialList2121 } from '@shared/domain/entities/CRMaster';
 
 export default class VicidialCore21Repository implements IVicidialCoreRepository {
