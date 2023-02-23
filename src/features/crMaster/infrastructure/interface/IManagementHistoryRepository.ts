@@ -1,6 +1,6 @@
 import { FilterManagementHistory } from '@feat/crMaster/domain/class/FilterManagementHistory';
-import { ManagementHistory } from '@shared/domain/entities/CRMaster/FRManagmentHistory.entity';
+import { IManagementHistoryResult } from '../../domain/interface/IManagementHistoryResult';
 
 export interface IManagementHistoryRepository {
-  getManagementHistory(params: FilterManagementHistory): Promise<ManagementHistory[]>;
+  getManagementHistory(params: FilterManagementHistory): Promise<IManagementHistoryResult[]>;
 }
