@@ -23,6 +23,7 @@ export class CRMasterConfig {
       entities: [Resumenfono, FRVicidialList, FRVicidialList1121, FRVicidialList2121, VicidialLists, ManagementHistory],
       logging: true,
       synchronize: false,
+      requestTimeout: 300000,
       options: {
         encrypt: false,
       },

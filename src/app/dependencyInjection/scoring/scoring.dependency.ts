@@ -38,7 +38,8 @@ container
 container
   .register('Scoring.Controller.Save', SaveScoringController)
   .addArgument(new Reference('Scoring.UseCase.Save'))
-  .addArgument(new Reference('Scoring.UseCase.SaveHistoric'));
+  .addArgument(new Reference('Scoring.UseCase.SaveHistoric'))
+  .addArgument(new Reference('ManagementHistory.GetHistory.UseCase'));
 
 // Show history
 container

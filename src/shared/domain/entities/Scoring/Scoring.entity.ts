@@ -31,13 +31,13 @@ export class Scoring extends BaseEntity {
     type: 'varchar',
   })
   betterManagement!: string;
-  
+
   @Column({
     name: 'beast_try',
     type: 'varchar',
   })
   beastTry!: string;
-  
+
   @Column({
     name: 'with_whatsapp',
     type: 'tinyint',

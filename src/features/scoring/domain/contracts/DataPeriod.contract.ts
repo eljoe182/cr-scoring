@@ -1,7 +1,7 @@
-import { Resumenfono } from '@shared/domain/entities/CRMaster';
 import { Bitel, Claro, Entel, Movistar } from '@shared/domain/entities/Infocall';
+import { ManagementHistoryContract } from './ManagementHistory.contract';
 
 export interface DataPeriodContract {
-  info: Resumenfono;
+  info: ManagementHistoryContract;
   operator: Bitel | Claro | Entel | Movistar;
 }

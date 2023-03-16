@@ -13,7 +13,7 @@ export class Bitel {
     type: 'int',
   })
   phoneNumber!: number;
-  
+
   @Column({
     name: 'documento',
     type: 'bigint',
@@ -25,7 +25,34 @@ export class Bitel {
     type: 'varchar',
   })
   fullName!: string;
-  
+
+  @Column({
+    name: 'origen_data',
+    type: 'varchar',
+    length: 100,
+  })
+  origin!: string;
+
+  @Column({
+    name: 'fecha_data',
+    type: 'date',
+  })
+  originDate!: Date;
+
+  @Column({
+    name: 'plan',
+    type: 'varchar',
+    length: 200,
+  })
+  subscription!: string;
+
+  @Column({
+    name: 'modelo',
+    type: 'varchar',
+    length: 200,
+  })
+  model!: string;
+
   @Column({
     name: 'with_whatsapp',
     type: 'tinyint',
@@ -34,7 +61,7 @@ export class Bitel {
 
   @VirtualColumn({
     type: 'string',
-    query: () => "select false as 'moreThanOne'",
+    query: () => "select 0 as 'moreThanOne'",
   })
   moreThanOne!: boolean;
 

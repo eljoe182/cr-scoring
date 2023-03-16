@@ -11,6 +11,9 @@ export default class VicidialListsRepository implements IVicidialListsRepository
     const result = (await repository.find({
       where: {
         active: 'Y',
+      },
+      order: {
+        campaignId: 'ASC',
       }
     })) as unknown as VicidialLists[];
     orm.destroy();

@@ -7,6 +7,10 @@ export default class GetHistoryController implements IBaseController {
 
   async run(req: Request, res: Response, _next: NextFunction): Promise<void> {
     const response = await this.useCase.execute(req.body);
-    res.status(200).json(response);
+    if (!response) {
+      res.status(404).json({ message: 'Numbers not founds' });
+    } else {
+      res.status(200).json(response);
+    }
   }
 }

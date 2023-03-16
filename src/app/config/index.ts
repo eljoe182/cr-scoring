@@ -31,4 +31,8 @@ export default {
       HOST: env('SCORING_HOST', ''),
     },
   },
+  REDIS: {
+    HOST: env('REDIS_HOST', ''),
+    PORT: Number(env('REDIS_PORT', '')),
+  },
 };

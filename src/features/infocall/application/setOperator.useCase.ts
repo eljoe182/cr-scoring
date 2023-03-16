@@ -1,24 +1,21 @@
 import { IBaseUseCase } from '@shared/domain/BaseUseCase';
-import { IBitelRepository } from '@feat/infocall/infrastructure/interface/IBitelRepository';
-import { IClaroRepository } from '@feat/infocall/infrastructure/interface/IClaroRepository';
-import { IEntelRepository } from '@feat/infocall/infrastructure/interface/IEntelRepository';
-import { IMovistarRepository } from '@feat/infocall/infrastructure/interface/IMovistarRepository';
-import { IResumenfonoRepository } from '@feat/crMaster/infrastructure/interface/IResumenfonoRepository';
-import { DataPeriodContract } from '../domain/contracts/DataPeriod.contract';
+import { IBitelRepository } from '../infrastructure/interface/IBitelRepository';
+import { IClaroRepository } from '../infrastructure/interface/IClaroRepository';
+import { IEntelRepository } from '../infrastructure/interface/IEntelRepository';
+import { IMovistarRepository } from '../infrastructure/interface/IMovistarRepository';
+import { IManagementHistoryResult } from '@feat/crMaster/domain/interface/IManagementHistoryResult';
+import { DataPeriodContract } from '@feat/scoring/domain/contracts/DataPeriod.contract';
 
-export default class RetrieveDataPeriodUseCase implements IBaseUseCase {
+export default class SetOperatorUseCase implements IBaseUseCase {
   constructor(
-    private readonly repositoryResumenfono: IResumenfonoRepository,
     private readonly repositoryBitel: IBitelRepository,
     private readonly repositoryClaro: IClaroRepository,
     private readonly repositoryEntel: IEntelRepository,
     private readonly repositoryMovistar: IMovistarRepository
   ) {}
 
-  async execute(period: string): Promise<DataPeriodContract[]> {
-    const resumenfonoPeriod = await this.repositoryResumenfono.getByPeriod(period);
-
-    const phoneNumbers = resumenfonoPeriod.map((info) => Number(info.phoneNumber));
+  async execute(data: IManagementHistoryResult[]): Promise<unknown> {
+    const phoneNumbers = data.filter((item) => item.phoneNumber.length === 9).map((info) => Number(info.phoneNumber));
 
     const uniquePhoneNumbers = [...new Set(phoneNumbers)];
 
@@ -27,10 +24,12 @@ export default class RetrieveDataPeriodUseCase implements IBaseUseCase {
     const entelNumbers = await this.repositoryEntel.getInByPhoneNumber(uniquePhoneNumbers);
     const movistarNumbers = await this.repositoryMovistar.getInByPhoneNumber(uniquePhoneNumbers);
 
-    const numbersValid = [...bitelNumbers, ...claroNumbers, ...entelNumbers, ...movistarNumbers];
+    const numbersValid = [...bitelNumbers, ...claroNumbers, ...entelNumbers, ...movistarNumbers].filter(
+      (item) => item.phoneNumber.toString().length === 9
+    );
 
-    const resultPeriod = await Promise.allSettled(
-      resumenfonoPeriod.map((info) => {
+    return Promise.allSettled(
+      data.map((info) => {
         const phoneNumber = Number(info.phoneNumber);
 
         if (isNaN(phoneNumber) || phoneNumber === 0) {
@@ -59,11 +58,11 @@ export default class RetrieveDataPeriodUseCase implements IBaseUseCase {
       })
     ).then((results) => {
       const success: DataPeriodContract[] = [];
-      const errors: unknown[] = [];
+      const errors: string[] = [];
 
       results.forEach((result) => {
         if (result.status === 'fulfilled') {
-          success.push();
+          success.push(result.value);
         }
         if (result.status === 'rejected') {
           errors.push(result.reason);
@@ -75,7 +74,5 @@ export default class RetrieveDataPeriodUseCase implements IBaseUseCase {
         errors,
       };
     });
-
-    return resultPeriod.success;
   }
 }

@@ -1,7 +1,7 @@
 export enum AttemptENUM {
-  VALUE = 1,
-  REGULAR = 2,
-  ALERT = 3,
-  INVALID = 4,
-  INTERMEDIATE = 5,
+  VALUE = '1.Intento Valor',
+  REGULAR = '2.Intento Regular',
+  ALERT = '3.Intento de Alerta',
+  INVALID = '4.Intento de Invalidación',
+  INTERMEDIATE = '5.Estados Intermedios',
 }

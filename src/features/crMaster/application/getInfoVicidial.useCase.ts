@@ -3,8 +3,11 @@ import { IVicidialCoreRepository } from '../infrastructure/interface/IVicidialCo
 import { paramsVicidial } from '@feat/infocall/domain/contracts/ResulScoringParamsContract';
 import { FRVicidialList, FRVicidialList1121, FRVicidialList2121 } from '@shared/domain/entities/CRMaster';
 import { IScoringRepository } from '@feat/scoring/infrastructure/interface/IScoringRepository';
+import container from '@shared/infrastructure/dependency';
+import { Scoring } from '@shared/domain/entities/Scoring';
 
 export default class GetInfoVicidialUseCase implements IBaseUseCase {
+  private redisRepository = container.get('DataSource.Redis.Repository');
   constructor(
     private scoringRepository: IScoringRepository,
     private rankNumberIUseCase: IBaseUseCase,
@@ -17,21 +20,30 @@ export default class GetInfoVicidialUseCase implements IBaseUseCase {
     let vicidialData: FRVicidialList[] | FRVicidialList1121[] | FRVicidialList2121[] = [];
     const listId = Number(params.listId);
 
-    if (params.core === 'core1') {
-      vicidialData = (await this.vicidialCore1Repository.getInfo(listId)) as FRVicidialList[];
+    const cache = await this.redisRepository.get(`${params.core}-${params.listId}`);
+    if (cache) {
+      vicidialData = JSON.parse(cache);
+    } else {
+      if (params.core === 'core1') {
+        vicidialData = (await this.vicidialCore1Repository.getInfo(listId)) as FRVicidialList[];
+      }
+      if (params.core === 'core11') {
+        vicidialData = (await this.vicidialCore11Repository.getInfo(listId)) as FRVicidialList1121[];
+      }
+      if (params.core === 'core21') {
+        vicidialData = (await this.vicidialCore21Repository.getInfo(listId)) as FRVicidialList2121[];
+      }
+      await this.redisRepository.set(`${params.core}-${params.listId}`, JSON.stringify(vicidialData));
     }
-    if (params.core === 'core11') {
-      vicidialData = (await this.vicidialCore11Repository.getInfo(listId)) as FRVicidialList1121[];
-    }
-    if (params.core === 'core21') {
-      vicidialData = (await this.vicidialCore21Repository.getInfo(listId)) as FRVicidialList2121[];
-    }
+
     if (!vicidialData) {
       return null;
     }
 
-    const phoneNumbers = vicidialData.map((item) => item.phoneNumber);
-    const scoringData = await this.scoringRepository.getInByPhoneNumber(phoneNumbers);
+    const phoneNumbers = vicidialData.filter(item => item.phoneNumber.length === 9).map((item) => item.phoneNumber);
+    const uniquePhoneNumbers = [...new Set(phoneNumbers)];
+
+    const scoringData = await this.scoringRepository.getInByPhoneNumber(uniquePhoneNumbers) as unknown as Scoring[];
 
     const data = vicidialData.map((item) => {
       const scoringItem = scoringData.find((scoringItem) => scoringItem.phoneNumber === item.phoneNumber);

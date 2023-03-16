@@ -8,6 +8,9 @@ import { CRMasterClient } from '@shared/infrastructure/persistance/mssql/CRMaste
 import { CRMasterConfig } from '@shared/infrastructure/persistance/mssql/CRMasterConfig';
 import { InfocallClient } from '@shared/infrastructure/persistance/mysql/InfocallClient';
 import { InfocallConfig } from '@shared/infrastructure/persistance/mysql/InfocallConfig';
+import RedisClient from '@shared/infrastructure/persistance/redis/RedisClient';
+import { RedisRepository } from '@shared/infrastructure/persistance/redis/RedisRepository';
+import Pagination from '@shared/domain/Pagination';
 
 container.register('Logger', WinstonLogger);
 
@@ -23,5 +26,12 @@ container
 
 container.register('DataSource.Scoring.Config', ScoringConfig);
 container.register('DataSource.Scoring.Client', ScoringClient).addArgument(new Reference('DataSource.Scoring.Config'));
+
+container.register('DataSource.Redis.Client', RedisClient);
+container
+  .register('DataSource.Redis.Repository', RedisRepository)
+  .addArgument(new Reference('DataSource.Redis.Client'));
+
+container.register('Utils.Pagination', Pagination);
 
 export default container;

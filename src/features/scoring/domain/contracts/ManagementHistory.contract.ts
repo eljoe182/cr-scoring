@@ -1,4 +1,4 @@
-export interface IManagementHistoryResult {
+export interface ManagementHistoryContract {
   phoneNumber: string;
   length: number;
   talkTime: number;
