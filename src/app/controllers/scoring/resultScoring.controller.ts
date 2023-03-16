@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { IBaseController } from '@shared/domain/BaseController';
 import { IBaseUseCase } from '@shared/domain/BaseUseCase';
-import container from '@shared/infrastructure/dependency';
+import { UtilsDependency as container } from '@app/dependencyInjection';
 
 export default class ResultScoringController implements IBaseController {
   private pagination = container.get('Utils.Pagination');

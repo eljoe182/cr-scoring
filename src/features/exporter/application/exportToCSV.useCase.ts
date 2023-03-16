@@ -1,7 +1,7 @@
 import { IBaseUseCase } from '@shared/domain/BaseUseCase';
 import { paramsVicidial } from '@feat/infocall/domain/contracts/ResulScoringParamsContract';
 import { IExportRepository } from '../infrastructure/interface/IExportRepository';
-import container from '@shared/infrastructure/dependency';
+import { resultScoringDependency as container } from '@app/dependencyInjection';
 
 export default class ExportToCSVUseCase implements IBaseUseCase {
   constructor(private readonly exportRepository: IExportRepository) {}

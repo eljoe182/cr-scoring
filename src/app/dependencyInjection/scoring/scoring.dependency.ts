@@ -2,8 +2,6 @@ import { Reference } from 'node-dependency-injection';
 import container from '@shared/infrastructure/dependency';
 
 import GetScoringController from '@controller/scoring/getScoring.controller';
-import GetScoringUseCase from '@feat/scoring/application/getScoring.useCase';
-import RetrieveDataPeriodUseCase from '@feat/scoring/application/retrieveDataPeriod.useCase';
 import NumberEvaluationUseCase from '@feat/scoring/application/numberEvaluation.useCase';
 import SaveScoringUseCase from '@feat/scoring/application/saveScoring.useCase';
 import SaveScoringController from '@app/controllers/scoring/saveScoring.controller';
@@ -12,20 +10,6 @@ import ShowScoringHistoricUseCase from '@feat/scoring/application/showScoringHis
 import ShowScoringHistoricController from '@app/controllers/scoring/showScoringHistoric.controller';
 
 container.register('Scoring.UseCase.NumberEvaluation', NumberEvaluationUseCase);
-
-container
-  .register('Scoring.UseCase.DataPeriod', RetrieveDataPeriodUseCase)
-  .addArgument(new Reference('Resumenfono.Repository'))
-  .addArgument(new Reference('Bitel.Repository'))
-  .addArgument(new Reference('Claro.Repository'))
-  .addArgument(new Reference('Entel.Repository'))
-  .addArgument(new Reference('Movistar.Repository'));
-
-container
-  .register('Scoring.UseCase.Get', GetScoringUseCase)
-  .addArgument(new Reference('Scoring.UseCase.DataPeriod'))
-  .addArgument(new Reference('Scoring.UseCase.NumberEvaluation'))
-  .addArgument(new Reference('SettingsFields.Repository'));
 
 container.register('Scoring.Controller.Get', GetScoringController).addArgument(new Reference('Scoring.UseCase.Get'));
 

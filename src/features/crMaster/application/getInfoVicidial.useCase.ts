@@ -3,11 +3,11 @@ import { IVicidialCoreRepository } from '../infrastructure/interface/IVicidialCo
 import { paramsVicidial } from '@feat/infocall/domain/contracts/ResulScoringParamsContract';
 import { FRVicidialList, FRVicidialList1121, FRVicidialList2121 } from '@shared/domain/entities/CRMaster';
 import { IScoringRepository } from '@feat/scoring/infrastructure/interface/IScoringRepository';
-import container from '@shared/infrastructure/dependency';
+import { DataSourceDependency as dsContainer } from '@app/dependencyInjection';
 import { Scoring } from '@shared/domain/entities/Scoring';
 
 export default class GetInfoVicidialUseCase implements IBaseUseCase {
-  private redisRepository = container.get('DataSource.Redis.Repository');
+  private redisRepository = dsContainer.get('DataSource.Redis.Repository');
   constructor(
     private scoringRepository: IScoringRepository,
     private rankNumberIUseCase: IBaseUseCase,

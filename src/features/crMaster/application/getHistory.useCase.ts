@@ -5,12 +5,11 @@ import DateFormat from '@shared/data-values/DateFormat';
 import { ParamsNumberEvaluationContract } from '@feat/scoring/domain/contracts/NumberEvaluation.contract';
 import { DataPeriodContract } from '@feat/scoring/domain/contracts/DataPeriod.contract';
 import { HistoryResultContract } from '../domain/contracts/HistoryResultContract';
-import container from '@shared/infrastructure/dependency';
+import { DataSourceDependency as dsContainer } from '@app/dependencyInjection';
 import StringToHash from '@shared/data-values/StringToHash';
 
 export default class GetHistoryUseCase implements IBaseUseCase {
-  private redisRepository = container.get('DataSource.Redis.Repository');
-  private pagination = container.get('Utils.Pagination');
+  private redisRepository = dsContainer.get('DataSource.Redis.Repository');
   constructor(
     private repository: IManagementHistoryRepository,
     private setOperatorUseCase: IBaseUseCase,
@@ -22,12 +21,12 @@ export default class GetHistoryUseCase implements IBaseUseCase {
     const cache = await this.redisRepository.get(hash);
     if (cache) {
       const data = JSON.parse(cache);
-      return this.pagination.getPaginatedItems(data.success, 1, data.success.length);
+      return data;
     }
 
     const managementHistory = await this.repository.getManagementHistory(params);
 
-    if(managementHistory.length === 0) {
+    if (managementHistory.length === 0) {
       return null;
     }
 

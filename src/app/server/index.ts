@@ -8,7 +8,7 @@ import 'reflect-metadata';
 import { ErrorHandler } from './errorHandler';
 import { RoutesErrorHandler } from './routesErrorHandler';
 import ILogger from '@shared/domain/ILogger';
-import container from '@app/dependencyInjection/shared';
+import { UtilsDependency as utilsContainer, DataSourceDependency as dsContainer } from '@app/dependencyInjection';
 import { registerRoutes } from '@app/routes';
 
 export class Server {
@@ -17,7 +17,7 @@ export class Server {
   private logger: ILogger;
 
   constructor(port: number) {
-    this.logger = container.get('Logger');
+    this.logger = utilsContainer.get('Logger');
     const router = express.Router();
     this.port = port;
     this.app.use(cors({ origin: true }));
@@ -45,9 +45,9 @@ export class Server {
 
   databases = async (): Promise<void> => {
     this.logger.info('Initializing databases...');
-    const crMasterClient = container.get('DataSource.CRMaster.Client');
-    const infocallClient = container.get('DataSource.Infocall.Client');
-    const scoringClient = container.get('DataSource.Scoring.Client');
+    const crMasterClient = dsContainer.get('DataSource.CRMaster.Client');
+    const infocallClient = dsContainer.get('DataSource.Infocall.Client');
+    const scoringClient = dsContainer.get('DataSource.Scoring.Client');
 
     crMasterClient
       .initialize()
