@@ -1,6 +1,6 @@
 import { IBaseUseCase } from '@shared/domain/BaseUseCase';
 import { IVicidialCoreRepository } from '../infrastructure/interface/IVicidialCoreRepository';
-import { paramsVicidial } from '@feat/infocall/domain/contracts/ResulScoringParamsContract';
+import { paramsVicidial } from '@feat/infocall/domain/contracts/ResultScoringParamsContract';
 import { FRVicidialList, FRVicidialList1121, FRVicidialList2121 } from '@shared/domain/entities/CRMaster';
 import { IScoringRepository } from '@feat/scoring/infrastructure/interface/IScoringRepository';
 import { DataSourceDependency as dsContainer } from '@app/dependencyInjection';

@@ -1,4 +1,4 @@
-import { paramsVicidial } from '@feat/infocall/domain/contracts/ResulScoringParamsContract';
+import { paramsVicidial } from '@feat/infocall/domain/contracts/ResultScoringParamsContract';
 import { IBaseUseCase } from '@shared/domain/BaseUseCase';
 import { GetInfoVicidialDataContract } from '@feat/crMaster/domain/contracts/GetInfoVicidialResponseContract';
 
