@@ -9,6 +9,12 @@ export class SettingsFields {
   id!: ObjectID;
   
   @Column({
+    name: 'campaign',
+    type: 'string',
+  })
+  campaign!: string;
+  
+  @Column({
     name: 'tableName',
     type: 'string',
   })

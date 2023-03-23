@@ -12,7 +12,7 @@ export const register = (router: Router) => {
   router.get('/scoring/settings/fields/get-fields', (req: Request, res: Response, next: NextFunction) => {
     return getFieldsController.run(req, res, next);
   });
-  router.get('/scoring/settings/fields/get-all', (req: Request, res: Response, next: NextFunction) => {
+  router.get('/scoring/settings/fields/get-all/:campaign', (req: Request, res: Response, next: NextFunction) => {
     return getController.run(req, res, next);
   });
   router.post('/scoring/settings/fields/save', (req: Request, res: Response, next: NextFunction) => {

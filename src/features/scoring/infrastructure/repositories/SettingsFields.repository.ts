@@ -3,8 +3,8 @@ import { ISettingsFieldsRepository } from '../interface/ISettingsFieldsRepositor
 import { FieldConfig } from '@feat/infocall/domain/contracts/FieldConfig';
 import { SettingsFields } from '@shared/domain/entities/Scoring/SettingsFields.entity';
 import { ResponseRepositoryContract } from '@shared/domain/contracts/ResponseRepository.contracts';
-import { IPagination } from '@feat/scoring/domain/interface/IPagination';
 import { IResultPagination } from '@feat/scoring/domain/interface/IResultPagination';
+import { IParamsSettingsFields } from '@feat/scoring/domain/interface/IParamsSettingsFields';
 
 export default class SettingsFieldsRepository implements ISettingsFieldsRepository {
   constructor(private orm: DataSource) {}
@@ -12,6 +12,7 @@ export default class SettingsFieldsRepository implements ISettingsFieldsReposito
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(SettingsFields);
     const data = repository.create({
+      campaign: fieldsConfig.campaign,
       database: fieldsConfig.database,
       tableName: fieldsConfig.table,
       field: fieldsConfig.field,
@@ -37,12 +38,15 @@ export default class SettingsFieldsRepository implements ISettingsFieldsReposito
     };
   }
 
-  async getAllWithPagination(pagination: IPagination): Promise<IResultPagination> {
+  async getAllWithPagination(params: IParamsSettingsFields): Promise<IResultPagination> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(SettingsFields);
     const [rows, rowsCount] = await repository.findAndCount({
-      take: pagination.limit,
-      skip: pagination.limit * (pagination.page - 1),
+      where: {
+        campaign: params.campaign,
+      },
+      take: params.limit,
+      skip: params.limit * (params.page - 1),
       order: {
         database: 'ASC',
         tableName: 'ASC',
@@ -51,8 +55,8 @@ export default class SettingsFieldsRepository implements ISettingsFieldsReposito
     });
     orm.destroy();
     return {
-      page: pagination.page,
-      limit: pagination.limit,
+      page: params.page,
+      limit: params.limit,
       rowsCount,
       rows,
     };

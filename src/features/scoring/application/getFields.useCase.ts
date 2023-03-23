@@ -5,8 +5,11 @@ import { IClaroRepository } from '@feat/infocall/infrastructure/interface/IClaro
 import { IEntelRepository } from '@feat/infocall/infrastructure/interface/IEntelRepository';
 import { IMovistarRepository } from '@feat/infocall/infrastructure/interface/IMovistarRepository';
 import { CellProviderTable } from '@feat/infocall/domain/contracts/CellProviderTable';
+import { DataSourceDependency as dsContainer } from '@app/dependencyInjection';
 
 export default class GetFieldsUseCase implements IBaseUseCase {
+  private redisRepository = dsContainer.get('DataSource.Redis.Repository');
+
   constructor(
     private readonly repositoryResumenfono: IResumenfonoRepository,
     private readonly repositoryBitel: IBitelRepository,
@@ -16,6 +19,11 @@ export default class GetFieldsUseCase implements IBaseUseCase {
   ) {}
 
   async execute() {
+    const cache = await this.redisRepository.get('fields');
+    if (cache) {
+      const data = JSON.parse(cache);
+      return data;
+    }
     const fieldsResumenfono = (await this.repositoryResumenfono.getFields()) as unknown as { COLUMN_NAME: string }[];
     const fieldsBitel = (await this.repositoryBitel.getFields()) as unknown as CellProviderTable[];
     const fieldsClaro = (await this.repositoryClaro.getFields()) as unknown as CellProviderTable[];
@@ -53,6 +61,10 @@ export default class GetFieldsUseCase implements IBaseUseCase {
       value: 0,
     }));
 
-    return Array.prototype.concat(resumenfono, bitel, claro, entel, movistar);
+    const resultFields = Array.prototype.concat(resumenfono, bitel, claro, entel, movistar);
+
+    await this.redisRepository.set('fields', JSON.stringify(resultFields));
+
+    return resultFields
   }
 }

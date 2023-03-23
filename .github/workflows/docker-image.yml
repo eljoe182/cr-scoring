@@ -2,29 +2,32 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ['master']
   pull_request:
-    branches: [ "master" ]
+    branches: ['master']
+
+env:
+  DOCKER_IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: package.json info
-      id: pkg
-      uses: jaywcjlove/github-action-package@main
-    - uses: actions/checkout@v3
-    - name: docker login
-      env:
-        DOCKER_USER: ${{secrets.DOCKER_USER}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      run: |
-        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{vars.GITHUB_REPOSITORY}}:${{ steps.pkg.outputs.version }}
-      
-    - name: Docker Push
-      run: docker push ${{vars.GITHUB_REPOSITORY}}
+      - uses: actions/checkout@v3
+      - name: package.json info
+        id: pkg
+        uses: jaywcjlove/github-action-package@main
+      - run: echo "version - ${{ steps.pkg.outputs.version }}"
+      - name: docker login
+        env:
+          DOCKER_USER: ${{secrets.DOCKER_USER}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - run: echo "Build image ${{ env.DOCKER_IMAGE_NAME }}:${{ steps.pkg.outputs.version }}"
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag ${{ env.DOCKER_IMAGE_NAME }}:${{ steps.pkg.outputs.version }}
+
+      - name: Docker Push
+        run: docker push ${{ env.DOCKER_IMAGE_NAME }}:${{ steps.pkg.outputs.version }}
