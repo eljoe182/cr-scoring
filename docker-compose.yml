@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  scoring_redis:
+    container_name: scoring-redis
+    image: redis
+    ports:
+      - "6380:6379"
+    volumes:
+      - ${REDIS_VOLUME}:/data
+    command: redis-server --appendonly yes
+    restart: always
+    networks:
+        - scoring
+  scoring_mongo:
+    image: mongo
+    restart: always
+    environment:
+      TZ: ${TIME_ZONE}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
+    ports:
+      - "27018:27017"
+    volumes:
+      - ${MONGO_VOLUME}:/data/db
+
+  scoring_service:
+    container_name: scoring-service
+    image: eljoe182/cr-scoring:v100
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - ${SCORING_CONFIG_FILE}:/app/.env
+    depends_on:
+      - scoring_redis
+    networks:
+      - scoring
+
+networks:
+  scoring:
+    name: scoring
+    driver: bridge
