@@ -18,7 +18,7 @@
   "scripts": {
     "dev": "nodemon",
     "clean": "rm -r dist; exit 0",
-    "start": "ts-node -r tsconfig-paths/register -r ts-node/register dist/index.js",
+    "start": "node -r tsconfig-paths/register -r ts-node/register dist/index.js",
     "build": "npm run build:clean && npm run build:tsc",
     "build:clean": "rm -r dist; exit 0",
     "build:tsc": "tsc -p tsconfig.json",

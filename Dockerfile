@@ -17,12 +17,14 @@ FROM node:lts-alpine as production
 
 WORKDIR /app
 
-COPY --from=builder /app/package*.json ./
-
-RUN npm install --only=production
-COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/package-lock.json ./
+COPY --from=builder /app/package.json ./
 COPY --from=builder /app/.env ./
 COPY --from=builder /app/tsconfig.json ./
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/src ./src
+
+RUN npm install
 
 EXPOSE 3000
 CMD ["npm", "start"]

@@ -1,4 +1,4 @@
 restClient
-node_odules
+node_modules
 *.log
 dist
