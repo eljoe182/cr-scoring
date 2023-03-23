@@ -5,6 +5,7 @@ import ResumenfonoRepository from '@feat/crMaster/infrastructure/repositories/Re
 import VicidialCore1Repository from '@feat/crMaster/infrastructure/repositories/VicidialCore1.repository';
 import VicidialCore11Repository from '@feat/crMaster/infrastructure/repositories/VicidialCore11.repository';
 import VicidialCore21Repository from '@feat/crMaster/infrastructure/repositories/VicidialCore21.repository';
+import WalletRepository from '@feat/crMaster/infrastructure/repositories/Wallet.repository';
 
 container
   .register('Resumenfono.Repository', ResumenfonoRepository)
@@ -18,5 +19,6 @@ container
 container
   .register('VicidialCore21.Repository', VicidialCore21Repository)
   .addArgument(new Reference('DataSource.CRMaster.Client'));
+container.register('Wallet.Repository', WalletRepository).addArgument(new Reference('DataSource.CRMaster.Client'));
 
 export default container;
