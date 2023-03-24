@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: ['master']
 
-env:
-  OWNER: ${{ github.event.repository.owner.name }}
-  IMAGE_NAME: ${{ github.repository }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,8 +22,9 @@ jobs:
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - run: echo "Build image ${{ GITHUB_IMAGE_NAME }}:${{ steps.pkg.outputs.version }}"
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag $OWNER/$IMAGE_NAME:${{ steps.pkg.outputs.version }}
+        run: docker build . --file Dockerfile --tag ${{ GITHUB_IMAGE_NAME }}:${{ steps.pkg.outputs.version }}
 
       - name: Docker Push
-        run: docker push $OWNER/$IMAGE_NAME
+        run: docker push ${{ GITHUB_IMAGE_NAME }}
