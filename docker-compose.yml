@@ -1,9 +1,8 @@
 version: '3'
-
 services:
   scoring_redis:
     container_name: scoring-redis
-    image: redis
+    image: redis:alpine
     ports:
       - "6380:6379"
     volumes:
@@ -12,15 +11,13 @@ services:
     restart: always
     networks:
         - scoring
+
   scoring_mongo:
     container_name: scoring-mongo
     image: mongo
     restart: always
     environment:
-      TZ: ${TIME_ZONE}
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
-      MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
+      - INFISICAL_TOKEN=${INFISICAL_TOKEN_SCORING}
     ports:
       - "27018:27017"
     volumes:
@@ -28,12 +25,12 @@ services:
 
   scoring_service:
     container_name: scoring-service
-    image: eljoe182/cr-scoring:v100
+    image: eljoe182/cr-scoring:1.2.0
     restart: always
+    environment:
+      - INFISICAL_TOKEN=${INFISICAL_TOKEN_SCORING}
     ports:
       - "3000:3000"
-    volumes:
-      - ${SCORING_CONFIG_FILE}:/app/.env
     depends_on:
       - scoring_redis
     networks:

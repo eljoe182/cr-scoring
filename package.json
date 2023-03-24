@@ -1,6 +1,6 @@
 {
   "name": "ms-cr-scoring",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Microservices of Scoring for infocall system's CR Abohados",
   "main": "build/index.js",
   "nodemonConfig": {
