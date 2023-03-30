@@ -8,9 +8,13 @@ export const register = (router: Router) => {
   const getFieldsController: IBaseController = container.get('Scoring.Controller.SettingFields.GetFields');
   const saveController: IBaseController = container.get('Scoring.Controller.SettingFields.Save');
   const destroyController: IBaseController = container.get('Scoring.Controller.SettingFields.Destroy');
+  const distinctFieldController: IBaseController = container.get('Scoring.Controller.SettingFields.DistinctValue');
 
   router.get('/scoring/settings/fields/get-fields', (req: Request, res: Response, next: NextFunction) => {
     return getFieldsController.run(req, res, next);
+  });
+  router.post('/scoring/settings/fields/get-distinct-values', (req: Request, res: Response, next: NextFunction) => {
+    return distinctFieldController.run(req, res, next);
   });
   router.get('/scoring/settings/fields/get-all/:campaign', (req: Request, res: Response, next: NextFunction) => {
     return getController.run(req, res, next);

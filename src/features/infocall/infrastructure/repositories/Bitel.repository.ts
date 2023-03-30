@@ -9,7 +9,7 @@ export default class BitelRepository implements IBitelRepository {
   async getByNumber(phoneNumber: number): Promise<Bitel> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(Bitel);
-    const result = await repository.findOneBy({ phoneNumber }) as unknown as Bitel;
+    const result = (await repository.findOneBy({ phoneNumber })) as unknown as Bitel;
     orm.destroy();
     return result;
   }
@@ -24,7 +24,24 @@ export default class BitelRepository implements IBitelRepository {
   async getInByPhoneNumber(phoneNumbers: number[]): Promise<Bitel[]> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(Bitel);
-    const result = await repository.createQueryBuilder().where('numero IN (:...phoneNumbers)', { phoneNumbers }).getMany() as unknown as Bitel[];
+    const result = (await repository
+      .createQueryBuilder()
+      .where('numero IN (:...phoneNumbers)', { phoneNumbers })
+      .getMany()) as unknown as Bitel[];
+    orm.destroy();
+    return result;
+  }
+
+  async getDistinctByField(field: string): Promise<unknown> {
+    const orm = await this.orm.initialize();
+    const repository = orm.manager.getRepository(Bitel);
+    const result = await repository
+      .createQueryBuilder()
+      .select(field, 'value')
+      .distinct(true)
+      .where(`${field} IS NOT NULL`)
+      .orderBy(field, 'DESC')
+      .execute();
     orm.destroy();
     return result;
   }

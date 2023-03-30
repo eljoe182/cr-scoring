@@ -13,6 +13,12 @@ export class SettingsFields {
     type: 'string',
   })
   campaign!: string;
+
+  @Column({
+    name: 'database',
+    type: 'string',
+  })
+  database!: string;
   
   @Column({
     name: 'tableName',
@@ -21,20 +27,26 @@ export class SettingsFields {
   tableName!: string;
 
   @Column({
-    name: 'database',
-    type: 'string',
-  })
-  database!: string;
-
-  @Column({
     name: 'field',
     type: 'string',
   })
   field!: string;
 
   @Column({
-    name: 'value',
+    name: 'condition',
+    type: 'string',
+  })
+  condition!: string;
+
+  @Column({
+    name: 'valueCondition',
+    type: 'string',
+  })
+  valueCondition!: string;
+
+  @Column({
+    name: 'valueScore',
     type: 'number',
   })
-  value!: number;
+  valueScore!: number;
 }

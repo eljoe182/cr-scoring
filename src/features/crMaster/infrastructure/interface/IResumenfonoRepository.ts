@@ -5,4 +5,5 @@ export interface IResumenfonoRepository {
   getByPeriod(period: string): Promise<Resumenfono[]>;
   getFields(): Promise<unknown>;
   getInByPhoneNumber(phoneNumbers: string[]): Promise<Resumenfono[]>;
+  getDistinctByField(field: string): Promise<unknown>;
 }

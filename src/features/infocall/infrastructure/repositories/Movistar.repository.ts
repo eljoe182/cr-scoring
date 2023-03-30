@@ -9,7 +9,7 @@ export default class MovistarRepository implements IMovistarRepository {
   async getByNumber(phoneNumber: number): Promise<Movistar> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(Movistar);
-    const result = await repository.findOneBy({ phoneNumber }) as unknown as Movistar;
+    const result = (await repository.findOneBy({ phoneNumber })) as unknown as Movistar;
     orm.destroy();
     return result;
   }
@@ -24,7 +24,24 @@ export default class MovistarRepository implements IMovistarRepository {
   async getInByPhoneNumber(phoneNumbers: number[]): Promise<Movistar[]> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(Movistar);
-    const result = await repository.createQueryBuilder().where('numero IN (:...phoneNumbers)', { phoneNumbers }).getMany() as unknown as Movistar[];
+    const result = (await repository
+      .createQueryBuilder()
+      .where('numero IN (:...phoneNumbers)', { phoneNumbers })
+      .getMany()) as unknown as Movistar[];
+    orm.destroy();
+    return result;
+  }
+
+  async getDistinctByField(field: string): Promise<unknown> {
+    const orm = await this.orm.initialize();
+    const repository = orm.manager.getRepository(Movistar);
+    const result = await repository
+      .createQueryBuilder()
+      .select(field, 'value')
+      .distinct(true)
+      .where(`${field} IS NOT NULL`)
+      .orderBy(field, 'DESC')
+      .execute();
     orm.destroy();
     return result;
   }

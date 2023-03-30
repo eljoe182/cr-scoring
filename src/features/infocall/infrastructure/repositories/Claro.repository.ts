@@ -9,7 +9,7 @@ export default class ClaroRepository implements IClaroRepository {
   async getByNumber(phoneNumber: number): Promise<Claro> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(Claro);
-    const result = await repository.findOneBy({ phoneNumber }) as unknown as Claro;
+    const result = (await repository.findOneBy({ phoneNumber })) as unknown as Claro;
     orm.destroy();
     return result;
   }
@@ -24,7 +24,24 @@ export default class ClaroRepository implements IClaroRepository {
   async getInByPhoneNumber(phoneNumbers: number[]): Promise<Claro[]> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(Claro);
-    const result = await repository.createQueryBuilder().where('numero IN (:...phoneNumbers)', { phoneNumbers }).getMany() as unknown as Claro[];
+    const result = (await repository
+      .createQueryBuilder()
+      .where('numero IN (:...phoneNumbers)', { phoneNumbers })
+      .getMany()) as unknown as Claro[];
+    orm.destroy();
+    return result;
+  }
+
+  async getDistinctByField(field: string): Promise<unknown> {
+    const orm = await this.orm.initialize();
+    const repository = orm.manager.getRepository(Claro);
+    const result = await repository
+      .createQueryBuilder()
+      .select(field, 'value')
+      .distinct(true)
+      .where(`${field} IS NOT NULL`)
+      .orderBy(field, 'DESC')
+      .execute();
     orm.destroy();
     return result;
   }

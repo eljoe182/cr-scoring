@@ -43,4 +43,18 @@ export default class ResumenfonoRepository implements IResumenfonoRepository {
     orm.destroy();
     return result;
   }
+
+  async getDistinctByField(field: string): Promise<unknown> {
+    const orm = await this.orm.initialize();
+    const repository = orm.manager.getRepository(Resumenfono);
+    const result = await repository
+      .createQueryBuilder()
+      .select(field, 'value')
+      .distinct(true)
+      .where(`${field} IS NOT NULL`)
+      .orderBy(field, 'DESC')
+      .execute();
+    orm.destroy();
+    return result;
+  }
 }

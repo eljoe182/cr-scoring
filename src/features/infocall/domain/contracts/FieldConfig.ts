@@ -1,7 +1,9 @@
 export interface FieldConfig {
   campaign: string;
-  table: string;
   database: string;
+  table: string;
   field: string;
-  value: number;
+  condition: string;
+  valueCondition: string;
+  valueScore: number;
 }

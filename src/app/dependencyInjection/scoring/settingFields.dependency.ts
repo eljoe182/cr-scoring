@@ -9,6 +9,8 @@ import GetSettingsFieldsUseCase from '@feat/scoring/application/getSettingsField
 import GetSettingsFieldsController from '@app/controllers/scoring/getSettingsFields.controller';
 import DestroySettingsFieldsUseCase from '@feat/scoring/application/destroySettingsFields.useCase';
 import DestroySettingsFieldsController from '@app/controllers/scoring/destroySettingsFields.controller';
+import GetDistinctByFieldUseCase from '@feat/scoring/application/getDistinctByField.useCase';
+import GetDistinctByFieldController from '@app/controllers/scoring/getDistinctByField.controller';
 
 /// Get Fields
 container
@@ -46,5 +48,11 @@ container
 container
   .register('Scoring.Controller.SettingFields.Destroy', DestroySettingsFieldsController)
   .addArgument(new Reference('Scoring.UseCase.SettingFields.Destroy'));
+
+container.register('Scoring.UseCase.SettingFields.DistinctValue', GetDistinctByFieldUseCase);
+
+container
+  .register('Scoring.Controller.SettingFields.DistinctValue', GetDistinctByFieldController)
+  .addArgument(new Reference('Scoring.UseCase.SettingFields.DistinctValue'));
 
 export default container;

@@ -16,7 +16,9 @@ export default class SettingsFieldsRepository implements ISettingsFieldsReposito
       database: fieldsConfig.database,
       tableName: fieldsConfig.table,
       field: fieldsConfig.field,
-      value: fieldsConfig.value,
+      condition: fieldsConfig.condition,
+      valueCondition: fieldsConfig.valueCondition,
+      valueScore: fieldsConfig.valueScore,
     });
 
     const result = await repository.save(data);
@@ -50,7 +52,7 @@ export default class SettingsFieldsRepository implements ISettingsFieldsReposito
       order: {
         database: 'ASC',
         tableName: 'ASC',
-        value: 'DESC',
+        valueScore: 'DESC',
       },
     });
     orm.destroy();
