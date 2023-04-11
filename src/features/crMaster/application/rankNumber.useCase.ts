@@ -1,4 +1,4 @@
-import { IBaseUseCase } from '@shared/domain/BaseUseCase';
+import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
 import { GetInfoVicidialDataContract } from '../domain/contracts/GetInfoVicidialResponseContract';
 
 export default class RankNumberUseCase implements IBaseUseCase {

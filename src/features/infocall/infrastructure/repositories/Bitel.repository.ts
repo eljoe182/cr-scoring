@@ -1,15 +1,15 @@
 import { DataSource } from 'typeorm';
-import { IBitelRepository } from '@feat/infocall/infrastructure/interface/IBitelRepository';
-import { Bitel } from '@shared/domain/entities/Infocall/Bitel.entity';
-import { CellProviderTable } from '@feat/infocall/domain/contracts/CellProviderTable';
+import { IBitelRepository } from '../../../../features/infocall/infrastructure/interface/IBitelRepository';
+import { BitelEntity } from '../../../../shared/infrastructure/persistance/entities';
+import { CellProviderTable } from '../../../../features/infocall/domain/contracts/CellProviderTable';
 
 export default class BitelRepository implements IBitelRepository {
   constructor(private orm: DataSource) {}
 
-  async getByNumber(phoneNumber: number): Promise<Bitel> {
+  async getByNumber(phoneNumber: number): Promise<BitelEntity> {
     const orm = await this.orm.initialize();
-    const repository = orm.manager.getRepository(Bitel);
-    const result = (await repository.findOneBy({ phoneNumber })) as unknown as Bitel;
+    const repository = orm.manager.getRepository(BitelEntity);
+    const result = (await repository.findOneBy({ phoneNumber })) as unknown as BitelEntity;
     orm.destroy();
     return result;
   }
@@ -21,20 +21,20 @@ export default class BitelRepository implements IBitelRepository {
     return repository;
   }
 
-  async getInByPhoneNumber(phoneNumbers: number[]): Promise<Bitel[]> {
+  async getInByPhoneNumber(phoneNumbers: number[]): Promise<BitelEntity[]> {
     const orm = await this.orm.initialize();
-    const repository = orm.manager.getRepository(Bitel);
+    const repository = orm.manager.getRepository(BitelEntity);
     const result = (await repository
       .createQueryBuilder()
       .where('numero IN (:...phoneNumbers)', { phoneNumbers })
-      .getMany()) as unknown as Bitel[];
+      .getMany()) as unknown as BitelEntity[];
     orm.destroy();
     return result;
   }
 
   async getDistinctByField(field: string): Promise<unknown> {
     const orm = await this.orm.initialize();
-    const repository = orm.manager.getRepository(Bitel);
+    const repository = orm.manager.getRepository(BitelEntity);
     const result = await repository
       .createQueryBuilder()
       .select(field, 'value')

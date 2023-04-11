@@ -1,4 +1,4 @@
-import { Movistar } from '@shared/domain/entities/Infocall';
+import { Movistar } from '@shared/infrastructure/persistance/entities/Infocall';
 import { CellProviderTable } from '@feat/infocall/domain/contracts/CellProviderTable';
 
 export interface IMovistarRepository {

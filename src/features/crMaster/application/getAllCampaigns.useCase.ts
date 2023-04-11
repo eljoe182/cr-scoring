@@ -1,4 +1,4 @@
-import { IBaseUseCase } from '@shared/domain/BaseUseCase';
+import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
 import { IWalletRepository } from '../infrastructure/interface/IWalletRepository';
 
 export default class GetAllCampaignsUseCase implements IBaseUseCase {

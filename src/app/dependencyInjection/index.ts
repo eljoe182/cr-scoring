@@ -4,3 +4,4 @@ export * from './scoring';
 export * from './crMaster';
 export * from './exporter';
 export * from './infocall';
+export * from './settingsFields';

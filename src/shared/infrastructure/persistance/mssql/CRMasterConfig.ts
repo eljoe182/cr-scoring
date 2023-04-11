@@ -1,14 +1,14 @@
 import { DataSourceOptions } from 'typeorm';
 import config from '@app/config';
 import {
-  Resumenfono,
-  FRVicidialList,
-  FRVicidialList1121,
-  FRVicidialList2121,
-  VicidialLists,
-  CRWallet,
-} from '@shared/domain/entities/CRMaster';
-import { ManagementHistory } from '@shared/domain/entities/CRMaster/FRManagmentHistory.entity';
+  ResumenfonoEntity,
+  FRVicidialListEntity,
+  FRVicidialList1121Entity,
+  FRVicidialList2121Entity,
+  VicidialListsEntity,
+  CRWalletEntity,
+  ManagementHistoryEntity,
+} from '@shared/infrastructure/persistance/entities';
 
 export class CRMasterConfig {
   public config: DataSourceOptions;
@@ -22,13 +22,13 @@ export class CRMasterConfig {
       password: config.DATABASES.CR_MASTER.PASSWORD,
       database: config.DATABASES.CR_MASTER.DATABASE,
       entities: [
-        Resumenfono,
-        FRVicidialList,
-        FRVicidialList1121,
-        FRVicidialList2121,
-        VicidialLists,
-        ManagementHistory,
-        CRWallet,
+        ResumenfonoEntity,
+        FRVicidialListEntity,
+        FRVicidialList1121Entity,
+        FRVicidialList2121Entity,
+        VicidialListsEntity,
+        ManagementHistoryEntity,
+        CRWalletEntity,
       ],
       logging: true,
       synchronize: false,

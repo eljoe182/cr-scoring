@@ -1,6 +1,6 @@
 import { DataSourceOptions } from 'typeorm';
 import config from '@app/config';
-import { Bitel, Claro, Entel, Movistar, Scoring } from '@shared/domain/entities/Infocall';
+import { BitelEntity, ClaroEntity, EntelEntity, MovistarEntity, ScoringEntity } from '@shared/infrastructure/persistance/entities';
 
 export class InfocallConfig {
   public config: DataSourceOptions;
@@ -13,7 +13,7 @@ export class InfocallConfig {
       username: config.DATABASES.INFOCALL.USERNAME,
       password: config.DATABASES.INFOCALL.PASSWORD,
       database: config.DATABASES.INFOCALL.DATABASE,
-      entities: [Bitel, Claro, Entel, Movistar, Scoring],
+      entities: [BitelEntity, ClaroEntity, EntelEntity, MovistarEntity, ScoringEntity],
       logging: true,
       synchronize: false,
     };

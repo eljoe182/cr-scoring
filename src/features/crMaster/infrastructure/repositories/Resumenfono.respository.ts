@@ -1,24 +1,24 @@
 import { DataSource } from 'typeorm';
-import { Resumenfono } from '@shared/domain/entities/CRMaster/Resumenfono.entity';
-import { IResumenfonoRepository } from '@feat/crMaster/infrastructure/interface/IResumenfonoRepository';
+import { ResumenfonoEntity } from '../../../../shared/infrastructure/persistance/entities';
+import { IResumenfonoRepository } from '../../../../features/crMaster/infrastructure/interface/IResumenfonoRepository';
 
 export default class ResumenfonoRepository implements IResumenfonoRepository {
   constructor(private orm: DataSource) {}
 
-  public async getInfoResumenfono(phoneNumber: string): Promise<Resumenfono> {
+  public async getInfoResumenfono(phoneNumber: string): Promise<ResumenfonoEntity> {
     const orm = await this.orm.initialize();
-    const repository = orm.manager.getRepository(Resumenfono);
-    return repository.findOneBy({ phoneNumber }) as unknown as Resumenfono;
+    const repository = orm.manager.getRepository(ResumenfonoEntity);
+    return repository.findOneBy({ phoneNumber }) as unknown as ResumenfonoEntity;
   }
 
-  public async getByPeriod(period: string): Promise<Resumenfono[]> {
+  public async getByPeriod(period: string): Promise<ResumenfonoEntity[]> {
     const orm = await this.orm.initialize();
-    const repository = orm.manager.getRepository(Resumenfono);
+    const repository = orm.manager.getRepository(ResumenfonoEntity);
     const result = (await repository.find({
       where: {
         period,
       },
-    })) as unknown as Resumenfono[];
+    })) as unknown as ResumenfonoEntity[];
     orm.destroy();
     return result;
   }
@@ -33,20 +33,20 @@ export default class ResumenfonoRepository implements IResumenfonoRepository {
     return repository;
   }
 
-  async getInByPhoneNumber(phoneNumbers: string[]): Promise<Resumenfono[]> {
+  async getInByPhoneNumber(phoneNumbers: string[]): Promise<ResumenfonoEntity[]> {
     const orm = await this.orm.initialize();
-    const repository = orm.manager.getRepository(Resumenfono);
+    const repository = orm.manager.getRepository(ResumenfonoEntity);
     const result = (await repository
       .createQueryBuilder()
       .where('phone_number IN (:...phoneNumbers)', { phoneNumbers })
-      .getMany()) as unknown as Resumenfono[];
+      .getMany()) as unknown as ResumenfonoEntity[];
     orm.destroy();
     return result;
   }
 
   async getDistinctByField(field: string): Promise<unknown> {
     const orm = await this.orm.initialize();
-    const repository = orm.manager.getRepository(Resumenfono);
+    const repository = orm.manager.getRepository(ResumenfonoEntity);
     const result = await repository
       .createQueryBuilder()
       .select(field, 'value')

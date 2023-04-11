@@ -1,12 +1,12 @@
-import { IBaseUseCase } from '@shared/domain/BaseUseCase';
+import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
 import { IManagementHistoryRepository } from '../infrastructure/interface/IManagementHistoryRepository';
 import { FilterManagementHistory } from '../domain/class/FilterManagementHistory';
-import DateFormat from '@shared/data-values/DateFormat';
+import DateFormat from '../../../shared/data-values/DateFormat';
 import { ParamsNumberEvaluationContract } from '@feat/scoring/domain/contracts/NumberEvaluation.contract';
-import { DataPeriodContract } from '@feat/scoring/domain/contracts/DataPeriod.contract';
+import { DataPeriodContract } from '../../../features/scoring/domain/contracts/DataPeriod.contract';
 import { HistoryResultContract } from '../domain/contracts/HistoryResultContract';
 import { DataSourceDependency as dsContainer } from '@app/dependencyInjection';
-import StringToHash from '@shared/data-values/StringToHash';
+import StringToHash from '../../../shared/data-values/StringToHash';
 
 export default class GetHistoryUseCase implements IBaseUseCase {
   private redisRepository = dsContainer.get('DataSource.Redis.Repository');

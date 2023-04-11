@@ -1,13 +1,13 @@
 import { DataSource } from "typeorm";
-import { VicidialLists } from "@shared/domain/entities/CRMaster/FRVicidialLists.entity";
+import { VicidialListsEntity } from "../../../../shared/infrastructure/persistance/entities";
 import { IVicidialListsRepository } from "../interface/IVicidialListsRepository";
 
 export default class VicidialListsRepository implements IVicidialListsRepository {
   constructor(private orm: DataSource) {}
 
-  public async getVicidialLists(): Promise<VicidialLists[]> {
+  public async getVicidialLists(): Promise<VicidialListsEntity[]> {
     const orm = await this.orm.initialize();
-    const repository = orm.manager.getRepository(VicidialLists);
+    const repository = orm.manager.getRepository(VicidialListsEntity);
     const result = (await repository.find({
       where: {
         active: 'Y',
@@ -15,7 +15,7 @@ export default class VicidialListsRepository implements IVicidialListsRepository
       order: {
         campaignId: 'ASC',
       }
-    })) as unknown as VicidialLists[];
+    })) as unknown as VicidialListsEntity[];
     orm.destroy();
     return result;
   }

@@ -1,15 +1,15 @@
 import { DataSource } from 'typeorm';
 import { IEntelRepository } from '../interface/IEntelRepository';
-import { Entel } from '@shared/domain/entities/Infocall';
-import { CellProviderTable } from '@feat/infocall/domain/contracts/CellProviderTable';
+import { EntelEntity } from '../../../../shared/infrastructure/persistance/entities';
+import { CellProviderTable } from '../../../../features/infocall/domain/contracts/CellProviderTable';
 
 export default class EntelRepository implements IEntelRepository {
   constructor(private orm: DataSource) {}
 
-  async getByNumber(phoneNumber: number): Promise<Entel> {
+  async getByNumber(phoneNumber: number): Promise<EntelEntity> {
     const orm = await this.orm.initialize();
-    const repository = orm.manager.getRepository(Entel);
-    const result = (await repository.findOneBy({ phoneNumber })) as unknown as Entel;
+    const repository = orm.manager.getRepository(EntelEntity);
+    const result = (await repository.findOneBy({ phoneNumber })) as unknown as EntelEntity;
     orm.destroy();
     return result;
   }
@@ -21,20 +21,20 @@ export default class EntelRepository implements IEntelRepository {
     return repository;
   }
 
-  async getInByPhoneNumber(phoneNumbers: number[]): Promise<Entel[]> {
+  async getInByPhoneNumber(phoneNumbers: number[]): Promise<EntelEntity[]> {
     const orm = await this.orm.initialize();
-    const repository = orm.manager.getRepository(Entel);
+    const repository = orm.manager.getRepository(EntelEntity);
     const result = (await repository
       .createQueryBuilder()
       .where('numero IN (:...phoneNumbers)', { phoneNumbers })
-      .getMany()) as unknown as Entel[];
+      .getMany()) as unknown as EntelEntity[];
     orm.destroy();
     return result;
   }
 
   async getDistinctByField(field: string): Promise<unknown> {
     const orm = await this.orm.initialize();
-    const repository = orm.manager.getRepository(Entel);
+    const repository = orm.manager.getRepository(EntelEntity);
     const result = await repository
       .createQueryBuilder()
       .select(field, 'value')

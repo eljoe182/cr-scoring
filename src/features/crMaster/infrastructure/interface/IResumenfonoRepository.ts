@@ -1,9 +1,9 @@
-import { Resumenfono } from '@shared/domain/entities/CRMaster/Resumenfono.entity';
+import { ResumenfonoEntity } from '@shared/infrastructure/persistance/entities/Resumenfono.entity';
 
 export interface IResumenfonoRepository {
-  getInfoResumenfono(phoneNumber: string): Promise<Resumenfono>;
-  getByPeriod(period: string): Promise<Resumenfono[]>;
+  getInfoResumenfono(phoneNumber: string): Promise<ResumenfonoEntity>;
+  getByPeriod(period: string): Promise<ResumenfonoEntity[]>;
   getFields(): Promise<unknown>;
-  getInByPhoneNumber(phoneNumbers: string[]): Promise<Resumenfono[]>;
+  getInByPhoneNumber(phoneNumbers: string[]): Promise<ResumenfonoEntity[]>;
   getDistinctByField(field: string): Promise<unknown>;
 }

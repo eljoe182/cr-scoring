@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 
-export abstract class CRMasterClient {
+export class CRMasterClient {
   constructor(private dataSource: any) {}
 
   public async initialize() {

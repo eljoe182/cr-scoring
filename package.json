@@ -1,6 +1,6 @@
 {
   "name": "ms-cr-scoring",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Microservices of Scoring for infocall CR Abogados system's",
   "main": "build/index.js",
   "nodemonConfig": {
@@ -22,7 +22,8 @@
     "build": "npm run build:clean && npm run build:tsc",
     "build:clean": "rm -r dist; exit 0",
     "build:tsc": "tsc -p tsconfig.json",
-    "eslint": "eslint \"./**/*.ts\" --quiet"
+    "eslint": "eslint \"./**/*.ts\" --quiet",
+    "test": "vitest"
   },
   "repository": {
     "type": "git",
@@ -73,6 +74,7 @@
     "husky": "8.0.2",
     "nodemon": "2.0.20",
     "prettier": "2.8.1",
-    "typescript": "4.9.4"
+    "typescript": "4.9.4",
+    "vitest": "^0.30.1"
   }
 }

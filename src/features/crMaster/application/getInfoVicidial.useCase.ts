@@ -1,10 +1,14 @@
-import { IBaseUseCase } from '@shared/domain/BaseUseCase';
+import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
 import { IVicidialCoreRepository } from '../infrastructure/interface/IVicidialCoreRepository';
-import { paramsVicidial } from '@feat/infocall/domain/contracts/ResultScoringParamsContract';
-import { FRVicidialList, FRVicidialList1121, FRVicidialList2121 } from '@shared/domain/entities/CRMaster';
-import { IScoringRepository } from '@feat/scoring/infrastructure/interface/IScoringRepository';
+import { paramsVicidial } from '../../../features/infocall/domain/contracts/ResultScoringParamsContract';
+import {
+  ScoringEntity,
+  FRVicidialListEntity,
+  FRVicidialList1121Entity,
+  FRVicidialList2121Entity,
+} from '../../../shared/infrastructure/persistance/entities';
+import { IScoringRepository } from '../../../features/scoring/infrastructure/interface/IScoringRepository';
 import { DataSourceDependency as dsContainer } from '@app/dependencyInjection';
-import { Scoring } from '@shared/domain/entities/Scoring';
 
 export default class GetInfoVicidialUseCase implements IBaseUseCase {
   private redisRepository = dsContainer.get('DataSource.Redis.Repository');
@@ -17,7 +21,7 @@ export default class GetInfoVicidialUseCase implements IBaseUseCase {
   ) {}
 
   public async execute(params: paramsVicidial): Promise<unknown | null> {
-    let vicidialData: FRVicidialList[] | FRVicidialList1121[] | FRVicidialList2121[] = [];
+    let vicidialData: FRVicidialListEntity[] | FRVicidialList1121Entity[] | FRVicidialList2121Entity[] = [];
     const listId = Number(params.listId);
 
     const cache = await this.redisRepository.get(`${params.core}-${params.listId}`);
@@ -25,13 +29,13 @@ export default class GetInfoVicidialUseCase implements IBaseUseCase {
       vicidialData = JSON.parse(cache);
     } else {
       if (params.core === 'core1') {
-        vicidialData = (await this.vicidialCore1Repository.getInfo(listId)) as FRVicidialList[];
+        vicidialData = (await this.vicidialCore1Repository.getInfo(listId)) as FRVicidialListEntity[];
       }
       if (params.core === 'core11') {
-        vicidialData = (await this.vicidialCore11Repository.getInfo(listId)) as FRVicidialList1121[];
+        vicidialData = (await this.vicidialCore11Repository.getInfo(listId)) as FRVicidialList1121Entity[];
       }
       if (params.core === 'core21') {
-        vicidialData = (await this.vicidialCore21Repository.getInfo(listId)) as FRVicidialList2121[];
+        vicidialData = (await this.vicidialCore21Repository.getInfo(listId)) as FRVicidialList2121Entity[];
       }
       await this.redisRepository.set(`${params.core}-${params.listId}`, JSON.stringify(vicidialData));
     }
@@ -40,10 +44,12 @@ export default class GetInfoVicidialUseCase implements IBaseUseCase {
       return null;
     }
 
-    const phoneNumbers = vicidialData.filter(item => item.phoneNumber.length === 9).map((item) => item.phoneNumber);
+    const phoneNumbers = vicidialData.filter((item) => item.phoneNumber.length === 9).map((item) => item.phoneNumber);
     const uniquePhoneNumbers = [...new Set(phoneNumbers)];
 
-    const scoringData = await this.scoringRepository.getInByPhoneNumber(uniquePhoneNumbers) as unknown as Scoring[];
+    const scoringData = (await this.scoringRepository.getInByPhoneNumber(
+      uniquePhoneNumbers
+    )) as unknown as ScoringEntity[];
 
     const data = vicidialData.map((item) => {
       const scoringItem = scoringData.find((scoringItem) => scoringItem.phoneNumber === item.phoneNumber);

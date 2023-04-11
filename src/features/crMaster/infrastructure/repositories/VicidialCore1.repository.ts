@@ -1,13 +1,13 @@
 import { DataSource } from 'typeorm';
-import { IVicidialCoreRepository } from '@feat/crMaster/infrastructure/interface/IVicidialCoreRepository';
-import { FRVicidialList } from '@shared/domain/entities/CRMaster';
+import { IVicidialCoreRepository } from '../../../../features/crMaster/infrastructure/interface/IVicidialCoreRepository';
+import { FRVicidialListEntity } from '../../../../shared/infrastructure/persistance/entities';
 
 export default class VicidialCore1Repository implements IVicidialCoreRepository {
   constructor(private orm: DataSource) {}
 
-  public async getInfo(listId: number): Promise<FRVicidialList[]> {
+  public async getInfo(listId: number): Promise<FRVicidialListEntity[]> {
     const orm = await this.orm.initialize();
-    const repository = await orm.manager.getRepository(FRVicidialList);
+    const repository = await orm.manager.getRepository(FRVicidialListEntity);
     const result = await repository.find({
       where: {
         listId,

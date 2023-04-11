@@ -1,7 +1,7 @@
 import { Reference } from 'node-dependency-injection';
 import container from '@shared/infrastructure/dependency';
 
-import SettingsFieldsRepository from '@feat/scoring/infrastructure/repositories/SettingsFields.repository';
+import SettingsFieldsRepository from '@feat/settingFields/infrastructure/repositories/SettingsFields.repository';
 import ScoringHistoricRepository from '@feat/scoring/infrastructure/repositories/ScoringHistoric.repository';
 import ScoringRepository from '@feat/scoring/infrastructure/repositories/Scoring.repository';
 

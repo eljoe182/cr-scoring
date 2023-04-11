@@ -1,9 +1,9 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { IBaseController } from '@shared/domain/BaseController';
 import {
-  resumenfonoDependency as resumeContainer,
-  managementHistoryDependency as managementContainer,
-  campaignDependency as campaignContainer,
+  ResumenfonoDependency as resumeContainer,
+  ManagementHistoryDependency as managementContainer,
+  CampaignDependency as campaignContainer,
 } from '@app/dependencyInjection';
 
 export const register = (router: Router) => {

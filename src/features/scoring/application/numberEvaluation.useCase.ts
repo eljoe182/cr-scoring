@@ -1,4 +1,4 @@
-import { IBaseUseCase } from '@shared/domain/BaseUseCase';
+import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
 import { ParamsNumberEvaluationContract } from '../domain/contracts/NumberEvaluation.contract';
 
 export default class NumberEvaluationUseCase implements IBaseUseCase {

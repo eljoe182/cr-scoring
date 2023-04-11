@@ -1,4 +1,4 @@
-import { Claro } from '@shared/domain/entities/Infocall';
+import { Claro } from '@shared/infrastructure/persistance/entities/Infocall';
 import { CellProviderTable } from '@feat/infocall/domain/contracts/CellProviderTable';
 
 export interface IClaroRepository {

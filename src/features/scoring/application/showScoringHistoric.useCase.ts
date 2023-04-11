@@ -1,4 +1,4 @@
-import { IBaseUseCase } from '@shared/domain/BaseUseCase';
+import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
 import { IPagination } from '../domain/interface/IPagination';
 import { IResultPagination } from '../domain/interface/IResultPagination';
 import { IScoringHistoricRepository } from '../infrastructure/interface/IScoringHistoricRepository';

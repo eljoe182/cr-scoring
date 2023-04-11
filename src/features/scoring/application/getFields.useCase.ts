@@ -1,10 +1,10 @@
-import { IResumenfonoRepository } from '@feat/crMaster/infrastructure/interface/IResumenfonoRepository';
-import { IBaseUseCase } from '@shared/domain/BaseUseCase';
-import { IBitelRepository } from '@feat/infocall/infrastructure/interface/IBitelRepository';
-import { IClaroRepository } from '@feat/infocall/infrastructure/interface/IClaroRepository';
-import { IEntelRepository } from '@feat/infocall/infrastructure/interface/IEntelRepository';
-import { IMovistarRepository } from '@feat/infocall/infrastructure/interface/IMovistarRepository';
-import { CellProviderTable } from '@feat/infocall/domain/contracts/CellProviderTable';
+import { IResumenfonoRepository } from '../../../features/crMaster/infrastructure/interface/IResumenfonoRepository';
+import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
+import { IBitelRepository } from '../../../features/infocall/infrastructure/interface/IBitelRepository';
+import { IClaroRepository } from '../../../features/infocall/infrastructure/interface/IClaroRepository';
+import { IEntelRepository } from '../../../features/infocall/infrastructure/interface/IEntelRepository';
+import { IMovistarRepository } from '../../../features/infocall/infrastructure/interface/IMovistarRepository';
+import { CellProviderTable } from '../../../features/infocall/domain/contracts/CellProviderTable';
 import { DataSourceDependency as dsContainer } from '@app/dependencyInjection';
 
 export default class GetFieldsUseCase implements IBaseUseCase {
