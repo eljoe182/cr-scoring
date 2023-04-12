@@ -41,6 +41,12 @@ export class BitelEntity extends BaseEntity implements Bitel {
     type: 'date',
   })
   originDate!: Date;
+  
+  @Column({
+    name: 'fecha_activacion',
+    type: 'date',
+  })
+  activationDate!: Date;
 
   @Column({
     name: 'plan',

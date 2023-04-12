@@ -3,5 +3,5 @@ import { SettingsFieldsContract } from '../../../settingFields/domain/contracts/
 
 export interface ParamsNumberEvaluationContract {
   dataPeriod: DataPeriodContract;
-  fields?: SettingsFieldsContract[];
+  fields?: SettingsFieldsContract[] | null;
 }

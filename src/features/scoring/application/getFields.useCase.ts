@@ -5,7 +5,7 @@ import { IClaroRepository } from '../../../features/infocall/infrastructure/inte
 import { IEntelRepository } from '../../../features/infocall/infrastructure/interface/IEntelRepository';
 import { IMovistarRepository } from '../../../features/infocall/infrastructure/interface/IMovistarRepository';
 import { CellProviderTable } from '../../../features/infocall/domain/contracts/CellProviderTable';
-import { DataSourceDependency as dsContainer } from '@app/dependencyInjection';
+import { DataSourceDependency as dsContainer } from '../../../app/dependencyInjection';
 
 export default class GetFieldsUseCase implements IBaseUseCase {
   private redisRepository = dsContainer.get('DataSource.Redis.Repository');

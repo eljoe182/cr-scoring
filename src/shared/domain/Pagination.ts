@@ -1,4 +1,4 @@
-import IPagination, { PaginationResult } from '@shared/infrastructure/interfaces/IPagination';
+import IPagination, { PaginationResult } from '../../shared/infrastructure/interfaces/IPagination';
 import lo from 'lodash';
 
 export default class Pagination implements IPagination {

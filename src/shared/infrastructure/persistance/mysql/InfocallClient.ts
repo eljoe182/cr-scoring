@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 
-export abstract class InfocallClient {
+export class InfocallClient {
   constructor(private dataSource: any) {}
 
   public async initialize() {

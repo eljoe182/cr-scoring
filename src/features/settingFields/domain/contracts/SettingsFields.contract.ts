@@ -1,6 +1,9 @@
 export interface SettingsFieldsContract {
+  campaign: string;
   database: string;
+  tableName: string;
   field: string;
-  table: string;
-  value: string;
+  condition: string;
+  valueCondition: string;
+  valueScore: string;
 }

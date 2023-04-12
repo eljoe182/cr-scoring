@@ -1,6 +1,6 @@
-import config from '@app/config';
+import config from '../../../../app/config';
 import { DataSourceOptions } from 'typeorm';
-import { ScoringHistoricEntity, SettingsFieldsEntity } from '@shared/infrastructure/persistance/entities';
+import { ScoringHistoricEntity, SettingsFieldsEntity } from '../../../../shared/infrastructure/persistance/entities';
 
 export class ScoringConfig {
   public config: DataSourceOptions;

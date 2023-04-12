@@ -7,9 +7,9 @@ import 'reflect-metadata';
 
 import { ErrorHandler } from './errorHandler';
 import { RoutesErrorHandler } from './routesErrorHandler';
-import ILogger from '@shared/domain/ILogger';
-import { UtilsDependency as utilsContainer, DataSourceDependency as dsContainer } from '@app/dependencyInjection';
-import { registerRoutes } from '@app/routes';
+import ILogger from '../../shared/domain/ILogger';
+import { UtilsDependency as utilsContainer, DataSourceDependency as dsContainer } from '../dependencyInjection';
+import { registerRoutes } from '../routes';
 
 export class Server {
   private readonly port: number;

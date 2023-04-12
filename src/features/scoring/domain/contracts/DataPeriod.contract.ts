@@ -1,4 +1,4 @@
-import { Bitel, Claro, Entel, Movistar } from '@shared/infrastructure/persistance/entities/Infocall';
+import { Bitel, Claro, Entel, Movistar } from '../../../../shared/infrastructure/persistance/entities';
 import { ManagementHistoryContract } from './ManagementHistory.contract';
 
 export interface DataPeriodContract {

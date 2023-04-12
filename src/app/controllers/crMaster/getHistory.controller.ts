@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { IBaseController } from '@shared/domain/BaseController';
-import { IBaseUseCase } from '@shared/domain/BaseUseCase';
+import { IBaseController } from '../../../shared/domain/BaseController';
+import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
 
 export default class GetHistoryController implements IBaseController {
   constructor(private useCase: IBaseUseCase) {}

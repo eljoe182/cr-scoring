@@ -11,5 +11,5 @@ export interface ManagementHistoryContract {
   CNE: number;
   NC: number;
   betterManagement: string;
-  betterManagementDate: string;
+  betterManagementDate: string | null;
 }

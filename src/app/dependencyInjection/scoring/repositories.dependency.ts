@@ -1,9 +1,9 @@
 import { Reference } from 'node-dependency-injection';
-import container from '@shared/infrastructure/dependency';
+import container from '../../../shared/infrastructure/dependency';
 
-import SettingsFieldsRepository from '@feat/settingFields/infrastructure/repositories/SettingsFields.repository';
-import ScoringHistoricRepository from '@feat/scoring/infrastructure/repositories/ScoringHistoric.repository';
-import ScoringRepository from '@feat/scoring/infrastructure/repositories/Scoring.repository';
+import SettingsFieldsRepository from '../../../features/settingFields/infrastructure/repositories/SettingsFields.repository';
+import ScoringHistoricRepository from '../../../features/scoring/infrastructure/repositories/ScoringHistoric.repository';
+import ScoringRepository from '../../../features/scoring/infrastructure/repositories/Scoring.repository';
 
 container
   .register('SettingsFields.Repository', SettingsFieldsRepository)

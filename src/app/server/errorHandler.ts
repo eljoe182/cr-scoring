@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { UtilsDependency as container } from '@app/dependencyInjection';
-import ILogger from '@shared/domain/ILogger';
+import { UtilsDependency as container } from '../dependencyInjection';
+import ILogger from '../../shared/domain/ILogger';
 
 export const ErrorHandler = (error: Error | any, req: Request, res: Response, _next: NextFunction): Response => {
   const logger: ILogger = container.get('Logger');

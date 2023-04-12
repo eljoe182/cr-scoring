@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import { IBaseController } from '@shared/domain/BaseController';
-import { IBaseUseCase } from '@shared/domain/BaseUseCase';
-import { IResultPagination } from '@feat/scoring/domain/interface/IResultPagination';
-import { IParamsSettingsFields } from '@feat/settingFields/domain/interface/IParamsSettingsFields';
+import { IBaseController } from '../../../shared/domain/BaseController';
+import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
+import { IResultPagination } from '../../../features/scoring/domain/interface/IResultPagination';
+import { IParamsSettingsFields } from '../../../features/settingFields/domain/interface/IParamsSettingsFields';
 
 export default class GetSettingsFieldsController implements IBaseController {
   constructor(private readonly useCase: IBaseUseCase) {}

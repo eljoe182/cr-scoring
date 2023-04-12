@@ -43,6 +43,12 @@ export class ClaroEntity extends BaseEntity implements Claro {
   originDate!: Date;
 
   @Column({
+    name: 'fecha_activacion',
+    type: 'date',
+  })
+  activationDate!: Date;
+
+  @Column({
     name: 'plan',
     type: 'varchar',
     length: 200,

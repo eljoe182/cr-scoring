@@ -1,6 +1,6 @@
-import { IPagination } from "@feat/scoring/domain/interface/IPagination";
-import { IResultPagination } from "@feat/scoring/domain/interface/IResultPagination";
-import { ScoringHistoric } from "@shared/infrastructure/persistance/entities/Scoring";
+import { IPagination } from "../../../../features/scoring/domain/interface/IPagination";
+import { IResultPagination } from "../../../../features/scoring/domain/interface/IResultPagination";
+import { ScoringHistoric } from "../../../../shared/infrastructure/persistance/entities";
 
 export interface IScoringHistoricRepository {
   saveHistoric(data: ScoringHistoric): Promise<unknown>;

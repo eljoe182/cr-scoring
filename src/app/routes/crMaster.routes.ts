@@ -1,10 +1,10 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { IBaseController } from '@shared/domain/BaseController';
+import { IBaseController } from '../../shared/domain/BaseController';
 import {
   ResumenfonoDependency as resumeContainer,
   ManagementHistoryDependency as managementContainer,
   CampaignDependency as campaignContainer,
-} from '@app/dependencyInjection';
+} from '../../app/dependencyInjection';
 
 export const register = (router: Router) => {
   const controllerResumePhono: IBaseController = resumeContainer.get('CRMaster.Resumenfono.Controller.GetInfo');

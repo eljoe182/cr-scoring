@@ -1,7 +1,7 @@
 import { Reference } from 'node-dependency-injection';
-import container from '@shared/infrastructure/dependency';
+import container from '../../../shared/infrastructure/dependency';
 
-import SettingsFieldsRepository from '@feat/settingFields/infrastructure/repositories/SettingsFields.repository';
+import SettingsFieldsRepository from '../../../features/settingFields/infrastructure/repositories/SettingsFields.repository';
 
 container
   .register('SettingsFields.Repository', SettingsFieldsRepository)

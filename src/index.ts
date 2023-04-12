@@ -1,5 +1,5 @@
-import { Server } from '@app/server';
-import config from '@config/index';
+import { Server } from './app/server';
+import config from './app/config';
 
 try {
   new Server(Number(config.PORT)).start();

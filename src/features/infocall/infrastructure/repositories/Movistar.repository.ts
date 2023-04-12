@@ -1,15 +1,15 @@
 import { DataSource } from 'typeorm';
 import { IMovistarRepository } from '../interface/IMovistarRepository';
-import { MovistarEntity } from '../../../../shared/infrastructure/persistance/entities';
+import { MovistarEntity, Movistar } from '../../../../shared/infrastructure/persistance/entities';
 import { CellProviderTable } from '../../../../features/infocall/domain/contracts/CellProviderTable';
 
 export default class MovistarRepository implements IMovistarRepository {
   constructor(private orm: DataSource) {}
 
-  async getByNumber(phoneNumber: number): Promise<MovistarEntity> {
+  async getByNumber(phoneNumber: number): Promise<Movistar> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(MovistarEntity);
-    const result = (await repository.findOneBy({ phoneNumber })) as unknown as MovistarEntity;
+    const result = (await repository.findOneBy({ phoneNumber })) as unknown as Movistar;
     orm.destroy();
     return result;
   }
@@ -21,13 +21,13 @@ export default class MovistarRepository implements IMovistarRepository {
     return repository;
   }
 
-  async getInByPhoneNumber(phoneNumbers: number[]): Promise<MovistarEntity[]> {
+  async getInByPhoneNumber(phoneNumbers: number[]): Promise<Movistar[]> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(MovistarEntity);
     const result = (await repository
       .createQueryBuilder()
       .where('numero IN (:...phoneNumbers)', { phoneNumbers })
-      .getMany()) as unknown as MovistarEntity[];
+      .getMany()) as unknown as Movistar[];
     orm.destroy();
     return result;
   }

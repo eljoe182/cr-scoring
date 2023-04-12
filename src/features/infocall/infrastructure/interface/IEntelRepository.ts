@@ -1,4 +1,4 @@
-import { Entel } from '@shared/infrastructure/persistance/entities/Infocall';
+import { Entel } from '@shared/infrastructure/persistance/entities';
 import { CellProviderTable } from '@feat/infocall/domain/contracts/CellProviderTable';
 
 export interface IEntelRepository {

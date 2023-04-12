@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
 import { ISettingsFieldsRepository } from '../interface/ISettingsFieldsRepository';
 import { FieldConfig } from '../../../../features/infocall/domain/contracts/FieldConfig';
-import { SettingsFieldsEntity } from '@shared/infrastructure/persistance/entities';
+import { SettingsFieldsEntity } from '../../../../shared/infrastructure/persistance/entities';
 import { ResponseRepositoryContract } from '../../../../shared/domain/contracts/ResponseRepository.contracts';
 import { IResultPagination } from '../../../../features/scoring/domain/interface/IResultPagination';
 import { IParamsSettingsFields } from '../../../../features/settingFields/domain/interface/IParamsSettingsFields';

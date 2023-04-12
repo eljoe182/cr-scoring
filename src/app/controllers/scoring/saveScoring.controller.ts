@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import { IBaseController } from '@shared/domain/BaseController';
-import { IBaseUseCase } from '@shared/domain/BaseUseCase';
-import { SaveHistoricDataContract } from '@feat/scoring/domain/contracts/SaveHistoricData.contract';
-import { SaveScoringDataContract } from '@feat/scoring/domain/contracts/SaveScoringData.contract';
+import { IBaseController } from '../../../shared/domain/BaseController';
+import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
+import { SaveHistoricDataContract } from '../../../features/scoring/domain/contracts/SaveHistoricData.contract';
+import { SaveScoringDataContract } from '../../../features/scoring/domain/contracts/SaveScoringData.contract';
 
 export default class SaveScoringController implements IBaseController {
   constructor(

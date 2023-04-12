@@ -1,15 +1,15 @@
 import { DataSource } from 'typeorm';
 import { IClaroRepository } from '../../../../features/infocall/infrastructure/interface/IClaroRepository';
-import { ClaroEntity } from '../../../../shared/infrastructure/persistance/entities';
+import { ClaroEntity, Claro } from '../../../../shared/infrastructure/persistance/entities';
 import { CellProviderTable } from '../../../../features/infocall/domain/contracts/CellProviderTable';
 
 export default class ClaroRepository implements IClaroRepository {
   constructor(private orm: DataSource) {}
 
-  async getByNumber(phoneNumber: number): Promise<ClaroEntity> {
+  async getByNumber(phoneNumber: number): Promise<Claro> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(ClaroEntity);
-    const result = (await repository.findOneBy({ phoneNumber })) as unknown as ClaroEntity;
+    const result = (await repository.findOneBy({ phoneNumber })) as unknown as Claro;
     orm.destroy();
     return result;
   }
@@ -21,13 +21,13 @@ export default class ClaroRepository implements IClaroRepository {
     return repository;
   }
 
-  async getInByPhoneNumber(phoneNumbers: number[]): Promise<ClaroEntity[]> {
+  async getInByPhoneNumber(phoneNumbers: number[]): Promise<Claro[]> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(ClaroEntity);
     const result = (await repository
       .createQueryBuilder()
       .where('numero IN (:...phoneNumbers)', { phoneNumbers })
-      .getMany()) as unknown as ClaroEntity[];
+      .getMany()) as unknown as Claro[];
     orm.destroy();
     return result;
   }

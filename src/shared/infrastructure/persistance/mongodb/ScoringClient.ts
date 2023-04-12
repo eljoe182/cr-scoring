@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 
-export abstract class ScoringClient {
+export class ScoringClient {
   constructor(private dataSource: any) {}
 
   public async initialize() {

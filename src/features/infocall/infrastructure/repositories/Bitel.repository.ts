@@ -1,15 +1,15 @@
 import { DataSource } from 'typeorm';
 import { IBitelRepository } from '../../../../features/infocall/infrastructure/interface/IBitelRepository';
-import { BitelEntity } from '../../../../shared/infrastructure/persistance/entities';
+import { BitelEntity, Bitel } from '../../../../shared/infrastructure/persistance/entities';
 import { CellProviderTable } from '../../../../features/infocall/domain/contracts/CellProviderTable';
 
 export default class BitelRepository implements IBitelRepository {
   constructor(private orm: DataSource) {}
 
-  async getByNumber(phoneNumber: number): Promise<BitelEntity> {
+  async getByNumber(phoneNumber: number): Promise<Bitel> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(BitelEntity);
-    const result = (await repository.findOneBy({ phoneNumber })) as unknown as BitelEntity;
+    const result = (await repository.findOneBy({ phoneNumber })) as unknown as Bitel;
     orm.destroy();
     return result;
   }
@@ -21,13 +21,13 @@ export default class BitelRepository implements IBitelRepository {
     return repository;
   }
 
-  async getInByPhoneNumber(phoneNumbers: number[]): Promise<BitelEntity[]> {
+  async getInByPhoneNumber(phoneNumbers: number[]): Promise<Bitel[]> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(BitelEntity);
     const result = (await repository
       .createQueryBuilder()
       .where('numero IN (:...phoneNumbers)', { phoneNumbers })
-      .getMany()) as unknown as BitelEntity[];
+      .getMany()) as unknown as Bitel[];
     orm.destroy();
     return result;
   }

@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { IBaseController } from '@shared/domain/BaseController';
+import { IBaseController } from '../../shared/domain/BaseController';
 
-import { HealthDependency as container } from '@app/dependencyInjection';
+import { HealthDependency as container } from '../../app/dependencyInjection';
 
 export const register = (router: Router) => {
   const controller: IBaseController = container.get('Controller.Health.GetStatus');

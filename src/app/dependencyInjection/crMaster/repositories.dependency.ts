@@ -1,11 +1,11 @@
 import { Reference } from 'node-dependency-injection';
-import container from '@shared/infrastructure/dependency';
+import container from '../../../shared/infrastructure/dependency';
 
-import ResumenfonoRepository from '@feat/crMaster/infrastructure/repositories/Resumenfono.respository';
-import VicidialCore1Repository from '@feat/crMaster/infrastructure/repositories/VicidialCore1.repository';
-import VicidialCore11Repository from '@feat/crMaster/infrastructure/repositories/VicidialCore11.repository';
-import VicidialCore21Repository from '@feat/crMaster/infrastructure/repositories/VicidialCore21.repository';
-import WalletRepository from '@feat/crMaster/infrastructure/repositories/Wallet.repository';
+import ResumenfonoRepository from '../../../features/crMaster/infrastructure/repositories/Resumenfono.respository';
+import VicidialCore1Repository from '../../../features/crMaster/infrastructure/repositories/VicidialCore1.repository';
+import VicidialCore11Repository from '../../../features/crMaster/infrastructure/repositories/VicidialCore11.repository';
+import VicidialCore21Repository from '../../../features/crMaster/infrastructure/repositories/VicidialCore21.repository';
+import WalletRepository from '../../../features/crMaster/infrastructure/repositories/Wallet.repository';
 
 container
   .register('Resumenfono.Repository', ResumenfonoRepository)

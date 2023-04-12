@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { IBaseController } from '@shared/domain/BaseController';
-import { IBaseUseCase } from '@shared/domain/BaseUseCase';
+import { IBaseController } from '../../../shared/domain/BaseController';
+import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
 
 export default class GetInfoResumenfonoController implements IBaseController {
   constructor(private useCase: IBaseUseCase) {}

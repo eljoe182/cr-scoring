@@ -1,4 +1,4 @@
-import { ResumenfonoEntity } from '@shared/infrastructure/persistance/entities/Resumenfono.entity';
+import { ResumenfonoEntity } from '../../../../shared/infrastructure/persistance/entities';
 
 export interface IResumenfonoRepository {
   getInfoResumenfono(phoneNumber: string): Promise<ResumenfonoEntity>;

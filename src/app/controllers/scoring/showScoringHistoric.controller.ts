@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import { IBaseController } from '@shared/domain/BaseController';
-import { IBaseUseCase } from '@shared/domain/BaseUseCase';
-import { IPagination } from '@feat/scoring/domain/interface/IPagination';
-import { IResultPagination } from '@feat/scoring/domain/interface/IResultPagination';
+import { IBaseController } from '../../../shared/domain/BaseController';
+import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
+import { IPagination } from '../../../features/scoring/domain/interface/IPagination';
+import { IResultPagination } from '../../../features/scoring/domain/interface/IResultPagination';
 
 export default class ShowScoringHistoryController implements IBaseController {
   constructor(private useCase: IBaseUseCase) {}
