@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
-import { IScoringRepository } from '../interface/IScoringRepository';
-import { SaveScoringDataContract } from '../../../../features/scoring/domain/contracts/SaveScoringData.contract';
+import { IScoringRepository } from '../interface';
+import { SaveScoringDataContract } from '../../domain/contracts/SaveScoringData.contract';
 import { ScoringEntity } from '../../../../shared/infrastructure/persistance/entities';
 
 export default class ScoringRepository implements IScoringRepository {

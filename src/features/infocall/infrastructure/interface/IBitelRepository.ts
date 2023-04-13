@@ -1,5 +1,5 @@
-import { Bitel } from '@shared/infrastructure/persistance/entities';
-import { CellProviderTable } from '@feat/infocall/domain/contracts/CellProviderTable';
+import { Bitel } from '../../../../shared/infrastructure/persistance/entities';
+import { CellProviderTable } from '../../../../features/infocall/domain/contracts';
 
 export interface IBitelRepository {
   getByNumber(phoneNumber: number): Promise<Bitel>;

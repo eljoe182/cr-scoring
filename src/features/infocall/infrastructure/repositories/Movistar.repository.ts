@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
-import { IMovistarRepository } from '../interface/IMovistarRepository';
 import { MovistarEntity, Movistar } from '../../../../shared/infrastructure/persistance/entities';
-import { CellProviderTable } from '../../../../features/infocall/domain/contracts/CellProviderTable';
+import { IMovistarRepository } from '../interface';
+import { CellProviderTable } from '../../domain/contracts';
 
 export default class MovistarRepository implements IMovistarRepository {
   constructor(private orm: DataSource) {}

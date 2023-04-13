@@ -1,8 +1,8 @@
 import { DataSource } from 'typeorm';
 import { CRWalletEntity } from '../../../../shared/infrastructure/persistance/entities';
-import { IWalletRepository } from '../interface/IWalletRepository';
+import { IWalletRepository } from '../interface';
 
-export default class WalletRepository implements IWalletRepository {
+export default class WalletRepository implements IWalletRepository<CRWalletEntity> {
   constructor(private orm: DataSource) {}
 
   public async getAllWallets(): Promise<CRWalletEntity[]> {

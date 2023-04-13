@@ -1,6 +1,6 @@
 import { IPagination } from './IPagination';
 
-export interface IResultPagination extends IPagination {
+export interface IResultPagination<T> extends IPagination {
   rowsCount: number;
-  rows: unknown;
+  rows: T;
 }

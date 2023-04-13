@@ -43,6 +43,11 @@ export class Server {
     });
   };
 
+  stop = (): void => {
+    this.logger.info('Stopping server...');
+    process.exit();
+  };
+
   databases = async (): Promise<void> => {
     this.logger.info('Initializing databases...');
     const crMasterClient = dsContainer.get('DataSource.CRMaster.Client');

@@ -1,6 +1,6 @@
 {
   "name": "ms-cr-scoring",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Microservices of Scoring for infocall CR Abogados system's",
   "main": "build/index.js",
   "nodemonConfig": {
@@ -23,7 +23,7 @@
     "build:clean": "rm -r dist; exit 0",
     "build:tsc": "tsc -p tsconfig.json",
     "eslint": "eslint \"./**/*.ts\" --quiet",
-    "test": "jest --watchAll --no-cache"
+    "test": "jest --watchAll --no-cache --force-exit"
   },
   "jest": {
     "preset": "ts-jest",
@@ -72,6 +72,7 @@
     "@types/glob": "^8.0.0",
     "@types/jest": "^29.5.0",
     "@types/lodash": "^4.14.191",
+    "@types/mongodb-memory-server": "^2.3.0",
     "@types/morgan": "^1.9.4",
     "@types/node": "18.11.17",
     "@types/supertest": "^2.0.12",
@@ -87,6 +88,7 @@
     "prettier": "2.8.1",
     "supertest": "^6.3.3",
     "ts-jest": "^29.1.0",
+    "typeorm-transactional-tests": "^2.0.0",
     "typescript": "4.9.4"
   }
 }

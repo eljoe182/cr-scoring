@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
-import { IEntelRepository } from '../interface/IEntelRepository';
 import { EntelEntity, Entel } from '../../../../shared/infrastructure/persistance/entities';
-import { CellProviderTable } from '../../../../features/infocall/domain/contracts/CellProviderTable';
+import { IEntelRepository } from '../interface';
+import { CellProviderTable } from '../../domain/contracts';
 
 export default class EntelRepository implements IEntelRepository {
   constructor(private orm: DataSource) {}

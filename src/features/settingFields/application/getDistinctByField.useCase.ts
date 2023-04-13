@@ -1,11 +1,13 @@
-import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
-import { IBitelRepository } from '../../infocall/infrastructure/interface/IBitelRepository';
 import container from '../../../shared/infrastructure/dependency';
-import { IParamsDistinctValues } from '../../scoring/domain/interface/IParamsDistinctValues';
-import { IEntelRepository } from '../../../features/infocall/infrastructure/interface/IEntelRepository';
-import { IClaroRepository } from '../../../features/infocall/infrastructure/interface/IClaroRepository';
-import { IMovistarRepository } from '../../../features/infocall/infrastructure/interface/IMovistarRepository';
-import { IResumenfonoRepository } from '../../../features/crMaster/infrastructure/interface/IResumenfonoRepository';
+import { IBaseUseCase } from '../../../shared/domain';
+import {
+  IBitelRepository,
+  IEntelRepository,
+  IClaroRepository,
+  IMovistarRepository,
+} from '../../infocall/infrastructure/interface';
+import { IParamsDistinctValues } from '../../scoring/domain/interface';
+import { IResumenfonoRepository } from '../../../features/crMaster/infrastructure/interface';
 
 export default class GetDistinctByFieldUseCase implements IBaseUseCase {
   private bitelRepository: IBitelRepository = container.get('Bitel.Repository');

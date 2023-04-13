@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
-import { IManagementHistoryRepository } from '../interface/IManagementHistoryRepository';
-import { FilterManagementHistory } from '../../../../features/crMaster/domain/class/FilterManagementHistory';
-import { IManagementHistoryResult } from '../../domain/interface/IManagementHistoryResult';
+import { FilterManagementHistory } from '../../domain/contracts';
+import { IManagementHistoryRepository } from '../interface';
+import { IManagementHistoryResult } from '../../domain/interface';
 
 export default class ManagementHistoryRepository implements IManagementHistoryRepository {
   constructor(private orm: DataSource) {}

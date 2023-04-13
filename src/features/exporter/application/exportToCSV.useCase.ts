@@ -1,5 +1,5 @@
-import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
-import { paramsVicidial } from '../../../features/infocall/domain/contracts/ResultScoringParamsContract';
+import { IBaseUseCase } from '../../../shared/domain';
+import { paramsVicidial } from '../../../features/infocall/domain/contracts';
 import { IExportRepository } from '../infrastructure/interface/IExportRepository';
 import { ResultScoringDependency as container } from '../../../app/dependencyInjection';
 

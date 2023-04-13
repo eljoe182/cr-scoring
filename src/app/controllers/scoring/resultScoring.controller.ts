@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { IBaseController } from '../../../shared/domain/BaseController';
-import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
+import { IBaseController, IBaseUseCase } from '../../../shared/domain';
 
 export default class ResultScoringController implements IBaseController {
   constructor(private resultScoringUseCase: IBaseUseCase) {}

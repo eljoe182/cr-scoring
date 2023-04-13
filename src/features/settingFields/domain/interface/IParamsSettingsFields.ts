@@ -1,4 +1,4 @@
-import { IPagination } from "../../../scoring/domain/interface/IPagination";
+import { IPagination } from '../../../scoring/domain/interface';
 
 export interface IParamsSettingsFields extends IPagination {
   campaign: string;

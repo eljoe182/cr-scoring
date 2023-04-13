@@ -1,13 +1,14 @@
 import { DataSource } from 'typeorm';
 import { ISettingsFieldsRepository } from '../interface/ISettingsFieldsRepository';
-import { FieldConfig } from '../../../../features/infocall/domain/contracts/FieldConfig';
-import { SettingsFieldsEntity } from '../../../../shared/infrastructure/persistance/entities';
-import { ResponseRepositoryContract } from '../../../../shared/domain/contracts/ResponseRepository.contracts';
-import { IResultPagination } from '../../../../features/scoring/domain/interface/IResultPagination';
+import { FieldConfig } from '../../../../features/infocall/domain/contracts';
+import { SettingsFields, SettingsFieldsEntity } from '../../../../shared/infrastructure/persistance/entities';
+import { ResponseRepositoryContract } from '../../../../shared/domain/contracts';
+import { IResultPagination } from '../../../../features/scoring/domain/interface';
 import { IParamsSettingsFields } from '../../../../features/settingFields/domain/interface/IParamsSettingsFields';
 
 export default class SettingsFieldsRepository implements ISettingsFieldsRepository {
   constructor(private orm: DataSource) {}
+
   async save(fieldsConfig: FieldConfig): Promise<ResponseRepositoryContract> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(SettingsFieldsEntity);
@@ -40,7 +41,7 @@ export default class SettingsFieldsRepository implements ISettingsFieldsReposito
     };
   }
 
-  async getAllWithPagination(params: IParamsSettingsFields): Promise<IResultPagination> {
+  async getAllWithPagination(params: IParamsSettingsFields): Promise<IResultPagination<SettingsFields[]>> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(SettingsFieldsEntity);
     const [rows, rowsCount] = await repository.findAndCount({

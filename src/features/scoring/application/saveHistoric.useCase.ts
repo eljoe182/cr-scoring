@@ -1,8 +1,7 @@
-import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
-import { IScoringHistoricRepository } from '../infrastructure/interface/IScoringHistoricRepository';
-import { SaveHistoricDataContract } from '../domain/contracts/SaveHistoricData.contract';
+import { IBaseUseCase } from '../../../shared/domain';
+import { IScoringHistoricRepository } from '../infrastructure/interface';
+import { SaveHistoricDataContract, SaveScoringDataContract } from '../domain/contracts';
 import { ScoringHistoric } from '../../../shared/infrastructure/persistance/entities';
-import { SaveScoringDataContract } from '../domain/contracts/SaveScoringData.contract';
 
 export default class SaveHistoricUseCase implements IBaseUseCase {
   constructor(private repository: IScoringHistoricRepository) {}

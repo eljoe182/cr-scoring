@@ -1,6 +1,6 @@
-import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
-import { IScoringRepository } from '../infrastructure/interface/IScoringRepository';
-import { SaveScoringDataContract } from '../../../features/scoring/domain/contracts/SaveScoringData.contract';
+import { IBaseUseCase } from '../../../shared/domain';
+import { IScoringRepository } from '../infrastructure/interface';
+import { SaveScoringDataContract } from '../../../features/scoring/domain/contracts';
 
 export default class SaveScoringUseCase implements IBaseUseCase {
   constructor(private repository: IScoringRepository) {}

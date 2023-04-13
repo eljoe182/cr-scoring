@@ -1,10 +1,12 @@
 import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
-import { IBitelRepository } from '../../../features/infocall/infrastructure/interface/IBitelRepository';
-import { IClaroRepository } from '../../../features/infocall/infrastructure/interface/IClaroRepository';
-import { IEntelRepository } from '../../../features/infocall/infrastructure/interface/IEntelRepository';
-import { IMovistarRepository } from '../../../features/infocall/infrastructure/interface/IMovistarRepository';
-import { IResumenfonoRepository } from '../../../features/crMaster/infrastructure/interface/IResumenfonoRepository';
-import { DataPeriodContract } from '../domain/contracts/DataPeriod.contract';
+import {
+  IBitelRepository,
+  IClaroRepository,
+  IEntelRepository,
+  IMovistarRepository,
+} from '../../../features/infocall/infrastructure/interface';
+import { IResumenfonoRepository } from '../../../features/crMaster/infrastructure/interface';
+import { DataPeriodContract } from '../domain/contracts';
 
 export default class RetrieveDataPeriodUseCase implements IBaseUseCase {
   constructor(

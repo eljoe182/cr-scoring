@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 import { ResumenfonoEntity } from '../../../../shared/infrastructure/persistance/entities';
-import { IResumenfonoRepository } from '../../../../features/crMaster/infrastructure/interface/IResumenfonoRepository';
+import { IResumenfonoRepository } from '../../../../features/crMaster/infrastructure/interface';
 
 export default class ResumenfonoRepository implements IResumenfonoRepository {
   constructor(private orm: DataSource) {}

@@ -1,6 +1,6 @@
 import { json2csvAsync } from 'json-2-csv';
 import { IExportRepository } from '../interface/IExportRepository';
-import { GetInfoVicidialDataContract } from '../../../../features/crMaster/domain/contracts/GetInfoVicidialResponseContract';
+import { GetInfoVicidialDataContract } from '../../../../features/crMaster/domain/contracts';
 
 export default class ExportRepository implements IExportRepository {
   async vicidialDataExportToCSV(data: GetInfoVicidialDataContract[]): Promise<unknown> {

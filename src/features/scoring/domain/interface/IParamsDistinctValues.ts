@@ -1,4 +1,4 @@
-import { Tables } from '../class/Tables.enum';
+import { Tables } from '../class';
 
 export interface IParamsDistinctValues {
   table: Tables;

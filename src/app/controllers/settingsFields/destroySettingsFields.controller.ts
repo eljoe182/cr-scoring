@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
-import { IBaseController } from '../../../shared/domain/BaseController';
+import { IBaseController,IBaseUseCase } from '../../../shared/domain';
 
 export default class DestroySettingsFieldsController implements IBaseController {
   constructor(private readonly useCase: IBaseUseCase) {}

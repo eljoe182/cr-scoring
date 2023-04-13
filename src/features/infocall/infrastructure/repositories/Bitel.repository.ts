@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
-import { IBitelRepository } from '../../../../features/infocall/infrastructure/interface/IBitelRepository';
 import { BitelEntity, Bitel } from '../../../../shared/infrastructure/persistance/entities';
-import { CellProviderTable } from '../../../../features/infocall/domain/contracts/CellProviderTable';
+import { IBitelRepository } from '../interface';
+import { CellProviderTable } from '../../domain/contracts';
 
 export default class BitelRepository implements IBitelRepository {
   constructor(private orm: DataSource) {}

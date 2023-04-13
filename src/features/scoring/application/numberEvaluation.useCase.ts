@@ -2,20 +2,7 @@ import { getMetadataArgsStorage } from 'typeorm';
 import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
 import { ParamsNumberEvaluationContract } from '../domain/contracts/NumberEvaluation.contract';
 import { TableMetadataArgs } from 'typeorm/metadata-args/TableMetadataArgs';
-// import { BitelEntity } from '../../../shared/infrastructure/persistance/entities';
-
-interface ResultInfoCall {
-  campaign: string;
-  condition: string;
-  database: string;
-  field: string;
-  tableName: string;
-  valueCondition: string;
-  valueScore: string;
-  alias: string | undefined;
-  columnName: string | undefined;
-  columnType: string | undefined;
-}
+import { ResultInfoCall } from '../domain/contracts/ResultInfoCall.contract';
 
 export default class NumberEvaluationUseCase implements IBaseUseCase {
   async execute(params: ParamsNumberEvaluationContract): Promise<unknown> {

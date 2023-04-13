@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import { IBaseController } from '../../../shared/domain/BaseController';
-import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
-import { IResultPagination } from '../../../features/scoring/domain/interface/IResultPagination';
+import { IBaseController, IBaseUseCase } from '../../../shared/domain';
+import { IResultPagination } from '../../../features/scoring/domain/interface';
 import { IParamsSettingsFields } from '../../../features/settingFields/domain/interface/IParamsSettingsFields';
+import { SettingsFields } from 'src/shared/infrastructure/persistance/entities';
 
 export default class GetSettingsFieldsController implements IBaseController {
   constructor(private readonly useCase: IBaseUseCase) {}
@@ -16,7 +16,7 @@ export default class GetSettingsFieldsController implements IBaseController {
       page: Number(start) / Number(length) + 1,
     };
 
-    const { rows, rowsCount } = (await this.useCase.execute(params)) as IResultPagination;
+    const { rows, rowsCount } = (await this.useCase.execute(params)) as IResultPagination<SettingsFields>;
     res.status(200).json({
       draw,
       recordsTotal: rowsCount,

@@ -1,8 +1,7 @@
 import { DataSource } from 'typeorm';
-import { IScoringHistoricRepository } from '../interface/IScoringHistoricRepository';
-import { ScoringHistoricEntity } from '../../../../shared/infrastructure/persistance/entities';
-import { IPagination } from '../../../../features/scoring/domain/interface/IPagination';
-import { IResultPagination } from '../../../../features/scoring/domain/interface/IResultPagination';
+import { ScoringHistoricEntity, ScoringHistoric } from '../../../../shared/infrastructure/persistance/entities';
+import { IScoringHistoricRepository } from '../interface';
+import { IPagination, IResultPagination } from '../../domain/interface';
 
 export default class ScoringHistoricRepository implements IScoringHistoricRepository {
   constructor(private orm: DataSource) {}
@@ -21,7 +20,7 @@ export default class ScoringHistoricRepository implements IScoringHistoricReposi
     };
   }
 
-  async findAll(pagination: IPagination): Promise<IResultPagination> {
+  async findAll(pagination: IPagination): Promise<IResultPagination<ScoringHistoric[]>> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(ScoringHistoricEntity);
     const [rows, rowsCount] = await repository.findAndCount({

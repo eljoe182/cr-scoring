@@ -1,13 +1,12 @@
-import { DataSourceDependency as dsContainer } from '../../../app/dependencyInjection';
 import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
-import { IManagementHistoryRepository } from '../infrastructure/interface/IManagementHistoryRepository';
-import { FilterManagementHistory } from '../domain/class/FilterManagementHistory';
+import { DataSourceDependency as dsContainer } from '../../../app/dependencyInjection';
+import { IManagementHistoryRepository } from '../infrastructure/interface';
 import DateFormat from '../../../shared/data-values/DateFormat';
-import { ParamsNumberEvaluationContract } from '../../../features/scoring/domain/contracts/NumberEvaluation.contract';
-import { DataPeriodContract } from '../../../features/scoring/domain/contracts/DataPeriod.contract';
-import { HistoryResultContract } from '../domain/contracts/HistoryResultContract';
-import { SettingsFieldsContract } from '../../../features/settingFields/domain/contracts/SettingsFields.contract';
-import { IResultPagination } from '../../../features/scoring/domain/interface/IResultPagination';
+import { ParamsNumberEvaluationContract, DataPeriodContract } from '../../../features/scoring/domain/contracts';
+import { IResultPagination } from '../../../features/scoring/domain/interface';
+import { FilterManagementHistory, GetHistoryUseCaseResult, HistoryResultContract } from '../domain/contracts';
+import { SettingsFieldsContract } from '../../../features/settingFields/domain/contracts';
+import { OperatorData } from '../../../features/infocall/domain/contracts';
 // import StringToHash from '../../../shared/data-values/StringToHash';
 
 export default class GetHistoryUseCase implements IBaseUseCase {
@@ -16,10 +15,10 @@ export default class GetHistoryUseCase implements IBaseUseCase {
     private repository: IManagementHistoryRepository,
     private setOperatorUseCase: IBaseUseCase,
     private numberEvaluationUseCase: IBaseUseCase,
-    private settingsFieldsUseCase: IBaseUseCase
+    private getSettingsFieldsUseCase: IBaseUseCase
   ) {}
 
-  async execute(params: FilterManagementHistory): Promise<unknown> {
+  async execute(params: FilterManagementHistory): Promise<GetHistoryUseCaseResult | null> {
     // const hash = StringToHash.hash(`${JSON.stringify(params)}`);
     const campaignListId = await this.redisRepository.get(`${params.campaign}-${params.listId}`);
 
@@ -32,26 +31,21 @@ export default class GetHistoryUseCase implements IBaseUseCase {
 
       if (managementHistory.length === 0) return null;
 
-      const { success } = (await this.setOperatorUseCase.execute(managementHistory)) as {
-        success: DataPeriodContract[];
-        errors: string[];
-      };
+      const { success } = (await this.setOperatorUseCase.execute(managementHistory)) as OperatorData;
       await this.redisRepository.set(`${params.campaign}-${params.listId}`, JSON.stringify(success));
 
       phoneOperators = success;
     }
 
-    const settingsFields = (await this.settingsFieldsUseCase.execute({
+    const settingsFields = (await this.getSettingsFieldsUseCase.execute({
       campaign: params.campaign,
-    })) as unknown as Promise<IResultPagination>;
-
-    const numbersTest = phoneOperators.filter((item) => item.operator.subscription);
+    })) as unknown as IResultPagination<SettingsFieldsContract[]>;
 
     const resultEvaluation = await Promise.allSettled(
-      numbersTest.map(async (data) => {
+      phoneOperators.map(async (data) => {
         const information: ParamsNumberEvaluationContract = {
           dataPeriod: data,
-          fields: (await settingsFields).rows as SettingsFieldsContract[],
+          fields: settingsFields.rows,
         };
         const evaluation = (await this.numberEvaluationUseCase.execute(information)) as {
           phoneNumber: string;

@@ -1,5 +1,5 @@
 import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
-import { IVicidialListsRepository } from '../infrastructure/interface/IVicidialListsRepository';
+import { IVicidialListsRepository } from '../infrastructure/interface';
 
 export default class GetVicidialListsUseCase implements IBaseUseCase {
   constructor(private vicidialListsRepository: IVicidialListsRepository) {}

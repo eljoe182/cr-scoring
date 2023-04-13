@@ -1,10 +1,8 @@
-import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
-import { IBitelRepository } from '../infrastructure/interface/IBitelRepository';
-import { IClaroRepository } from '../infrastructure/interface/IClaroRepository';
-import { IEntelRepository } from '../infrastructure/interface/IEntelRepository';
-import { IMovistarRepository } from '../infrastructure/interface/IMovistarRepository';
-import { IManagementHistoryResult } from '../../../features/crMaster/domain/interface/IManagementHistoryResult';
-import { DataPeriodContract } from '../../../features/scoring/domain/contracts/DataPeriod.contract';
+import { IBaseUseCase } from '../../../shared/domain';
+import { IBitelRepository, IClaroRepository, IEntelRepository, IMovistarRepository } from '../infrastructure/interface';
+import { IManagementHistoryResult } from '../../../features/crMaster/domain/interface';
+import { DataPeriodContract } from '../../../features/scoring/domain/contracts';
+import { OperatorData } from '../domain/contracts';
 
 export default class SetOperatorUseCase implements IBaseUseCase {
   constructor(
@@ -14,7 +12,7 @@ export default class SetOperatorUseCase implements IBaseUseCase {
     private readonly repositoryMovistar: IMovistarRepository
   ) {}
 
-  async execute(data: IManagementHistoryResult[]): Promise<unknown> {
+  async execute(data: IManagementHistoryResult[]): Promise<OperatorData> {
     const phoneNumbers = data.filter((item) => item.phoneNumber.length === 9).map((info) => Number(info.phoneNumber));
 
     const uniquePhoneNumbers = [...new Set(phoneNumbers)];

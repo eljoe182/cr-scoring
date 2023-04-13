@@ -1,8 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { IBaseController } from '../../../shared/domain/BaseController';
-import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
-import { IPagination } from '../../../features/scoring/domain/interface/IPagination';
-import { IResultPagination } from '../../../features/scoring/domain/interface/IResultPagination';
+import { IBaseController,IBaseUseCase } from '../../../shared/domain';
+import { IPagination, IResultPagination } from '../../../features/scoring/domain/interface';
+import { ScoringHistoric } from '../../../shared/infrastructure/persistance/entities';
 
 export default class ShowScoringHistoryController implements IBaseController {
   constructor(private useCase: IBaseUseCase) {}
@@ -13,7 +12,7 @@ export default class ShowScoringHistoryController implements IBaseController {
       limit: Number(length),
       page: Number(start) / Number(length) + 1,
     };
-    const { rows, rowsCount } = (await this.useCase.execute(pagination)) as IResultPagination;
+    const { rows, rowsCount } = (await this.useCase.execute(pagination)) as IResultPagination<ScoringHistoric>;
     res.status(200).json({
       draw,
       recordsTotal: rowsCount,

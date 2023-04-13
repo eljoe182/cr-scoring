@@ -1,10 +1,12 @@
+import { IBaseUseCase } from '../../../shared/domain';
 import { IResumenfonoRepository } from '../../../features/crMaster/infrastructure/interface/IResumenfonoRepository';
-import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
-import { IBitelRepository } from '../../../features/infocall/infrastructure/interface/IBitelRepository';
-import { IClaroRepository } from '../../../features/infocall/infrastructure/interface/IClaroRepository';
-import { IEntelRepository } from '../../../features/infocall/infrastructure/interface/IEntelRepository';
-import { IMovistarRepository } from '../../../features/infocall/infrastructure/interface/IMovistarRepository';
-import { CellProviderTable } from '../../../features/infocall/domain/contracts/CellProviderTable';
+import {
+  IBitelRepository,
+  IClaroRepository,
+  IEntelRepository,
+  IMovistarRepository,
+} from '../../../features/infocall/infrastructure/interface';
+import { CellProviderTable } from '../../../features/infocall/domain/contracts';
 import { DataSourceDependency as dsContainer } from '../../../app/dependencyInjection';
 
 export default class GetFieldsUseCase implements IBaseUseCase {
@@ -65,6 +67,6 @@ export default class GetFieldsUseCase implements IBaseUseCase {
 
     await this.redisRepository.set('fields', JSON.stringify(resultFields));
 
-    return resultFields
+    return resultFields;
   }
 }

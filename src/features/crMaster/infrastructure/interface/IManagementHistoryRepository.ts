@@ -1,5 +1,5 @@
-import { FilterManagementHistory } from '../../../../features/crMaster/domain/class/FilterManagementHistory';
-import { IManagementHistoryResult } from '../../domain/interface/IManagementHistoryResult';
+import { FilterManagementHistory } from '../../domain/contracts';
+import { IManagementHistoryResult } from '../../domain/interface';
 
 export interface IManagementHistoryRepository {
   getManagementHistory(params: FilterManagementHistory): Promise<IManagementHistoryResult[]>;

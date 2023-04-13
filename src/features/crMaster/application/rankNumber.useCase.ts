@@ -1,5 +1,5 @@
-import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
-import { GetInfoVicidialDataContract } from '../domain/contracts/GetInfoVicidialResponseContract';
+import { IBaseUseCase } from '../../../shared/domain';
+import { GetInfoVicidialDataContract } from '../domain/contracts';
 
 export default class RankNumberUseCase implements IBaseUseCase {
   public async execute(vicidialData: GetInfoVicidialDataContract[]): Promise<unknown> {

@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
-import { IClaroRepository } from '../../../../features/infocall/infrastructure/interface/IClaroRepository';
 import { ClaroEntity, Claro } from '../../../../shared/infrastructure/persistance/entities';
-import { CellProviderTable } from '../../../../features/infocall/domain/contracts/CellProviderTable';
+import { IClaroRepository } from '../interface';
+import { CellProviderTable } from '../../domain/contracts';
 
 export default class ClaroRepository implements IClaroRepository {
   constructor(private orm: DataSource) {}

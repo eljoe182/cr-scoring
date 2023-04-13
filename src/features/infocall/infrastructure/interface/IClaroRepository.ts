@@ -1,5 +1,5 @@
-import { Claro } from '@shared/infrastructure/persistance/entities';
-import { CellProviderTable } from '@feat/infocall/domain/contracts/CellProviderTable';
+import { Claro } from '../../../../shared/infrastructure/persistance/entities';
+import { CellProviderTable } from '../../../../features/infocall/domain/contracts';
 
 export interface IClaroRepository {
   getByNumber(phoneNumber: number): Promise<Claro>;
