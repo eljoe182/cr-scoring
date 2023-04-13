@@ -1,12 +1,12 @@
 import { Reference } from 'node-dependency-injection';
-import container from '../../../shared/infrastructure/dependency';
+import container from 'src/shared/infrastructure/dependency';
 
-import ManagementHistoryRepository from '../../../features/crMaster/infrastructure/repositories/ManagementHistory.repository';
+import ManagementHistoryRepository from 'src/features/crMaster/infrastructure/repositories/ManagementHistory.repository';
 
-import GetHistoryUseCase from '../../../features/crMaster/application/getHistory.useCase';
-import GetHistoryController from '../../../app/controllers/crMaster/getHistory.controller';
-import SetOperatorUseCase from '../../../features/infocall/application/setOperator.useCase';
-import NumberEvaluationUseCase from '../../../features/scoring/application/numberEvaluation.useCase';
+import GetHistoryUseCase from 'src/features/crMaster/application/getHistory.useCase';
+import GetHistoryController from 'src/app/controllers/crMaster/getHistory.controller';
+import SetOperatorUseCase from 'src/features/infocall/application/setOperator.useCase';
+import NumberEvaluationUseCase from 'src/features/scoring/application/numberEvaluation.useCase';
 
 container.register('Scoring.UseCase.NumberEvaluation', NumberEvaluationUseCase);
 

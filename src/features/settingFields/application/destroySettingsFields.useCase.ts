@@ -1,4 +1,4 @@
-import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
+import { IBaseUseCase } from 'src/shared/domain/BaseUseCase';
 import { ISettingsFieldsRepository } from '../infrastructure/interface/ISettingsFieldsRepository';
 
 export default class DestroySettingsFieldsUseCase implements IBaseUseCase {

@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { ScoringHistoricEntity, ScoringHistoric } from '../../../../shared/infrastructure/persistance/entities';
+import { ScoringHistoricEntity, ScoringHistoric } from 'src/shared/infrastructure/persistance/entities';
 import { IScoringHistoricRepository } from '../interface';
 import { IPagination, IResultPagination } from '../../domain/interface';
 

@@ -1,13 +1,13 @@
 import { Reference } from 'node-dependency-injection';
-import container from '../../../shared/infrastructure/dependency';
+import container from 'src/shared/infrastructure/dependency';
 
-import GetScoringController from '../../controllers/scoring/getScoring.controller';
-import NumberEvaluationUseCase from '../../../features/scoring/application/numberEvaluation.useCase';
-import SaveScoringUseCase from '../../../features/scoring/application/saveScoring.useCase';
-import SaveScoringController from '../../../app/controllers/scoring/saveScoring.controller';
-import SaveHistoricUseCase from '../../../features/scoring/application/saveHistoric.useCase';
-import ShowScoringHistoricUseCase from '../../../features/scoring/application/showScoringHistoric.useCase';
-import ShowScoringHistoricController from '../../../app/controllers/scoring/showScoringHistoric.controller';
+import GetScoringController from 'src/app/controllers/scoring/getScoring.controller';
+import NumberEvaluationUseCase from 'src/features/scoring/application/numberEvaluation.useCase';
+import SaveScoringUseCase from 'src/features/scoring/application/saveScoring.useCase';
+import SaveScoringController from 'src/app/controllers/scoring/saveScoring.controller';
+import SaveHistoricUseCase from 'src/features/scoring/application/saveHistoric.useCase';
+import ShowScoringHistoricUseCase from 'src/features/scoring/application/showScoringHistoric.useCase';
+import ShowScoringHistoricController from 'src/app/controllers/scoring/showScoringHistoric.controller';
 
 container.register('Scoring.UseCase.NumberEvaluation', NumberEvaluationUseCase);
 

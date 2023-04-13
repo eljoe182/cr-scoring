@@ -1,4 +1,4 @@
-import { SaveScoringDataContract } from '../../../../features/scoring/domain/contracts';
+import { SaveScoringDataContract } from 'src/features/scoring/domain/contracts';
 
 export interface IScoringRepository {
   getScoring(phoneNumber: string): Promise<unknown>;

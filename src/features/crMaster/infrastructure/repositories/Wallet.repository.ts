@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { CRWalletEntity } from '../../../../shared/infrastructure/persistance/entities';
+import { CRWalletEntity } from 'src/shared/infrastructure/persistance/entities';
 import { IWalletRepository } from '../interface';
 
 export default class WalletRepository implements IWalletRepository<CRWalletEntity> {

@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { ClaroEntity, Claro } from '../../../../shared/infrastructure/persistance/entities';
+import { ClaroEntity, Claro } from 'src/shared/infrastructure/persistance/entities';
 import { IClaroRepository } from '../interface';
 import { CellProviderTable } from '../../domain/contracts';
 

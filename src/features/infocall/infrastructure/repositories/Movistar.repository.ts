@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { MovistarEntity, Movistar } from '../../../../shared/infrastructure/persistance/entities';
+import { MovistarEntity, Movistar } from 'src/shared/infrastructure/persistance/entities';
 import { IMovistarRepository } from '../interface';
 import { CellProviderTable } from '../../domain/contracts';
 

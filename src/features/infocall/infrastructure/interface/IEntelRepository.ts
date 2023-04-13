@@ -1,5 +1,5 @@
-import { Entel } from '../../../../shared/infrastructure/persistance/entities';
-import { CellProviderTable } from '../../../../features/infocall/domain/contracts';
+import { Entel } from 'src/shared/infrastructure/persistance/entities';
+import { CellProviderTable } from 'src/features/infocall/domain/contracts';
 
 export interface IEntelRepository {
   getByNumber(phoneNumber: number): Promise<Entel>;

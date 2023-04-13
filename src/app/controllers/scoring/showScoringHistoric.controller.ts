@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { IBaseController,IBaseUseCase } from '../../../shared/domain';
-import { IPagination, IResultPagination } from '../../../features/scoring/domain/interface';
-import { ScoringHistoric } from '../../../shared/infrastructure/persistance/entities';
+import { IBaseController, IBaseUseCase } from 'src/shared/domain';
+import { IPagination, IResultPagination } from 'src/features/scoring/domain/interface';
+import { ScoringHistoric } from 'src/shared/infrastructure/persistance/entities';
 
 export default class ShowScoringHistoryController implements IBaseController {
   constructor(private useCase: IBaseUseCase) {}

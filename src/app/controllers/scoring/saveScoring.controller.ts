@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { IBaseController, IBaseUseCase } from '../../../shared/domain';
-import { SaveHistoricDataContract, SaveScoringDataContract } from '../../../features/scoring/domain/contracts';
+import { IBaseController, IBaseUseCase } from 'src/shared/domain';
+import { SaveHistoricDataContract, SaveScoringDataContract } from 'src/features/scoring/domain/contracts';
 
 export default class SaveScoringController implements IBaseController {
   constructor(

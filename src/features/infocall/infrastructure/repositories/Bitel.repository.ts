@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { BitelEntity, Bitel } from '../../../../shared/infrastructure/persistance/entities';
+import { BitelEntity, Bitel } from 'src/shared/infrastructure/persistance/entities';
 import { IBitelRepository } from '../interface';
 import { CellProviderTable } from '../../domain/contracts';
 

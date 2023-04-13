@@ -1,5 +1,5 @@
-import IPagination, { PaginationResult } from '../../shared/infrastructure/interfaces/IPagination';
 import lo from 'lodash';
+import IPagination, { PaginationResult } from '../infrastructure/interfaces/IPagination';
 
 export default class Pagination implements IPagination {
   public getPaginatedItems(items: unknown[], page: number, pageSize: number): PaginationResult {

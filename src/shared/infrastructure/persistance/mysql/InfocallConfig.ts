@@ -1,6 +1,6 @@
 import { DataSourceOptions } from 'typeorm';
-import config from '../../../../app/config';
-import { BitelEntity, ClaroEntity, EntelEntity, MovistarEntity, ScoringEntity } from '../../../../shared/infrastructure/persistance/entities';
+import config from 'src/app/config';
+import { BitelEntity, ClaroEntity, EntelEntity, MovistarEntity, ScoringEntity } from '../entities';
 
 export class InfocallConfig {
   public config: DataSourceOptions;

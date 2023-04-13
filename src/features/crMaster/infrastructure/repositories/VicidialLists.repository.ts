@@ -1,5 +1,5 @@
 import { DataSource } from "typeorm";
-import { VicidialListsEntity } from "../../../../shared/infrastructure/persistance/entities";
+import { VicidialListsEntity } from "src/shared/infrastructure/persistance/entities";
 import { IVicidialListsRepository } from "../interface";
 
 export default class VicidialListsRepository implements IVicidialListsRepository {

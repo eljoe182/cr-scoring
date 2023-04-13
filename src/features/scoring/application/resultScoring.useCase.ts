@@ -1,6 +1,6 @@
-import { IBaseUseCase } from '../../../shared/domain';
-import { paramsVicidial } from '../../../features/infocall/domain/contracts';
-import { GetInfoVicidialDataContract } from '../../../features/crMaster/domain/contracts';
+import { IBaseUseCase } from 'src/shared/domain';
+import { paramsVicidial } from 'src/features/infocall/domain/contracts';
+import { GetInfoVicidialDataContract } from 'src/features/crMaster/domain/contracts';
 
 export default class ResultScoringUseCase implements IBaseUseCase {
   constructor(private getInfoVicidialUseCase: IBaseUseCase) {}

@@ -1,7 +1,7 @@
 import { Reference } from 'node-dependency-injection';
-import container from '../../../shared/infrastructure/dependency';
-import GetAllCampaignsController from '../../../app/controllers/crMaster/getAllCampaigns.controller';
-import GetAllCampaignsUseCase from '../../../features/crMaster/application/getAllCampaigns.useCase';
+import container from 'src/shared/infrastructure/dependency';
+import GetAllCampaignsController from 'src/app/controllers/crMaster/getAllCampaigns.controller';
+import GetAllCampaignsUseCase from 'src/features/crMaster/application/getAllCampaigns.useCase';
 
 container
   .register('CRMaster.Campaign.UseCase.GetAll', GetAllCampaignsUseCase)

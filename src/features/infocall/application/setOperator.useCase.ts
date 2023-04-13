@@ -1,7 +1,7 @@
-import { IBaseUseCase } from '../../../shared/domain';
+import { IBaseUseCase } from 'src/shared/domain';
 import { IBitelRepository, IClaroRepository, IEntelRepository, IMovistarRepository } from '../infrastructure/interface';
-import { IManagementHistoryResult } from '../../../features/crMaster/domain/interface';
-import { DataPeriodContract } from '../../../features/scoring/domain/contracts';
+import { IManagementHistoryResult } from 'src/features/crMaster/domain/interface';
+import { DataPeriodContract } from 'src/features/scoring/domain/contracts';
 import { OperatorData } from '../domain/contracts';
 
 export default class SetOperatorUseCase implements IBaseUseCase {

@@ -1,5 +1,5 @@
-import { IBaseUseCase } from '../../../shared/domain';
-import { ScoringHistoric } from '../../../shared/infrastructure/persistance/entities';
+import { IBaseUseCase } from 'src/shared/domain';
+import { ScoringHistoric } from 'src/shared/infrastructure/persistance/entities';
 import { IPagination, IResultPagination } from '../domain/interface';
 import { IScoringHistoricRepository } from '../infrastructure/interface';
 

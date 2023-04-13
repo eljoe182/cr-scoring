@@ -1,9 +1,9 @@
-import { IBaseUseCase } from '../../../shared/domain';
+import { IBaseUseCase } from 'src/shared/domain';
 import { DataPeriodContract } from '../domain/contracts';
 import { ISettingsFieldsRepository } from '../../settingFields/infrastructure/interface/ISettingsFieldsRepository';
 import { ParamsNumberEvaluationContract } from '../domain/contracts';
 import { SettingsFieldsContract } from '../../settingFields/domain/contracts';
-import DateFormat from '../../../shared/data-values/DateFormat';
+import DateFormat from 'src/shared/data-values/DateFormat';
 
 export default class GetScoringUseCase implements IBaseUseCase {
   constructor(

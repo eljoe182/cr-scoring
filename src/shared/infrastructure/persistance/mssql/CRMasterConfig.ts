@@ -1,5 +1,5 @@
 import { DataSourceOptions } from 'typeorm';
-import config from '../../../../app/config';
+import config from 'src/app/config';
 import {
   ResumenfonoEntity,
   FRVicidialListEntity,
@@ -8,7 +8,7 @@ import {
   VicidialListsEntity,
   CRWalletEntity,
   ManagementHistoryEntity,
-} from '../../../infrastructure/persistance/entities';
+} from '../entities';
 
 export class CRMasterConfig {
   public config: DataSourceOptions;

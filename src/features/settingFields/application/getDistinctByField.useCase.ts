@@ -1,5 +1,5 @@
-import container from '../../../shared/infrastructure/dependency';
-import { IBaseUseCase } from '../../../shared/domain';
+import container from 'src/shared/infrastructure/dependency';
+import { IBaseUseCase } from 'src/shared/domain';
 import {
   IBitelRepository,
   IEntelRepository,
@@ -7,7 +7,7 @@ import {
   IMovistarRepository,
 } from '../../infocall/infrastructure/interface';
 import { IParamsDistinctValues } from '../../scoring/domain/interface';
-import { IResumenfonoRepository } from '../../../features/crMaster/infrastructure/interface';
+import { IResumenfonoRepository } from 'src/features/crMaster/infrastructure/interface';
 
 export default class GetDistinctByFieldUseCase implements IBaseUseCase {
   private bitelRepository: IBitelRepository = container.get('Bitel.Repository');

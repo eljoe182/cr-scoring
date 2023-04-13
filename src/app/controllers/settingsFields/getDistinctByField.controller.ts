@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { IBaseController,IBaseUseCase } from '../../../shared/domain';
-import { IParamsDistinctValues } from '../../../features/scoring/domain/interface';
+import { IBaseController, IBaseUseCase } from 'src/shared/domain';
+import { IParamsDistinctValues } from 'src/features/scoring/domain/interface';
 
 export default class GetDistinctByFieldController implements IBaseController {
   constructor(private readonly useCase: IBaseUseCase) {}

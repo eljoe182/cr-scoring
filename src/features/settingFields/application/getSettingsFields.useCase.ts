@@ -1,8 +1,8 @@
-import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
+import { IBaseUseCase } from 'src/shared/domain/BaseUseCase';
 import { ISettingsFieldsRepository } from '../infrastructure/interface/ISettingsFieldsRepository';
 import { IResultPagination } from '../../scoring/domain/interface/IResultPagination';
 import { IParamsSettingsFields } from '../domain/interface/IParamsSettingsFields';
-import { SettingsFields } from '../../../shared/infrastructure/persistance/entities';
+import { SettingsFields } from 'src/shared/infrastructure/persistance/entities';
 
 export default class GetSettingsFieldsUseCase implements IBaseUseCase {
   constructor(private readonly repository: ISettingsFieldsRepository) {}

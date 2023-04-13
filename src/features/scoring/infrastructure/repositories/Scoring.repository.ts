@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
 import { IScoringRepository } from '../interface';
 import { SaveScoringDataContract } from '../../domain/contracts/SaveScoringData.contract';
-import { ScoringEntity } from '../../../../shared/infrastructure/persistance/entities';
+import { ScoringEntity } from 'src/shared/infrastructure/persistance/entities';
 
 export default class ScoringRepository implements IScoringRepository {
   constructor(private orm: DataSource) {}

@@ -1,10 +1,10 @@
 import { Reference } from 'node-dependency-injection';
-import container from '../../../shared/infrastructure/dependency';
+import container from 'src/shared/infrastructure/dependency';
 
-import VicidialListsRepository from '../../../features/crMaster/infrastructure/repositories/VicidialLists.repository';
+import VicidialListsRepository from 'src/features/crMaster/infrastructure/repositories/VicidialLists.repository';
 
-import GetVicidialListController from '../../controllers/crMaster/getVicidialListUseCase.controller';
-import GetVicidialListsUseCase from '../../../features/crMaster/application/getVicidialLists.useCase';
+import GetVicidialListController from 'src/app/controllers/crMaster/getVicidialListUseCase.controller';
+import GetVicidialListsUseCase from 'src/features/crMaster/application/getVicidialLists.useCase';
 
 container
   .register('VicidialLists.Repository', VicidialListsRepository)

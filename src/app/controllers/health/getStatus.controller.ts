@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { IBaseController } from '../../../shared/domain';
+import { IBaseController } from 'src/shared/domain';
 
 export default class GetStatusController implements IBaseController {
   async run(_req: Request, res: Response, _next: NextFunction): Promise<void> {

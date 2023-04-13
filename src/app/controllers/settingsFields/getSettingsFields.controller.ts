@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { IBaseController, IBaseUseCase } from '../../../shared/domain';
-import { IResultPagination } from '../../../features/scoring/domain/interface';
-import { IParamsSettingsFields } from '../../../features/settingFields/domain/interface/IParamsSettingsFields';
+import { IBaseController, IBaseUseCase } from 'src/shared/domain';
+import { IResultPagination } from 'src/features/scoring/domain/interface';
+import { IParamsSettingsFields } from 'src/features/settingFields/domain/interface/IParamsSettingsFields';
 import { SettingsFields } from 'src/shared/infrastructure/persistance/entities';
 
 export default class GetSettingsFieldsController implements IBaseController {

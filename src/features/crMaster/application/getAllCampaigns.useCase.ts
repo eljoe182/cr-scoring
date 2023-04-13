@@ -1,6 +1,6 @@
-import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
+import { IBaseUseCase } from 'src/shared/domain/BaseUseCase';
 import { ICampaigns } from '../domain/interface/ICampaigns';
-import { CRWalletEntity } from '../../../shared/infrastructure/persistance/entities';
+import { CRWalletEntity } from 'src/shared/infrastructure/persistance/entities';
 import { IWalletRepository } from '../infrastructure/interface/IWalletRepository';
 
 export default class GetAllCampaignsUseCase implements IBaseUseCase {

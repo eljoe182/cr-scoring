@@ -1,14 +1,14 @@
-import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
-import { DataSourceDependency as dsContainer } from '../../../app/dependencyInjection';
+import { IBaseUseCase } from 'src/shared/domain/BaseUseCase';
+import { DataSourceDependency as dsContainer } from 'src/app/dependencyInjection';
 import { IVicidialCoreRepository } from '../infrastructure/interface';
-import { paramsVicidial } from '../../../features/infocall/domain/contracts';
+import { paramsVicidial } from 'src/features/infocall/domain/contracts';
 import {
   ScoringEntity,
   FRVicidialListEntity,
   FRVicidialList1121Entity,
   FRVicidialList2121Entity,
-} from '../../../shared/infrastructure/persistance/entities';
-import { IScoringRepository } from '../../../features/scoring/infrastructure/interface';
+} from 'src/shared/infrastructure/persistance/entities';
+import { IScoringRepository } from 'src/features/scoring/infrastructure/interface';
 
 export default class GetInfoVicidialUseCase implements IBaseUseCase {
   private redisRepository = dsContainer.get('DataSource.Redis.Repository');

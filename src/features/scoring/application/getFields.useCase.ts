@@ -1,13 +1,13 @@
-import { IBaseUseCase } from '../../../shared/domain';
-import { IResumenfonoRepository } from '../../../features/crMaster/infrastructure/interface/IResumenfonoRepository';
+import { IBaseUseCase } from 'src/shared/domain';
+import { IResumenfonoRepository } from 'src/features/crMaster/infrastructure/interface/IResumenfonoRepository';
 import {
   IBitelRepository,
   IClaroRepository,
   IEntelRepository,
   IMovistarRepository,
-} from '../../../features/infocall/infrastructure/interface';
-import { CellProviderTable } from '../../../features/infocall/domain/contracts';
-import { DataSourceDependency as dsContainer } from '../../../app/dependencyInjection';
+} from 'src/features/infocall/infrastructure/interface';
+import { CellProviderTable } from 'src/features/infocall/domain/contracts';
+import { DataSourceDependency as dsContainer } from 'src/app/dependencyInjection';
 
 export default class GetFieldsUseCase implements IBaseUseCase {
   private redisRepository = dsContainer.get('DataSource.Redis.Repository');

@@ -1,5 +1,5 @@
 import { getMetadataArgsStorage } from 'typeorm';
-import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
+import { IBaseUseCase } from 'src/shared/domain/BaseUseCase';
 import { ParamsNumberEvaluationContract } from '../domain/contracts/NumberEvaluation.contract';
 import { TableMetadataArgs } from 'typeorm/metadata-args/TableMetadataArgs';
 import { ResultInfoCall } from '../domain/contracts/ResultInfoCall.contract';

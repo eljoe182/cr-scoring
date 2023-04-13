@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
-import { IVicidialCoreRepository } from '../../../../features/crMaster/infrastructure/interface';
-import { FRVicidialList1121Entity } from '../../../../shared/infrastructure/persistance/entities';
+import { IVicidialCoreRepository } from 'src/features/crMaster/infrastructure/interface';
+import { FRVicidialList1121Entity } from 'src/shared/infrastructure/persistance/entities';
 
 export default class VicidialCore11Repository implements IVicidialCoreRepository {
   constructor(private orm: DataSource) {}

@@ -1,6 +1,6 @@
 import winston, { Logger as WinstonLoggerType } from 'winston';
-import ILogger from '../../../shared/domain/ILogger';
-import DateFormat from '../../../shared/data-values/DateFormat';
+import ILogger from '../../domain/ILogger';
+import DateFormat from '../../data-values/DateFormat';
 
 class WinstonLogger implements ILogger {
   private logger: WinstonLoggerType;

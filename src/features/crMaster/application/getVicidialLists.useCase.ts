@@ -1,4 +1,4 @@
-import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
+import { IBaseUseCase } from 'src/shared/domain/BaseUseCase';
 import { IVicidialListsRepository } from '../infrastructure/interface';
 
 export default class GetVicidialListsUseCase implements IBaseUseCase {

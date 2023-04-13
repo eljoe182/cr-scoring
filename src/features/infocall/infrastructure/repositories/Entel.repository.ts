@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { EntelEntity, Entel } from '../../../../shared/infrastructure/persistance/entities';
+import { EntelEntity, Entel } from 'src/shared/infrastructure/persistance/entities';
 import { IEntelRepository } from '../interface';
 import { CellProviderTable } from '../../domain/contracts';
 

@@ -1,10 +1,10 @@
 import { DataSource } from 'typeorm';
 import { ISettingsFieldsRepository } from '../interface/ISettingsFieldsRepository';
-import { FieldConfig } from '../../../../features/infocall/domain/contracts';
-import { SettingsFields, SettingsFieldsEntity } from '../../../../shared/infrastructure/persistance/entities';
-import { ResponseRepositoryContract } from '../../../../shared/domain/contracts';
-import { IResultPagination } from '../../../../features/scoring/domain/interface';
-import { IParamsSettingsFields } from '../../../../features/settingFields/domain/interface/IParamsSettingsFields';
+import { FieldConfig } from 'src/features/infocall/domain/contracts';
+import { SettingsFields, SettingsFieldsEntity } from 'src/shared/infrastructure/persistance/entities';
+import { ResponseRepositoryContract } from 'src/shared/domain/contracts';
+import { IResultPagination } from 'src/features/scoring/domain/interface';
+import { IParamsSettingsFields } from 'src/features/settingFields/domain/interface/IParamsSettingsFields';
 
 export default class SettingsFieldsRepository implements ISettingsFieldsRepository {
   constructor(private orm: DataSource) {}

@@ -1,5 +1,5 @@
 import { RedisClientType, createClient } from 'redis';
-import config from '../../../../app/config';
+import config from 'src/app/config';
 
 class RedisClient {
   private client: RedisClientType;

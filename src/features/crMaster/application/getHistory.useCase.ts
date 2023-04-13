@@ -1,13 +1,13 @@
-import { IBaseUseCase } from '../../../shared/domain/BaseUseCase';
-import { DataSourceDependency as dsContainer } from '../../../app/dependencyInjection';
+import { IBaseUseCase } from 'src/shared/domain/BaseUseCase';
+import { DataSourceDependency as dsContainer } from 'src/app/dependencyInjection';
 import { IManagementHistoryRepository } from '../infrastructure/interface';
-import DateFormat from '../../../shared/data-values/DateFormat';
-import { ParamsNumberEvaluationContract, DataPeriodContract } from '../../../features/scoring/domain/contracts';
-import { IResultPagination } from '../../../features/scoring/domain/interface';
+import DateFormat from 'src/shared/data-values/DateFormat';
+import { ParamsNumberEvaluationContract, DataPeriodContract } from 'src/features/scoring/domain/contracts';
+import { IResultPagination } from 'src/features/scoring/domain/interface';
 import { FilterManagementHistory, GetHistoryUseCaseResult, HistoryResultContract } from '../domain/contracts';
-import { SettingsFieldsContract } from '../../../features/settingFields/domain/contracts';
-import { OperatorData } from '../../../features/infocall/domain/contracts';
-// import StringToHash from '../../../shared/data-values/StringToHash';
+import { SettingsFieldsContract } from 'src/features/settingFields/domain/contracts';
+import { OperatorData } from 'src/features/infocall/domain/contracts';
+// import StringToHash from 'src/shared/data-values/StringToHash';
 
 export default class GetHistoryUseCase implements IBaseUseCase {
   private redisRepository = dsContainer.get('DataSource.Redis.Repository');

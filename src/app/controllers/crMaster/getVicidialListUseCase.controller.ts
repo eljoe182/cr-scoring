@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { IBaseController, IBaseUseCase } from '../../../shared/domain';
+import { IBaseController, IBaseUseCase } from 'src/shared/domain';
 
 export default class GetVicidialListController implements IBaseController {
   constructor(private useCase: IBaseUseCase) {}
