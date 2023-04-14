@@ -1,8 +1,8 @@
 import { Reference } from 'node-dependency-injection';
 import container from 'src/shared/infrastructure/dependency';
 
-import GetInfoResumenfonoController from 'src/app/controllers/crMaster/getInfoResumenfono.controller';
-import GetInfoResumenfonoUseCase from 'src/features/crMaster/application/getInfoResumenfono.useCase';
+import GetInfoResumenfonoController from 'src/app/controllers/crMaster/GetInfoResumenfono.controller';
+import GetInfoResumenfonoUseCase from 'src/features/crMaster/application/GetInfoResumenfono.useCase';
 
 container
   .register('CRMaster.Resumenfono.UseCase.GetInfo', GetInfoResumenfonoUseCase)

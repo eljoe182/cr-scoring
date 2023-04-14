@@ -1,4 +1,4 @@
-import GetHistoryUseCase from '../../../../src/features/crMaster/application/getHistory.useCase';
+import GetHistoryUseCase from '../../../../src/features/crMaster/application/GetHistory.useCase';
 import { mockManagementRepository } from '../../../shared/mocks/repositories/ManagementRepository.mock';
 import { paramsGetHistoryUseCase } from '../../../shared/mocks/useCase/GetHistoryUseCase.mock';
 import { mockNumberEvaluationUseCase } from '../../../shared/mocks/useCase/NumberEvaluationUseCase.mock';

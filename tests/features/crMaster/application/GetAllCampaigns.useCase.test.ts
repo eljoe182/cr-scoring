@@ -1,4 +1,4 @@
-import GetAllCampaignsUseCase from '../../../../src/features/crMaster/application/getAllCampaigns.useCase';
+import GetAllCampaignsUseCase from '../../../../src/features/crMaster/application/GetAllCampaigns.useCase';
 import { mockWalletRepository } from '../../../shared/mocks/repositories/WalletRepository.mock';
 
 describe('GetAllCampaigns Use Case', () => {

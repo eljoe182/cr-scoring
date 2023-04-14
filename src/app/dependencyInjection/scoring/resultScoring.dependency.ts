@@ -1,10 +1,10 @@
 import { Reference } from 'node-dependency-injection';
 import container from 'src/shared/infrastructure/dependency';
 
-import ResultScoringUseCase from 'src/features/scoring/application/resultScoring.useCase';
-import ResultScoringController from 'src/app/controllers/scoring/resultScoring.controller';
-import GetInfoVicidialUseCase from 'src/features/crMaster/application/getInfoVicidial.useCase';
-import RankNumberUseCase from 'src/features/crMaster/application/rankNumber.useCase';
+import ResultScoringUseCase from 'src/features/scoring/application/ResultScoring.useCase';
+import ResultScoringController from 'src/app/controllers/scoring/ResultScoring.controller';
+import GetInfoVicidialUseCase from 'src/features/crMaster/application/GetInfoVicidial.useCase';
+import RankNumberUseCase from 'src/features/crMaster/application/RankNumber.useCase';
 
 container.register('Scoring.UseCase.RankNumber', RankNumberUseCase);
 

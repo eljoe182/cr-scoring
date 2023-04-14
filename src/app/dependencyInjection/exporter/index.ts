@@ -1,1 +1,1 @@
-export { default as vicidialExporterDependency } from './vicidialExporter.dependency';
+export { default as vicidialExporterDependency } from './VicidialExporter.dependency';

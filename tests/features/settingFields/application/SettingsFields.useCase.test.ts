@@ -1,4 +1,4 @@
-import GetSettingsFieldsUseCase from '../../../../src/features/settingFields/application/getSettingsFields.useCase';
+import GetSettingsFieldsUseCase from '../../../../src/features/settingFields/application/GetSettingsFields.useCase';
 import { mockSettingsFieldsRepository } from '../../../shared/mocks/repositories/SettingsFieldsRepository.mock';
 import { paramsResultSettingsFields } from '../../../shared/mocks/useCase/ResultSettingsFieldsUseCase.mock';
 import { expectedResultSettingsFields } from '../../../shared/mocks/useCase/SettingsFieldsUseCase.mock';

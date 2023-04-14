@@ -1,2 +1,2 @@
-export { default as RepositoriesDependency } from './repositories.dependency';
-export { default as SettingFieldsDependency } from './settingFields.dependency';
+export { default as RepositoriesDependency } from './Repositories.dependency';
+export { default as SettingFieldsDependency } from './SettingFields.dependency';

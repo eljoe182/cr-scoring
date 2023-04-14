@@ -1,8 +1,8 @@
 import { Reference } from 'node-dependency-injection';
 import container from 'src/shared/infrastructure/dependency';
 
-import ExportToCSVController from 'src/app/controllers/exporter/exportToCSV.controller';
-import ExportToCSVUseCase from 'src/features/exporter/application/exportToCSV.useCase';
+import ExportToCSVController from 'src/app/controllers/exporter/ExportToCSV.controller';
+import ExportToCSVUseCase from 'src/features/exporter/application/ExportToCSV.useCase';
 import ExportRepository from 'src/features/exporter/infrastructure/repositories/ExportRepository';
 
 container.register('Exporter.Repository', ExportRepository);

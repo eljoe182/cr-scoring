@@ -3,10 +3,10 @@ import container from 'src/shared/infrastructure/dependency';
 
 import ManagementHistoryRepository from 'src/features/crMaster/infrastructure/repositories/ManagementHistory.repository';
 
-import GetHistoryUseCase from 'src/features/crMaster/application/getHistory.useCase';
-import GetHistoryController from 'src/app/controllers/crMaster/getHistory.controller';
-import SetOperatorUseCase from 'src/features/infocall/application/setOperator.useCase';
-import NumberEvaluationUseCase from 'src/features/scoring/application/numberEvaluation.useCase';
+import GetHistoryUseCase from 'src/features/crMaster/application/GetHistory.useCase';
+import GetHistoryController from 'src/app/controllers/crMaster/GetHistory.controller';
+import SetOperatorUseCase from 'src/features/infocall/application/SetOperator.useCase';
+import NumberEvaluationUseCase from 'src/features/scoring/application/NumberEvaluation.useCase';
 
 container.register('Scoring.UseCase.NumberEvaluation', NumberEvaluationUseCase);
 

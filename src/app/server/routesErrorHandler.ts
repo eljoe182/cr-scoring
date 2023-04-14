@@ -1,7 +1,7 @@
 import { NextFunction, Response, Request } from 'express';
 
 import Logger from '../../shared/infrastructure/logger/WinstonLogger';
-import { UtilsDependency as container } from '../../app/dependencyInjection';
+import { UtilsDependency as container } from '../dependencyInjection';
 
 const logger: Logger = container.get('Logger');
 

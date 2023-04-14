@@ -1,5 +1,5 @@
-export { default as CRMasterRepositoriesDependency } from './repositories.dependency';
-export { default as ResumenfonoDependency } from './resumenfono.dependency';
-export { default as ViciDialListsDependency } from './vicidiallists.dependency';
-export { default as ManagementHistoryDependency } from './managementHistory.dependency'
-export { default as CampaignDependency } from './campaign.dependency';
+export { default as CRMasterRepositoriesDependency } from './Repositories.dependency';
+export { default as ResumenfonoDependency } from './Resumenfono.dependency';
+export { default as ViciDialListsDependency } from './Vicidiallists.dependency';
+export { default as ManagementHistoryDependency } from './ManagementHistory.dependency'
+export { default as CampaignDependency } from './Campaign.dependency';

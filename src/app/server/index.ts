@@ -5,8 +5,8 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import 'reflect-metadata';
 
-import { ErrorHandler } from './errorHandler';
-import { RoutesErrorHandler } from './routesErrorHandler';
+import { ErrorHandler } from './ErrorHandler';
+import { RoutesErrorHandler } from './RoutesErrorHandler';
 import ILogger from '../../shared/domain/ILogger';
 import { UtilsDependency as utilsContainer, DataSourceDependency as dsContainer } from '../dependencyInjection';
 import { registerRoutes } from '../routes';

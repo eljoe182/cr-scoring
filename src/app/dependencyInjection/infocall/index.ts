@@ -1,1 +1,1 @@
-export { default as infocallRepositoriesDependency } from './repositories.dependency';
+export { default as infocallRepositoriesDependency } from './Repositories.dependency';

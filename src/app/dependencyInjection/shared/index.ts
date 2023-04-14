@@ -1,3 +1,3 @@
-export { default as UtilsDependency } from './utils.dependency';
-export { default as DataSourceDependency } from './dataSources.dependency';
-export * from './repositories.dependency';
+export { default as UtilsDependency } from './Utils.dependency';
+export { default as DataSourceDependency } from './DataSources.dependency';
+export * from './Repositories.dependency';

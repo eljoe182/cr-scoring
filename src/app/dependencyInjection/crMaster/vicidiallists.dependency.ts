@@ -3,8 +3,8 @@ import container from 'src/shared/infrastructure/dependency';
 
 import VicidialListsRepository from 'src/features/crMaster/infrastructure/repositories/VicidialLists.repository';
 
-import GetVicidialListController from 'src/app/controllers/crMaster/getVicidialListUseCase.controller';
-import GetVicidialListsUseCase from 'src/features/crMaster/application/getVicidialLists.useCase';
+import GetVicidialListController from 'src/app/controllers/crMaster/GetVicidialListUseCase.controller';
+import GetVicidialListsUseCase from 'src/features/crMaster/application/GetVicidialLists.useCase';
 
 container
   .register('VicidialLists.Repository', VicidialListsRepository)

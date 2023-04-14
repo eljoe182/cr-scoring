@@ -1,16 +1,16 @@
 import { Reference } from 'node-dependency-injection';
 import container from 'src/shared/infrastructure/dependency';
 
-import GetFieldsUseCase from 'src/features/scoring/application/getFields.useCase';
-import GetFieldsController from 'src/app/controllers/settingsFields/getFields.controller';
-import SaveSettingsFieldsUseCase from 'src/features/settingFields/application/saveSettingsFields.useCase';
-import SaveSettingsFieldsController from 'src/app/controllers/settingsFields/saveSettings.controller';
-import GetSettingsFieldsUseCase from 'src/features/settingFields/application/getSettingsFields.useCase';
-import GetSettingsFieldsController from 'src/app/controllers/settingsFields/getSettingsFields.controller';
-import DestroySettingsFieldsUseCase from 'src/features/settingFields/application/destroySettingsFields.useCase';
-import DestroySettingsFieldsController from 'src/app/controllers/settingsFields/destroySettingsFields.controller';
-import GetDistinctByFieldUseCase from 'src/features/settingFields/application/getDistinctByField.useCase';
-import GetDistinctByFieldController from 'src/app/controllers/settingsFields/getDistinctByField.controller';
+import GetFieldsUseCase from 'src/features/scoring/application/GetFields.useCase';
+import GetFieldsController from 'src/app/controllers/settingsFields/GetFields.controller';
+import SaveSettingsFieldsUseCase from 'src/features/settingFields/application/SaveSettingsFields.useCase';
+import SaveSettingsFieldsController from 'src/app/controllers/settingsFields/SaveSettings.controller';
+import GetSettingsFieldsUseCase from 'src/features/settingFields/application/GetSettingsFields.useCase';
+import GetSettingsFieldsController from 'src/app/controllers/settingsFields/GetSettingsFields.controller';
+import DestroySettingsFieldsUseCase from 'src/features/settingFields/application/DestroySettingsFields.useCase';
+import DestroySettingsFieldsController from 'src/app/controllers/settingsFields/DestroySettingsFields.controller';
+import GetDistinctByFieldUseCase from 'src/features/settingFields/application/GetDistinctByField.useCase';
+import GetDistinctByFieldController from 'src/app/controllers/settingsFields/GetDistinctByField.controller';
 
 /// Get Fields
 container

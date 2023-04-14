@@ -1,4 +1,4 @@
-import SetOperatorUseCase from '../../../../src/features/infocall/application/setOperator.useCase';
+import SetOperatorUseCase from '../../../../src/features/infocall/application/SetOperator.useCase';
 import { mockBitelRepository } from '../../../shared/mocks/repositories/BitelRepository.mock';
 import { mockClaroRepository } from '../../../shared/mocks/repositories/ClaroRepository.mock';
 import { mockEntelRepository } from '../../../shared/mocks/repositories/EntelRepository.mock';

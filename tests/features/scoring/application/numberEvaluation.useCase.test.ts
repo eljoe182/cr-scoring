@@ -1,4 +1,4 @@
-import NumberEvaluationUseCase from '../../../../src/features/scoring/application/numberEvaluation.useCase';
+import NumberEvaluationUseCase from '../../../../src/features/scoring/application/NumberEvaluation.useCase';
 import { Server } from '../../../../src/app/server';
 import {
   expectedResultNumberEvaluation,
