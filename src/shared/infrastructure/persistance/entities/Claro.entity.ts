@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryColumn, VirtualColumn, BaseEntity } from 'typeorm';
-import { Operator } from '../../interfaces/Operator.entity'
+import { IOperatorEntityBase } from '../../interfaces/IOperatorEntityBase'
 
-export type Claro = Operator
+export type Claro = IOperatorEntityBase
 
 @Entity('claro')
 export class ClaroEntity extends BaseEntity implements Claro {

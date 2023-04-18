@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { IBaseController, IBaseUseCase } from 'src/shared/domain';
 import { IResultPagination } from 'src/features/scoring/domain/interface';
-import { IParamsSettingsFields } from 'src/features/settingFields/domain/interface/IParamsSettingsFields';
+import { GetSettingsFieldsUseCaseParams } from 'src/features/settingFields/domain/interface/ISettingsFieldsParams';
 import { SettingsFields } from 'src/shared/infrastructure/persistance/entities';
 
 export default class GetSettingsFieldsController implements IBaseController {
@@ -10,7 +10,7 @@ export default class GetSettingsFieldsController implements IBaseController {
     const { length = 100, start = 0, draw } = req.query;
     const campaign = req.params.campaign;
 
-    const params: IParamsSettingsFields = {
+    const params: GetSettingsFieldsUseCaseParams = {
       campaign,
       limit: Number(length),
       page: Number(start) / Number(length) + 1,

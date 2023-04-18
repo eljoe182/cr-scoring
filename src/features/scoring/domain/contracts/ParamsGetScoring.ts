@@ -1,4 +1,4 @@
-export interface FilterManagementHistory {
+export interface ParamsGetScoring {
   dateFrom: Date;
   dateTo: Date;
   listId: number;

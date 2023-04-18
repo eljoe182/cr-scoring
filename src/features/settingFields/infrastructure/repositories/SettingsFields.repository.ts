@@ -4,7 +4,7 @@ import { FieldConfig } from 'src/features/infocall/domain/contracts';
 import { SettingsFields, SettingsFieldsEntity } from 'src/shared/infrastructure/persistance/entities';
 import { ResponseRepositoryContract } from 'src/shared/domain/contracts';
 import { IResultPagination } from 'src/features/scoring/domain/interface';
-import { IParamsSettingsFields } from 'src/features/settingFields/domain/interface/IParamsSettingsFields';
+import { GetSettingsFieldsUseCaseParams } from '../../domain/interface/ISettingsFieldsParams';
 
 export default class SettingsFieldsRepository implements ISettingsFieldsRepository {
   constructor(private orm: DataSource) {}
@@ -41,7 +41,7 @@ export default class SettingsFieldsRepository implements ISettingsFieldsReposito
     };
   }
 
-  async getAllWithPagination(params: IParamsSettingsFields): Promise<IResultPagination<SettingsFields[]>> {
+  async getAllWithPagination(params: GetSettingsFieldsUseCaseParams): Promise<IResultPagination<SettingsFields[]>> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(SettingsFieldsEntity);
     const [rows, rowsCount] = await repository.findAndCount({

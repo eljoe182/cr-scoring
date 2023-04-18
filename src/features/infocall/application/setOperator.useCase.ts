@@ -1,10 +1,11 @@
 import { IBaseUseCase } from 'src/shared/domain';
 import { IBitelRepository, IClaroRepository, IEntelRepository, IMovistarRepository } from '../infrastructure/interface';
-import { IManagementHistoryResult } from 'src/features/crMaster/domain/interface';
-import { DataPeriodContract } from 'src/features/scoring/domain/contracts';
 import { OperatorData } from '../domain/contracts';
+import { SetOperatorsUseCaseParams } from '../domain/interface/IOperatorsParams';
+import { GetManagementHistoryUseCaseResult } from 'src/features/crMaster/domain/interface';
+import { Operator } from 'src/shared/class/Operator';
 
-export default class SetOperatorUseCase implements IBaseUseCase {
+export default class SetOperatorUseCase implements IBaseUseCase<SetOperatorsUseCaseParams[]> {
   constructor(
     private readonly repositoryBitel: IBitelRepository,
     private readonly repositoryClaro: IClaroRepository,
@@ -12,8 +13,10 @@ export default class SetOperatorUseCase implements IBaseUseCase {
     private readonly repositoryMovistar: IMovistarRepository
   ) {}
 
-  async execute(data: IManagementHistoryResult[]): Promise<OperatorData> {
-    const phoneNumbers = data.filter((item) => item.phoneNumber.length === 9).map((info) => Number(info.phoneNumber));
+  async execute(data: SetOperatorsUseCaseParams[]): Promise<OperatorData> {
+    const phoneNumbers = data
+      .filter((item) => item.phoneNumber.toString().length === 9)
+      .map((info) => info.phoneNumber);
 
     const uniquePhoneNumbers = [...new Set(phoneNumbers)];
 
@@ -28,7 +31,7 @@ export default class SetOperatorUseCase implements IBaseUseCase {
 
     return Promise.allSettled(
       data.map((info) => {
-        const phoneNumber = Number(info.phoneNumber);
+        const phoneNumber = info.phoneNumber;
 
         if (isNaN(phoneNumber) || phoneNumber === 0) {
           return Promise.reject('Phone number is not valid');
@@ -44,23 +47,24 @@ export default class SetOperatorUseCase implements IBaseUseCase {
           const bestRow = operator.reduce((a, b) => (a.updatedAt > b.updatedAt ? a : b));
           bestRow.moreThanOne = true;
           return Promise.resolve({
-            info,
+            ...info,
             operator: bestRow,
           });
         }
 
         return Promise.resolve({
-          info,
+          ...info,
           operator: operator[0],
         });
       })
     ).then((results) => {
-      const success: DataPeriodContract[] = [];
+      const success: GetManagementHistoryUseCaseResult[] = [];
       const errors: string[] = [];
 
       results.forEach((result) => {
         if (result.status === 'fulfilled') {
-          success.push(result.value);
+          const operator = new Operator(result.value).toPrimitives();
+          success.push({ ...operator });
         }
         if (result.status === 'rejected') {
           errors.push(result.reason);

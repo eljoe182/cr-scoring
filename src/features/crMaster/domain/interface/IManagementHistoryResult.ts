@@ -1,4 +1,7 @@
-export interface IManagementHistoryResult {
+import { IOperatorEntityBase } from 'src/shared/infrastructure/interfaces/IOperatorEntityBase';
+import { ManagementHistoryData } from '../contracts/ManagementHistory.contract';
+
+export interface IManagementHistoryDataRepository {
   phoneNumber: string;
   length: number;
   talkTime: number;
@@ -12,4 +15,8 @@ export interface IManagementHistoryResult {
   NC: number;
   betterManagement: string;
   betterManagementDate: string | null;
+}
+
+export interface GetManagementHistoryUseCaseResult extends ManagementHistoryData {
+  operator: IOperatorEntityBase;
 }

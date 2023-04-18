@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryColumn, VirtualColumn, BaseEntity } from 'typeorm';
-import { Operator } from '../../interfaces/Operator.entity'
+import { IOperatorEntityBase } from '../../interfaces/IOperatorEntityBase'
 
-export type Movistar = Operator
+export type Movistar = IOperatorEntityBase
 
 @Entity('movistar')
 export class MovistarEntity extends BaseEntity implements Movistar {

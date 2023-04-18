@@ -1,4 +1,4 @@
-export interface Operator {
+export interface IOperatorEntityBase {
   operator: string;
   document: number;
   fullName: string;

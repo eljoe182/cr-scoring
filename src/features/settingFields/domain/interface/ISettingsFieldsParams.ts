@@ -1,5 +1,5 @@
 import { IPagination } from '../../../scoring/domain/interface';
 
-export interface IParamsSettingsFields extends IPagination {
+export interface GetSettingsFieldsUseCaseParams extends IPagination {
   campaign: string;
 }

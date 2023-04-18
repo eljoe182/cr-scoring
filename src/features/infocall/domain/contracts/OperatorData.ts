@@ -1,6 +1,6 @@
-import { DataPeriodContract } from '../../../scoring/domain/contracts';
+import { GetManagementHistoryUseCaseResult } from "src/features/crMaster/domain/interface";
 
 export interface OperatorData {
-  success: DataPeriodContract[];
+  success: GetManagementHistoryUseCaseResult[];
   errors: string[];
 }

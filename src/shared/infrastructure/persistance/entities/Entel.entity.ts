@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryColumn, VirtualColumn, BaseEntity } from 'typeorm';
-import { Operator } from '../../interfaces/Operator.entity'
+import { IOperatorEntityBase } from '../../interfaces/IOperatorEntityBase'
 
-export type Entel = Operator
+export type Entel = IOperatorEntityBase
 
 @Entity('entel')
 export class EntelEntity extends BaseEntity implements Entel {

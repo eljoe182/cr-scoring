@@ -1,3 +1,3 @@
-export interface IBaseUseCase {
-  execute(params?: unknown): Promise<unknown>;
+export interface IBaseUseCase<T = unknown> {
+  execute(params?: T): Promise<unknown>;
 }

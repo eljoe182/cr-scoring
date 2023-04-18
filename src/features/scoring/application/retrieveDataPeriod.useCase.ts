@@ -6,7 +6,7 @@ import {
   IMovistarRepository,
 } from 'src/features/infocall/infrastructure/interface';
 import { IResumenfonoRepository } from 'src/features/crMaster/infrastructure/interface';
-import { DataPeriodContract } from '../domain/contracts';
+import { GetManagementHistoryUseCaseResult } from '../domain/contracts';
 
 export default class RetrieveDataPeriodUseCase implements IBaseUseCase {
   constructor(
@@ -17,7 +17,7 @@ export default class RetrieveDataPeriodUseCase implements IBaseUseCase {
     private readonly repositoryMovistar: IMovistarRepository
   ) {}
 
-  async execute(period: string): Promise<DataPeriodContract[]> {
+  async execute(period: string): Promise<GetManagementHistoryUseCaseResult[]> {
     const resumenfonoPeriod = await this.repositoryResumenfono.getByPeriod(period);
 
     const phoneNumbers = resumenfonoPeriod.map((info) => Number(info.phoneNumber));
@@ -60,7 +60,7 @@ export default class RetrieveDataPeriodUseCase implements IBaseUseCase {
         });
       })
     ).then((results) => {
-      const success: DataPeriodContract[] = [];
+      const success: GetManagementHistoryUseCaseResult[] = [];
       const errors: unknown[] = [];
 
       results.forEach((result) => {

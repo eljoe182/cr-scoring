@@ -2,16 +2,19 @@ import { Reference } from 'node-dependency-injection';
 import container from 'src/shared/infrastructure/dependency';
 
 import GetScoringController from 'src/app/controllers/scoring/GetScoring.controller';
-import NumberEvaluationUseCase from 'src/features/scoring/application/NumberEvaluation.useCase';
+
 import SaveScoringUseCase from 'src/features/scoring/application/SaveScoring.useCase';
 import SaveScoringController from 'src/app/controllers/scoring/SaveScoring.controller';
+
 import SaveHistoricUseCase from 'src/features/scoring/application/SaveHistoric.useCase';
+
 import ShowScoringHistoricUseCase from 'src/features/scoring/application/ShowScoringHistoric.useCase';
 import ShowScoringHistoricController from 'src/app/controllers/scoring/ShowScoringHistoric.controller';
 
-container.register('Scoring.UseCase.NumberEvaluation', NumberEvaluationUseCase);
-
-container.register('Scoring.Controller.Get', GetScoringController).addArgument(new Reference('Scoring.UseCase.Get'));
+container
+  .register('Scoring.Controller.Get', GetScoringController)
+  .addArgument(new Reference('ManagementHistory.GetHistory.UseCase'))
+  .addArgument(new Reference('Scoring.UseCase.SettingFields.GetAll'));
 
 // Save Scoring
 container.register('Scoring.UseCase.Save', SaveScoringUseCase).addArgument(new Reference('Scoring.Repository'));

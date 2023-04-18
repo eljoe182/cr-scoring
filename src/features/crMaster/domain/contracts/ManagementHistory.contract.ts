@@ -1,5 +1,5 @@
-export interface ManagementHistoryContract {
-  phoneNumber: string;
+export interface ManagementHistoryData {
+  phoneNumber: number;
   length: number;
   talkTime: number;
   betterAttempt: string;
