@@ -1,36 +1,40 @@
 import { Request, Response, NextFunction } from 'express';
 import { IBaseController, IBaseUseCase } from 'src/shared/domain';
-import { SaveHistoricDataContract, SaveScoringDataContract } from 'src/features/scoring/domain/contracts';
+import { GetScoringResult, SaveScoringParams } from 'src/features/scoring/domain/contracts';
+import { SaveScoringResults } from 'src/features/scoring/domain/contracts/ISaveScoringResults';
+import ChunkData from 'src/shared/class/ChunkData';
 
 export default class SaveScoringController implements IBaseController {
   constructor(
-    private saveScoringUseCase: IBaseUseCase,
-    private saveHistoricUseCase: IBaseUseCase,
-    private getScoringUseCase: IBaseUseCase
+    private getScoringUseCase: IBaseUseCase<SaveScoringParams, GetScoringResult[]>,
+    private saveScoringUseCase: IBaseUseCase<GetScoringResult[], SaveScoringResults>
   ) {}
 
   async run(req: Request, res: Response, _next: NextFunction): Promise<void> {
-    const data = (await this.getScoringUseCase.execute(req.body)) as {
-      page: number;
-      size: number;
-      success: SaveScoringDataContract[];
-      total: number;
-      totalPages: number;
-    };
+    const body = req.body as SaveScoringParams;
+    const data = await this.getScoringUseCase.execute(body);
 
-    const scoringSaved = (await this.saveScoringUseCase.execute(data.success)) as {
-      result: unknown;
-    };
+    const chunkData = new ChunkData(data).getChunkData(1000);
 
-    const historic = await this.saveHistoricUseCase.execute({
-      period: `${req.body.listId}-${req.body.campaign}`,
-      data: data.success,
-      result: scoringSaved,
-    } as SaveHistoricDataContract);
+    const scoringSaved = await Promise.allSettled(
+      chunkData.map(async (item) => {
+        return await this.saveScoringUseCase.execute(item);
+      })
+    ).then((results) => {
+      const success: unknown[] = [];
+      const error: unknown[] = [];
 
-    res.status(200).json({
-      result: scoringSaved,
-      historic,
+      results.forEach((result) => {
+        if (result.status === 'fulfilled') {
+          success.push(result.value);
+        } else {
+          error.push(result.reason);
+        }
+      });
+
+      return { success, error };
     });
+
+    res.status(200).json(scoringSaved);
   }
 }

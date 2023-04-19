@@ -1,11 +1,22 @@
 import { Request, Response, NextFunction } from 'express';
 import { IBaseController, IBaseUseCase } from 'src/shared/domain';
 
-export default class GetVicidialListController implements IBaseController {
-  constructor(private useCase: IBaseUseCase) {}
+interface VicidialListControllerResponse {
+  listId: number;
+  listName: string;
+  campaignId: string;
+  active: string;
+}
 
-  async run(_req: Request, res: Response, _next: NextFunction): Promise<void> {
-    const response = await this.useCase.execute();
-    res.status(200).json(response);
+export default class GetVicidialListController implements IBaseController {
+  constructor(private getVicidialListUseCase: IBaseUseCase<unknown, VicidialListControllerResponse>) {}
+
+  async run(_req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const response = await this.getVicidialListUseCase.execute();
+      res.status(200).json(response);
+    } catch (err) {
+      next(err);
+    }
   }
 }

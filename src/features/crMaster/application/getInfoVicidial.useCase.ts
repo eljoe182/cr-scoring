@@ -52,7 +52,7 @@ export default class GetInfoVicidialUseCase implements IBaseUseCase {
     )) as unknown as ScoringEntity[];
 
     const data = vicidialData.map((item) => {
-      const scoringItem = scoringData.find((scoringItem) => scoringItem.phoneNumber === item.phoneNumber);
+      const scoringItem = scoringData.find((scoringItem) => scoringItem.phoneNumber === Number(item.phoneNumber));
 
       return {
         leadId: item.leadId,

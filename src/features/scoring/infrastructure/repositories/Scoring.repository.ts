@@ -1,12 +1,11 @@
 import { DataSource } from 'typeorm';
 import { IScoringRepository } from '../interface';
-import { SaveScoringDataContract } from '../../domain/contracts/SaveScoringData.contract';
-import { ScoringEntity } from 'src/shared/infrastructure/persistance/entities';
+import { Scoring, ScoringEntity } from 'src/shared/infrastructure/persistance/entities';
 
 export default class ScoringRepository implements IScoringRepository {
   constructor(private orm: DataSource) {}
 
-  async getScoring(phoneNumber: string): Promise<unknown> {
+  async getScoring(phoneNumber: number): Promise<unknown> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(ScoringEntity);
     const data = await repository.findOne({
@@ -21,7 +20,7 @@ export default class ScoringRepository implements IScoringRepository {
     };
   }
 
-  async saveScoring(data: SaveScoringDataContract[]): Promise<unknown> {
+  async saveScoring(data: Scoring[]): Promise<unknown> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(ScoringEntity);
     const result = await repository.upsert(data, ['phoneNumber']);

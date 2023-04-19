@@ -4,7 +4,7 @@ import {
   GetManagementHistoryUseCaseResult,
 } from 'src/features/crMaster/domain/interface';
 import SetNumberEvaluationUseCase from 'src/features/scoring/application/SetNumberEvaluation.useCase';
-import { ParamsGetScoring } from 'src/features/scoring/domain/contracts';
+import { GetScoringParams } from 'src/features/scoring/domain/contracts';
 import { SetNumberEvaluationUseCaseResult } from 'src/features/scoring/domain/contracts/INumberEvaluationResults';
 import { IResultPagination } from 'src/features/scoring/domain/interface';
 import { GetSettingsFieldsUseCaseParams } from 'src/features/settingFields/domain/interface/ISettingsFieldsParams';
@@ -18,7 +18,7 @@ export default class GetScoringController implements IBaseController {
   ) {}
 
   async run(req: Request, res: Response, _next: NextFunction) {
-    const body = req.body as ParamsGetScoring;
+    const body = req.body as GetScoringParams;
     const managementHistory = (await this.managementHistoryUseCase.execute(
       body
     )) as unknown as GetManagementHistoryUseCaseResult[];

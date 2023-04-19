@@ -1,15 +1,15 @@
 import { Entity, Column, PrimaryColumn, CreateDateColumn, UpdateDateColumn, BaseEntity } from 'typeorm';
 
 export interface Scoring {
-  phoneNumber: string;
+  phoneNumber: number;
   operator: string;
   score: number;
   beastDate: Date;
   betterManagement: string;
   beastTry: string;
   withWhatsapp: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 @Entity('scoring')
@@ -18,7 +18,7 @@ export class ScoringEntity extends BaseEntity implements Scoring {
     name: 'phone_number',
     type: 'bigint',
   })
-  phoneNumber!: string;
+  phoneNumber!: number;
 
   @Column({
     name: 'operator',

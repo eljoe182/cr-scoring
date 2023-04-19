@@ -1,7 +1,5 @@
-import { SaveScoringDataContract } from 'src/features/scoring/domain/contracts';
-
-export interface IScoringRepository {
-  getScoring(phoneNumber: string): Promise<unknown>;
-  saveScoring(data: SaveScoringDataContract[]): Promise<unknown>;
-  getInByPhoneNumber(phoneNumbers: string[]): Promise<unknown>;
+export interface IScoringRepository<P = unknown, R = unknown> {
+  getScoring(phoneNumber: P): Promise<R>;
+  saveScoring(data: P): Promise<R>;
+  getInByPhoneNumber(phoneNumbers: P): Promise<R>;
 }
