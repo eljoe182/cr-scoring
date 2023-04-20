@@ -3,13 +3,13 @@ import { MovistarEntity, Movistar } from 'src/shared/infrastructure/persistance/
 import { IMovistarRepository } from '../interface';
 import { CellProviderTable } from '../../domain/contracts';
 
-export default class MovistarRepository implements IMovistarRepository {
+export default class MovistarRepository implements IMovistarRepository<number | number[] | string, unknown> {
   constructor(private orm: DataSource) {}
 
-  async getByNumber(phoneNumber: number): Promise<Movistar> {
+  async getByNumber(phoneNumber: number): Promise<Movistar | null> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(MovistarEntity);
-    const result = (await repository.findOneBy({ phoneNumber })) as unknown as Movistar;
+    const result = await repository.findOneBy({ phoneNumber });
     orm.destroy();
     return result;
   }

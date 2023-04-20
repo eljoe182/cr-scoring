@@ -1,9 +1,3 @@
-import { Movistar } from 'src/shared/infrastructure/persistance/entities';
-import { CellProviderTable } from 'src/features/infocall/domain/contracts';
+import { OperatorRepositoryBase } from './OperatorRepositoryBase';
 
-export interface IMovistarRepository {
-  getByNumber(phoneNumber: number): Promise<Movistar>;
-  getFields(): Promise<CellProviderTable[]>;
-  getInByPhoneNumber(phoneNumbers: number[]): Promise<Movistar[]>;
-  getDistinctByField(field: string): Promise<unknown>;
-}
+export type IMovistarRepository<P = unknown, R = unknown> = OperatorRepositoryBase<P, R>;

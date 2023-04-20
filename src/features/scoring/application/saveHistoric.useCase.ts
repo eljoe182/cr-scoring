@@ -1,13 +1,13 @@
 import { IBaseUseCase } from 'src/shared/domain';
 import { IScoringHistoricRepository } from '../infrastructure/interface';
-import { SaveHistoricDataContract, SaveScoringDataContract } from '../domain/contracts';
+import { SaveHistoricDataParams, SaveHistoricScoringData } from '../domain/contracts';
 import { ScoringHistoric } from 'src/shared/infrastructure/persistance/entities';
 
-export default class SaveHistoricUseCase implements IBaseUseCase {
-  constructor(private repository: IScoringHistoricRepository) {}
+export default class SaveHistoricUseCase implements IBaseUseCase<SaveHistoricDataParams> {
+  constructor(private repository: IScoringHistoricRepository<ScoringHistoric>) {}
 
-  async execute(dataHistoric: SaveHistoricDataContract): Promise<unknown> {
-    const { data, period, result } = dataHistoric;
+  async execute(params: SaveHistoricDataParams): Promise<unknown> {
+    const { data, period, result } = params;
 
     const resultHistoric = result as unknown as {
       generatedMaps: ScoringHistoric['generatedMaps'];
@@ -15,7 +15,7 @@ export default class SaveHistoricUseCase implements IBaseUseCase {
       raw: ScoringHistoric['raw'];
     };
 
-    const dataScoring = data as unknown as SaveScoringDataContract[];
+    const dataScoring = data as unknown as SaveHistoricScoringData[];
 
     const historic: ScoringHistoric = {
       period,

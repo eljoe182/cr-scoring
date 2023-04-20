@@ -1,9 +1,7 @@
-import { Resumenfono } from 'src/shared/infrastructure/persistance/entities';
-
-export interface IResumenfonoRepository {
-  getInfoResumenfono(phoneNumber: string): Promise<Resumenfono>;
-  getByPeriod(period: string): Promise<Resumenfono[]>;
+export interface IResumenfonoRepository<P = unknown, R = unknown> {
+  getInfoResumenfono(phoneNumber: P): Promise<R>;
+  getByPeriod(period: P): Promise<R>;
   getFields(): Promise<unknown>;
-  getInByPhoneNumber(phoneNumbers: string[]): Promise<Resumenfono[]>;
-  getDistinctByField(field: string): Promise<unknown>;
+  getInByPhoneNumber(phoneNumbers: P[]): Promise<R>;
+  getDistinctByField(field: P): Promise<unknown>;
 }

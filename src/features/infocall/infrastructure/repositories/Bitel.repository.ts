@@ -3,13 +3,13 @@ import { BitelEntity, Bitel } from 'src/shared/infrastructure/persistance/entiti
 import { IBitelRepository } from '../interface';
 import { CellProviderTable } from '../../domain/contracts';
 
-export default class BitelRepository implements IBitelRepository {
+export default class BitelRepository implements IBitelRepository<number | number[] | string, unknown> {
   constructor(private orm: DataSource) {}
 
-  async getByNumber(phoneNumber: number): Promise<Bitel> {
+  async getByNumber(phoneNumber: number): Promise<Bitel | null> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(BitelEntity);
-    const result = (await repository.findOneBy({ phoneNumber })) as unknown as Bitel;
+    const result = await repository.findOneBy({ phoneNumber });
     orm.destroy();
     return result;
   }
@@ -24,10 +24,10 @@ export default class BitelRepository implements IBitelRepository {
   async getInByPhoneNumber(phoneNumbers: number[]): Promise<Bitel[]> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(BitelEntity);
-    const result = (await repository
+    const result = await repository
       .createQueryBuilder()
       .where('numero IN (:...phoneNumbers)', { phoneNumbers })
-      .getMany()) as unknown as Bitel[];
+      .getMany();
     orm.destroy();
     return result;
   }

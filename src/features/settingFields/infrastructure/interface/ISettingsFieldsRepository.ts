@@ -1,11 +1,8 @@
-import { SettingsFields } from 'src/shared/infrastructure/persistance/entities';
-import { FieldConfig } from 'src/features/infocall/domain/contracts';
-import { IResultPagination } from 'src/features/scoring/domain/interface';
-import { ResponseRepositoryContract } from 'src/shared/domain/contracts';
+import { ResponseRepositoryBase } from 'src/shared/domain/contracts';
 
-export interface ISettingsFieldsRepository<T = unknown> {
-  save(params: FieldConfig): Promise<ResponseRepositoryContract>;
-  getAllWithPagination(params: T): Promise<IResultPagination<SettingsFields[]>>;
-  getAll(): Promise<ResponseRepositoryContract>;
-  destroy(id: string): Promise<ResponseRepositoryContract>;
+export interface ISettingsFieldsRepository<P = unknown, R = unknown> {
+  save(params: P): Promise<ResponseRepositoryBase<R>>;
+  getAllWithPagination(params: P): Promise<R>;
+  getAll(): Promise<ResponseRepositoryBase<R>>;
+  destroy(id: string): Promise<ResponseRepositoryBase<R>>;
 }

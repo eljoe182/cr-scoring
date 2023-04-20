@@ -1,6 +1,6 @@
 {
   "name": "ms-cr-scoring",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "description": "Microservices of Scoring for infocall CR Abogados system's",
   "main": "build/index.js",
   "nodemonConfig": {

@@ -1,5 +1,3 @@
-import { VicidialLists } from 'src/shared/infrastructure/persistance/entities';
-
-export interface IVicidialListsRepository {
-  getVicidialLists(): Promise<VicidialLists[]>;
+export interface IVicidialListsRepository<R = unknown> {
+  getVicidialLists(): Promise<R[]>;
 }

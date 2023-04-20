@@ -1,11 +1,12 @@
 import { DataSource } from 'typeorm';
 import { IScoringRepository } from '../interface';
 import { Scoring, ScoringEntity } from 'src/shared/infrastructure/persistance/entities';
+import { ResponseRepositoryBase } from 'src/shared/domain/contracts';
 
 export default class ScoringRepository implements IScoringRepository {
   constructor(private orm: DataSource) {}
 
-  async getScoring(phoneNumber: number): Promise<unknown> {
+  async getScoring(phoneNumber: number): Promise<ResponseRepositoryBase<Scoring | null>> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(ScoringEntity);
     const data = await repository.findOne({
@@ -20,12 +21,15 @@ export default class ScoringRepository implements IScoringRepository {
     };
   }
 
-  async saveScoring(data: Scoring[]): Promise<unknown> {
+  async saveScoring(data: Scoring[]): Promise<ResponseRepositoryBase<unknown>> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(ScoringEntity);
     const result = await repository.upsert(data, ['phoneNumber']);
     orm.destroy();
-    return result;
+    return {
+      message: 'Scoring fetched successfully',
+      data: result,
+    };
   }
 
   async getInByPhoneNumber(phoneNumbers: number[]): Promise<ScoringEntity[]> {

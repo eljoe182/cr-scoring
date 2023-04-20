@@ -8,6 +8,7 @@ import {
 } from '../../infocall/infrastructure/interface';
 import { IParamsDistinctValues } from '../../scoring/domain/interface';
 import { IResumenfonoRepository } from 'src/features/crMaster/infrastructure/interface';
+import { Tables } from 'src/features/scoring/domain/class';
 
 export default class GetDistinctByFieldUseCase implements IBaseUseCase {
   private bitelRepository: IBitelRepository = container.get('Bitel.Repository');
@@ -16,7 +17,7 @@ export default class GetDistinctByFieldUseCase implements IBaseUseCase {
   private movistarRepository: IMovistarRepository = container.get('Movistar.Repository');
   private resumenfonoRepository: IResumenfonoRepository = container.get('Resumenfono.Repository');
 
-  async execute(params: IParamsDistinctValues): Promise<unknown> {
+  async execute(params: IParamsDistinctValues<Tables>): Promise<unknown> {
     if (params.table === 'bitel') return this.bitelRepository.getDistinctByField(params.field);
     if (params.table === 'entel') return this.entelRepository.getDistinctByField(params.field);
     if (params.table === 'claro') return this.claroRepository.getDistinctByField(params.field);

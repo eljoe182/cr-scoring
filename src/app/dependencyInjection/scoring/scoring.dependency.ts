@@ -2,7 +2,7 @@ import { Reference } from 'node-dependency-injection';
 import container from 'src/shared/infrastructure/dependency';
 
 import GetScoringController from 'src/app/controllers/scoring/GetScoring.controller';
-import GetScoringUseCase from 'src/features/scoring/application/getScoring.useCase';
+import GetScoringUseCase from 'src/features/scoring/application/GetScoring.useCase';
 
 import SaveScoringUseCase from 'src/features/scoring/application/SaveScoring.useCase';
 import SaveScoringController from 'src/app/controllers/scoring/SaveScoring.controller';

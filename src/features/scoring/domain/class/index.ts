@@ -1,4 +1,3 @@
-export * from './Attempt';
 export * from './Databases.enum';
 export * from './Evaluation';
 export * from './IdentifyColumns';

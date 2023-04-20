@@ -3,13 +3,13 @@ import { ClaroEntity, Claro } from 'src/shared/infrastructure/persistance/entiti
 import { IClaroRepository } from '../interface';
 import { CellProviderTable } from '../../domain/contracts';
 
-export default class ClaroRepository implements IClaroRepository {
+export default class ClaroRepository implements IClaroRepository<number | number[] | string, unknown> {
   constructor(private orm: DataSource) {}
 
-  async getByNumber(phoneNumber: number): Promise<Claro> {
+  async getByNumber(phoneNumber: number): Promise<Claro | null> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(ClaroEntity);
-    const result = (await repository.findOneBy({ phoneNumber })) as unknown as Claro;
+    const result = await repository.findOneBy({ phoneNumber });
     orm.destroy();
     return result;
   }

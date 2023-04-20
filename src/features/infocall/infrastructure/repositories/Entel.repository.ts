@@ -3,13 +3,13 @@ import { EntelEntity, Entel } from 'src/shared/infrastructure/persistance/entiti
 import { IEntelRepository } from '../interface';
 import { CellProviderTable } from '../../domain/contracts';
 
-export default class EntelRepository implements IEntelRepository {
+export default class EntelRepository implements IEntelRepository<number | number[] | string, unknown> {
   constructor(private orm: DataSource) {}
 
-  async getByNumber(phoneNumber: number): Promise<Entel> {
+  async getByNumber(phoneNumber: number): Promise<Entel | null> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(EntelEntity);
-    const result = (await repository.findOneBy({ phoneNumber })) as unknown as Entel;
+    const result = await repository.findOneBy({ phoneNumber });
     orm.destroy();
     return result;
   }

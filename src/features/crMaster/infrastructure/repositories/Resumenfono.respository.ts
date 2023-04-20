@@ -2,7 +2,9 @@ import { DataSource } from 'typeorm';
 import { ResumenfonoEntity } from 'src/shared/infrastructure/persistance/entities';
 import { IResumenfonoRepository } from 'src/features/crMaster/infrastructure/interface';
 
-export default class ResumenfonoRepository implements IResumenfonoRepository {
+export default class ResumenfonoRepository
+  implements IResumenfonoRepository<string | string[], ResumenfonoEntity | ResumenfonoEntity[]>
+{
   constructor(private orm: DataSource) {}
 
   public async getInfoResumenfono(phoneNumber: string): Promise<ResumenfonoEntity> {

@@ -1,4 +1,4 @@
-export interface SaveScoringDataContract {
+export interface SaveHistoricScoringData {
   phoneNumber: string;
   operator: string;
   score: number;

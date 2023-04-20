@@ -1,12 +1,16 @@
 import { IBaseUseCase } from 'src/shared/domain';
 import { ScoringHistoric } from 'src/shared/infrastructure/persistance/entities';
-import { IPagination, IResultPagination } from '../domain/interface';
 import { IScoringHistoricRepository } from '../infrastructure/interface';
+import { IPagination, IResultPagination } from 'src/shared/infrastructure/interfaces';
 
-export default class ShowScoringHistoricUseCase implements IBaseUseCase {
-  constructor(private scoringHistoricRepository: IScoringHistoricRepository) {}
+export default class ShowScoringHistoricUseCase
+  implements IBaseUseCase<IPagination, IResultPagination<ScoringHistoric[]>>
+{
+  constructor(
+    private scoringHistoricRepository: IScoringHistoricRepository<IPagination, IResultPagination<ScoringHistoric[]>>
+  ) {}
 
-  async execute(pagination: IPagination): Promise<IResultPagination<ScoringHistoric[]>> {
-    return this.scoringHistoricRepository.findAll(pagination);
+  async execute(params: IPagination): Promise<IResultPagination<ScoringHistoric[]>> {
+    return this.scoringHistoricRepository.findAll(params);
   }
 }

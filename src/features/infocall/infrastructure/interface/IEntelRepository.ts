@@ -1,9 +1,3 @@
-import { Entel } from 'src/shared/infrastructure/persistance/entities';
-import { CellProviderTable } from 'src/features/infocall/domain/contracts';
+import { OperatorRepositoryBase } from './OperatorRepositoryBase';
 
-export interface IEntelRepository {
-  getByNumber(phoneNumber: number): Promise<Entel>;
-  getFields(): Promise<CellProviderTable[]>;
-  getInByPhoneNumber(phoneNumbers: number[]): Promise<Entel[]>;
-  getDistinctByField(field: string): Promise<unknown>;
-}
+export type IEntelRepository<P = unknown, R = unknown> = OperatorRepositoryBase<P, R>;

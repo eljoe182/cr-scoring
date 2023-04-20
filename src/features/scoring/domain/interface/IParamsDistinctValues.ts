@@ -1,6 +1,4 @@
-import { Tables } from '../class';
-
-export interface IParamsDistinctValues {
-  table: Tables;
+export interface IParamsDistinctValues<T> {
+  table: T;
   field: string;
 }
