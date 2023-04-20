@@ -4,13 +4,14 @@ import { OperatorData } from '../domain/contracts';
 import { SetOperatorsUseCaseParams } from '../domain/interface/IOperatorsParams';
 import { GetManagementHistoryUseCaseResult } from 'src/features/crMaster/domain/interface';
 import { Operator } from 'src/shared/class/Operator';
+import { Bitel, Claro, Entel, Movistar } from 'src/shared/infrastructure/persistance/entities';
 
 export default class SetOperatorUseCase implements IBaseUseCase<SetOperatorsUseCaseParams[]> {
   constructor(
-    private readonly repositoryBitel: IBitelRepository,
-    private readonly repositoryClaro: IClaroRepository,
-    private readonly repositoryEntel: IEntelRepository,
-    private readonly repositoryMovistar: IMovistarRepository
+    private readonly repositoryBitel: IBitelRepository<number, Bitel[]>,
+    private readonly repositoryClaro: IClaroRepository<number, Claro[]>,
+    private readonly repositoryEntel: IEntelRepository<number, Entel[]>,
+    private readonly repositoryMovistar: IMovistarRepository<number, Movistar[]>
   ) {}
 
   async execute(data: SetOperatorsUseCaseParams[]): Promise<OperatorData> {

@@ -1,11 +1,14 @@
 import { IBaseUseCase } from 'src/shared/domain';
 import { GetScoringParams } from '../domain/contracts/IGetScoringParams';
-import { GetManagementHistoryUseCaseParams, GetManagementHistoryUseCaseResult } from 'src/features/crMaster/domain/interface';
+import {
+  GetManagementHistoryUseCaseParams,
+  GetManagementHistoryUseCaseResult,
+} from 'src/features/crMaster/domain/interface';
 import { GetSettingsFieldsUseCaseParams } from 'src/features/settingFields/domain/interface/ISettingsFieldsParams';
 import { SettingsFields } from 'src/shared/infrastructure/persistance/entities';
 import { SetNumberEvaluationUseCaseResult } from '../domain/contracts/INumberEvaluationResults';
-import { IResultPagination } from '../domain/interface';
 import SetNumberEvaluationUseCase from './SetNumberEvaluation.useCase';
+import { IResultPagination } from 'src/shared/infrastructure/interfaces';
 
 export default class GetScoringUseCase implements IBaseUseCase {
   constructor(
@@ -27,7 +30,7 @@ export default class GetScoringUseCase implements IBaseUseCase {
 
     const settingsFields = await this.getSettingsFieldsUseCase.execute({
       campaign: params.campaign,
-      limit: 100,
+      size: 100,
       page: 1,
     });
 
@@ -39,6 +42,6 @@ export default class GetScoringUseCase implements IBaseUseCase {
       return result;
     });
 
-    return resultEvaluation
+    return resultEvaluation;
   }
 }

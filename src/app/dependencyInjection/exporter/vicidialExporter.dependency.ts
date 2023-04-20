@@ -13,6 +13,7 @@ container
 
 container
   .register('Exporter.Vicidial.Controller.CSV', ExportToCSVController)
-  .addArgument(new Reference('Exporter.Vicidial.UseCase.CSV'));
+  .addArgument(new Reference('Exporter.Vicidial.UseCase.CSV'))
+  .addArgument(new Reference('Scoring.UseCase.Result'));
 
 export default container;

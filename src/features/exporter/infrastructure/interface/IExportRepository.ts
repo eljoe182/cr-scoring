@@ -1,3 +1,3 @@
-export interface IExportRepository {
-  vicidialDataExportToCSV(data: unknown): Promise<unknown>;
+export interface IExportRepository<P = unknown, R = unknown> {
+  vicidialDataExportToCSV(data: P): Promise<R>;
 }
