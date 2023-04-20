@@ -1,4 +1,4 @@
-export * from './FilterManagementHistory';
-export * from './GetInfoVicidialResponseContract';
+export * from './GetHistoryUseCaseResult';
+export * from './GetInfoVicidialResponse';
 export * from './HistoryResultContract';
-export * from './GetHistoryUseCaseResult.contract';
+export * from './ManagementHistory.contract';

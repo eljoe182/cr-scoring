@@ -1,24 +1,22 @@
 import { IManagementHistoryDataRepository } from '../interface/IManagementHistoryResult';
 
 export class ManagementHistory {
-  constructor(private readonly data: IManagementHistoryDataRepository[]) {}
+  constructor(private readonly data: IManagementHistoryDataRepository) {}
   toPrimitive() {
-    return this.data.map((item: IManagementHistoryDataRepository) => {
-      return {
-        phoneNumber: Number(item.phoneNumber),
-        length: item.length,
-        talkTime: item.talkTime,
-        betterAttempt: item.betterAttempt.toLowerCase(),
-        betterAttemptValue: item.betterAttemptValue,
-        totalManagement: item.totalManagement,
-        wrong: item.wrong,
-        deceased: item.deceased,
-        CD: item.CD,
-        CNE: item.CNE,
-        NC: item.NC,
-        betterManagement: item.betterManagement,
-        betterManagementDate: item.betterManagementDate,
-      };
-    });
+    return {
+      phoneNumber: Number(this.data.phoneNumber),
+      length: this.data.length,
+      talkTime: this.data.talkTime,
+      betterAttempt: this.data.betterAttempt.toLowerCase(),
+      betterAttemptValue: this.data.betterAttemptValue,
+      totalManagement: this.data.totalManagement,
+      wrong: this.data.wrong,
+      deceased: this.data.deceased,
+      CD: this.data.CD,
+      CNE: this.data.CNE,
+      NC: this.data.NC,
+      betterManagement: this.data.betterManagement,
+      betterManagementDate: this.data.betterManagementDate,
+    };
   }
 }

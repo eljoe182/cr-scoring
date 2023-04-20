@@ -2,87 +2,41 @@ import { IBaseUseCase } from 'src/shared/domain/BaseUseCase';
 import { DataSourceDependency as dsContainer } from 'src/app/dependencyInjection';
 import { IVicidialCoreRepository } from '../infrastructure/interface';
 import { paramsVicidial } from 'src/features/infocall/domain/contracts';
-import {
-  ScoringEntity,
-  FRVicidialListEntity,
-  FRVicidialList1121Entity,
-  FRVicidialList2121Entity,
-} from 'src/shared/infrastructure/persistance/entities';
-import { IScoringRepository } from 'src/features/scoring/infrastructure/interface';
+import { FRVicidialList } from 'src/shared/infrastructure/persistance/entities';
+import VicidialCore from '../domain/class/VicidialCore';
 
-export default class GetInfoVicidialUseCase implements IBaseUseCase {
+export default class GetInfoVicidialUseCase implements IBaseUseCase<paramsVicidial, FRVicidialList[]> {
   private redisRepository = dsContainer.get('DataSource.Redis.Repository');
   constructor(
-    private scoringRepository: IScoringRepository,
-    private rankNumberIUseCase: IBaseUseCase,
-    private vicidialCore1Repository: IVicidialCoreRepository,
-    private vicidialCore11Repository: IVicidialCoreRepository,
-    private vicidialCore21Repository: IVicidialCoreRepository
+    private vicidialCore1Repository: IVicidialCoreRepository<FRVicidialList>,
+    private vicidialCore11Repository: IVicidialCoreRepository<FRVicidialList>,
+    private vicidialCore21Repository: IVicidialCoreRepository<FRVicidialList>
   ) {}
 
-  public async execute(params: paramsVicidial): Promise<unknown | null> {
-    let vicidialData: FRVicidialListEntity[] | FRVicidialList1121Entity[] | FRVicidialList2121Entity[] = [];
+  public async execute(params: paramsVicidial): Promise<FRVicidialList[]> {
+    let vicidialData: FRVicidialList[] = [];
     const listId = Number(params.listId);
 
     const cache = await this.redisRepository.get(`${params.core}-${params.listId}`);
     if (cache) {
       vicidialData = JSON.parse(cache);
     } else {
+      let dataRepository: FRVicidialList[] = [];
       if (params.core === 'core1') {
-        vicidialData = (await this.vicidialCore1Repository.getInfo(listId)) as FRVicidialListEntity[];
+        dataRepository = await this.vicidialCore1Repository.getInfo(listId);
       }
       if (params.core === 'core11') {
-        vicidialData = (await this.vicidialCore11Repository.getInfo(listId)) as FRVicidialList1121Entity[];
+        dataRepository = await this.vicidialCore11Repository.getInfo(listId);
       }
       if (params.core === 'core21') {
-        vicidialData = (await this.vicidialCore21Repository.getInfo(listId)) as FRVicidialList2121Entity[];
+        dataRepository = await this.vicidialCore21Repository.getInfo(listId);
       }
+
+      vicidialData = dataRepository.map((item) => new VicidialCore(item).toPrimitive());
+
       await this.redisRepository.set(`${params.core}-${params.listId}`, JSON.stringify(vicidialData));
     }
 
-    if (!vicidialData) {
-      return null;
-    }
-
-    const phoneNumbers = vicidialData.filter((item) => item.phoneNumber.length === 9).map((item) => item.phoneNumber);
-    const uniquePhoneNumbers = [...new Set(phoneNumbers)];
-
-    const scoringData = (await this.scoringRepository.getInByPhoneNumber(
-      uniquePhoneNumbers
-    )) as unknown as ScoringEntity[];
-
-    const data = vicidialData.map((item) => {
-      const scoringItem = scoringData.find((scoringItem) => scoringItem.phoneNumber === Number(item.phoneNumber));
-
-      return {
-        leadId: item.leadId,
-        listId: item.listId,
-        phoneNumber: item.phoneNumber,
-        sourceId: item.sourceId,
-        vendorLeadCode: item.vendorLeadCode,
-        operator: scoringItem?.operator || 'SIN VALIDAR',
-        score: scoringItem?.score || 0,
-        beastDate: scoringItem?.beastDate || new Date(0),
-        betterManagement: scoringItem?.betterManagement || '-',
-        beastTry: scoringItem?.beastTry || '-',
-        withWhatsapp: scoringItem?.withWhatsapp || 0,
-      };
-    });
-
-    // sort data by vendorLeadCode
-
-    const sortedData = data.sort((a, b) => {
-      if (a.vendorLeadCode < b.vendorLeadCode) {
-        return -1;
-      }
-      if (a.vendorLeadCode > b.vendorLeadCode) {
-        return 1;
-      }
-      return 0;
-    });
-
-    const dataRanked = await this.rankNumberIUseCase.execute(sortedData);
-
-    return dataRanked;
+    return vicidialData;
   }
 }

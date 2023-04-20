@@ -14,7 +14,7 @@ import GetDistinctByFieldController from 'src/app/controllers/settingsFields/Get
 
 /// Get Fields
 container
-  .register('Scoring.UseCase.SettingFields.GetFields', GetFieldsUseCase)
+  .register('SettingFields.UseCase.GetFields', GetFieldsUseCase)
   .addArgument(new Reference('Resumenfono.Repository'))
   .addArgument(new Reference('Bitel.Repository'))
   .addArgument(new Reference('Claro.Repository'))
@@ -22,37 +22,37 @@ container
   .addArgument(new Reference('Movistar.Repository'));
 
 container
-  .register('Scoring.Controller.SettingFields.GetFields', GetFieldsController)
-  .addArgument(new Reference('Scoring.UseCase.SettingFields.GetFields'));
+  .register('SettingFields.Controller.GetFields', GetFieldsController)
+  .addArgument(new Reference('SettingFields.UseCase.GetFields'));
 
 container
-  .register('Scoring.UseCase.SettingFields.Save', SaveSettingsFieldsUseCase)
+  .register('SettingFields.UseCase.Save', SaveSettingsFieldsUseCase)
   .addArgument(new Reference('SettingsFields.Repository'));
 
 container
-  .register('Scoring.Controller.SettingFields.Save', SaveSettingsFieldsController)
-  .addArgument(new Reference('Scoring.UseCase.SettingFields.Save'));
+  .register('SettingFields.Controller.Save', SaveSettingsFieldsController)
+  .addArgument(new Reference('SettingFields.UseCase.Save'));
 
 container
-  .register('Scoring.UseCase.SettingFields.GetAll', GetSettingsFieldsUseCase)
+  .register('SettingFields.UseCase.GetAll', GetSettingsFieldsUseCase)
   .addArgument(new Reference('SettingsFields.Repository'));
 
 container
-  .register('Scoring.Controller.SettingFields.GetAll', GetSettingsFieldsController)
-  .addArgument(new Reference('Scoring.UseCase.SettingFields.GetAll'));
+  .register('SettingFields.Controller.GetAll', GetSettingsFieldsController)
+  .addArgument(new Reference('SettingFields.UseCase.GetAll'));
 
 container
-  .register('Scoring.UseCase.SettingFields.Destroy', DestroySettingsFieldsUseCase)
+  .register('SettingFields.UseCase.Destroy', DestroySettingsFieldsUseCase)
   .addArgument(new Reference('SettingsFields.Repository'));
 
 container
-  .register('Scoring.Controller.SettingFields.Destroy', DestroySettingsFieldsController)
-  .addArgument(new Reference('Scoring.UseCase.SettingFields.Destroy'));
+  .register('SettingFields.Controller.Destroy', DestroySettingsFieldsController)
+  .addArgument(new Reference('SettingFields.UseCase.Destroy'));
 
-container.register('Scoring.UseCase.SettingFields.DistinctValue', GetDistinctByFieldUseCase);
+container.register('SettingFields.UseCase.DistinctValue', GetDistinctByFieldUseCase);
 
 container
-  .register('Scoring.Controller.SettingFields.DistinctValue', GetDistinctByFieldController)
-  .addArgument(new Reference('Scoring.UseCase.SettingFields.DistinctValue'));
+  .register('SettingFields.Controller.DistinctValue', GetDistinctByFieldController)
+  .addArgument(new Reference('SettingFields.UseCase.DistinctValue'));
 
 export default container;

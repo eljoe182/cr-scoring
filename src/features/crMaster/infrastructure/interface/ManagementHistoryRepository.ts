@@ -1,3 +1,3 @@
-export interface IManagementHistoryRepository<T = unknown> {
-  getManagementHistory(params: unknown): Promise<T[]>;
+export interface IManagementHistoryRepository<P = unknown, R = unknown> {
+  getManagementHistory(params: P): Promise<R[]>;
 }

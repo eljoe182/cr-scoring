@@ -4,11 +4,11 @@ import { IBaseController } from 'src/shared/domain/BaseController';
 import { SettingFieldsDependency as container } from 'src/app/dependencyInjection';
 
 export const register = (router: Router) => {
-  const getController: IBaseController = container.get('Scoring.Controller.SettingFields.GetAll');
-  const getFieldsController: IBaseController = container.get('Scoring.Controller.SettingFields.GetFields');
-  const saveController: IBaseController = container.get('Scoring.Controller.SettingFields.Save');
-  const destroyController: IBaseController = container.get('Scoring.Controller.SettingFields.Destroy');
-  const distinctFieldController: IBaseController = container.get('Scoring.Controller.SettingFields.DistinctValue');
+  const getController: IBaseController = container.get('SettingFields.Controller.GetAll');
+  const getFieldsController: IBaseController = container.get('SettingFields.Controller.GetFields');
+  const saveController: IBaseController = container.get('SettingFields.Controller.Save');
+  const destroyController: IBaseController = container.get('SettingFields.Controller.Destroy');
+  const distinctFieldController: IBaseController = container.get('SettingFields.Controller.DistinctValue');
 
   router.get('/scoring/settings/fields/get-fields', (req: Request, res: Response, next: NextFunction) => {
     return getFieldsController.run(req, res, next);

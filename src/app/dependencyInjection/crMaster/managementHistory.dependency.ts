@@ -18,7 +18,7 @@ container
   .addArgument(new Reference('DataSource.CRMaster.Client'));
 
 container
-  .register('ManagementHistory.GetHistory.UseCase', GetManagementHistoryUseCase)
+  .register('ManagementHistory.UseCase.GetHistory', GetManagementHistoryUseCase)
   .addArgument(new Reference('ManagementHistory.Repository'))
   .addArgument(new Reference('Scoring.UseCase.SetOperator'));
 

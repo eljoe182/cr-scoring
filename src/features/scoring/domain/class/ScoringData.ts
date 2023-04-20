@@ -1,7 +1,6 @@
 import { Scoring } from 'src/shared/infrastructure/persistance/entities';
-import { GetScoringResult } from '../contracts';
 
-export class SaveScoringData implements Scoring {
+export default class ScoringData implements Scoring {
   phoneNumber: number;
   operator: string;
   score: number;
@@ -11,27 +10,29 @@ export class SaveScoringData implements Scoring {
   withWhatsapp: boolean;
   createdAt?: Date | undefined;
   updatedAt?: Date | undefined;
-  constructor(data: GetScoringResult) {
+  constructor(data: Scoring) {
     this.phoneNumber = data.phoneNumber;
-    this.operator = data.operator.operator;
+    this.operator = data.operator;
     this.score = data.score;
-    this.beastDate = new Date(data.betterManagementDate || 1);
+    this.beastDate = data.beastDate;
     this.betterManagement = data.betterManagement;
-    this.beastTry = data.betterAttempt;
-    this.withWhatsapp = data.operator.withWhatsapp;
+    this.beastTry = data.beastTry;
+    this.withWhatsapp = data.withWhatsapp;
+    this.createdAt = data.createdAt;
+    this.updatedAt = data.updatedAt;
   }
 
-  toSave(): Scoring {
+  toPrimitive(): Scoring {
     return {
-      phoneNumber: this.phoneNumber,
+      phoneNumber: Number(this.phoneNumber),
       operator: this.operator,
       score: this.score,
-      beastDate: this.beastDate,
+      beastDate: new Date(this.beastDate),
       betterManagement: this.betterManagement,
       beastTry: this.beastTry,
-      withWhatsapp: this.withWhatsapp,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      withWhatsapp: Boolean(this.withWhatsapp),
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
     };
   }
 }

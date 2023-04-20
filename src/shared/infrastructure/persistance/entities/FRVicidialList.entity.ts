@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryColumn, BaseEntity } from 'typeorm';
 
 export interface FRVicidialList {
   leadId: number;
-  phoneNumber: string;
+  phoneNumber: number;
   listId: number;
   sourceId: string;
   vendorLeadCode: string;
@@ -18,10 +18,9 @@ export class FRVicidialListEntity extends BaseEntity implements FRVicidialList {
 
   @Column({
     name: 'phone_number',
-    type: 'varchar',
-    length: 18,
+    type: 'bigint',
   })
-  phoneNumber!: string;
+  phoneNumber!: number;
 
   @Column({
     name: 'list_id',

@@ -11,10 +11,9 @@ export class FRVicidialList2121Entity extends BaseEntity implements FRVicidialLi
 
   @Column({
     name: 'phone_number',
-    type: 'varchar',
-    length: 18,
+    type: 'bigint',
   })
-  phoneNumber!: string;
+  phoneNumber!: number;
 
   @Column({
     name: 'list_id',

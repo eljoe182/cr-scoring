@@ -24,18 +24,17 @@ export default class ScoringRepository implements IScoringRepository {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(ScoringEntity);
     const result = await repository.upsert(data, ['phoneNumber']);
-
     orm.destroy();
     return result;
   }
 
-  async getInByPhoneNumber(phoneNumbers: string[]): Promise<ScoringEntity[]> {
+  async getInByPhoneNumber(phoneNumbers: number[]): Promise<ScoringEntity[]> {
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(ScoringEntity);
-    const result = (await repository
+    const result = await repository
       .createQueryBuilder()
       .where('phone_number IN (:...phoneNumbers)', { phoneNumbers })
-      .getMany()) as unknown as ScoringEntity[];
+      .getMany();
     orm.destroy();
     return result;
   }

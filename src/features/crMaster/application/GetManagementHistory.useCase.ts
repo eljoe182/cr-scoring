@@ -13,11 +13,14 @@ import { SetOperatorsUseCaseParams } from 'src/features/infocall/domain/interfac
 export default class GetHistoryHistoryUseCase implements IBaseUseCase<GetManagementHistoryUseCaseParams> {
   private redisRepository = dsContainer.get('DataSource.Redis.Repository');
   constructor(
-    private repository: IManagementHistoryRepository<IManagementHistoryDataRepository>,
-    private setOperatorUseCase: IBaseUseCase<SetOperatorsUseCaseParams[]>
+    private repository: IManagementHistoryRepository<
+      GetManagementHistoryUseCaseParams,
+      IManagementHistoryDataRepository
+    >,
+    private setOperatorUseCase: IBaseUseCase<SetOperatorsUseCaseParams[], OperatorData>
   ) {}
 
-  async execute(params: GetManagementHistoryUseCaseParams): Promise<GetManagementHistoryUseCaseResult[] | null> {
+  async execute(params: GetManagementHistoryUseCaseParams): Promise<GetManagementHistoryUseCaseResult[]> {
     const campaignListId = await this.redisRepository.get(`${params.campaign}-${params.listId}`);
 
     let phoneOperators: GetManagementHistoryUseCaseResult[] = [];
@@ -25,14 +28,12 @@ export default class GetHistoryHistoryUseCase implements IBaseUseCase<GetManagem
     if (campaignListId) {
       phoneOperators = JSON.parse(campaignListId);
     } else {
-      const managementHistory = (await this.repository.getManagementHistory(
-        params
-      )) as unknown[] as IManagementHistoryDataRepository[];
-      const dataPrimitive = new ManagementHistory(managementHistory).toPrimitive();
+      const managementHistory = await this.repository.getManagementHistory(params);
+      if (managementHistory.length === 0) return phoneOperators;
 
-      if (managementHistory.length === 0) return null;
+      const dataPrimitive = managementHistory.map((item) => new ManagementHistory(item).toPrimitive());
 
-      const { success } = (await this.setOperatorUseCase.execute(dataPrimitive)) as OperatorData;
+      const { success } = await this.setOperatorUseCase.execute(dataPrimitive);
       await this.redisRepository.set(`${params.campaign}-${params.listId}`, JSON.stringify(success));
 
       phoneOperators = success;
