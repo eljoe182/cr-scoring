@@ -1,4 +1,4 @@
-import { Entity, Column, ObjectIdColumn, ObjectID, CreateDateColumn, UpdateDateColumn, BaseEntity } from 'typeorm';
+import { Entity, Column, ObjectIdColumn, ObjectId, CreateDateColumn, UpdateDateColumn, BaseEntity } from 'typeorm';
 
 type ScoringHistoricData = {
   phoneNumber: string;
@@ -28,7 +28,7 @@ type ScoringHistoricRaw = {
 }
 
 export interface ScoringHistoric {
-  id?: ObjectID;
+  id?: ObjectId;
   period: string;
   data: ScoringHistoricData[];
   identifiers: ScoringHistoricPhoneNumber[];
@@ -44,7 +44,7 @@ export class ScoringHistoricEntity extends BaseEntity implements ScoringHistoric
     name: '_id',
     type: 'string',
   })
-  id?: ObjectID;
+  id?: ObjectId;
 
   @Column({
     name: 'period',

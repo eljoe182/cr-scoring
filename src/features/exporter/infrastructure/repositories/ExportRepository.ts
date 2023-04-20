@@ -1,4 +1,4 @@
-import { json2csvAsync } from 'json-2-csv';
+import { json2csv } from 'json-2-csv';
 import { IExportRepository } from '../interface/IExportRepository';
 import { GetInfoVicidialDataContract } from 'src/features/crMaster/domain/contracts';
 
@@ -18,7 +18,7 @@ export default class ExportRepository implements IExportRepository {
       WHATSAPP: item.withWhatsapp ? 'SI' : 'NO',
     }));
 
-    return json2csvAsync(renameHeaders, {
+    return json2csv(renameHeaders, {
       prependHeader: true,
       emptyFieldValue: '',
       delimiter: {

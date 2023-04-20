@@ -1,7 +1,7 @@
-import { Entity, Column, ObjectIdColumn, ObjectID, BaseEntity } from 'typeorm';
+import { Entity, Column, ObjectIdColumn, ObjectId, BaseEntity } from 'typeorm';
 
 export interface SettingsFields {
-  id?: ObjectID;
+  id?: ObjectId;
   campaign: string;
   database: string;
   tableName: string;
@@ -17,7 +17,7 @@ export class SettingsFieldsEntity extends BaseEntity implements SettingsFields {
     name: '_id',
     type: 'string',
   })
-  id!: ObjectID;
+  id!: ObjectId;
 
   @Column({
     name: 'campaign',
