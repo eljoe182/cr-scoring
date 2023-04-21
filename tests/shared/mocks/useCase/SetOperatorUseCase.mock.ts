@@ -2,7 +2,7 @@ export const expectedValueSetOperatorUseCase = {
   success: [
     {
       info: {
-        phoneNumber: '901448858',
+        phoneNumber: 901448858,
         length: 9,
         talkTime: 0,
         betterAttempt: '1.Intento Valor',
@@ -38,7 +38,7 @@ export const expectedValueSetOperatorUseCase = {
 
 export const paramsSetOperatorUseCase = [
   {
-    phoneNumber: '901448858',
+    phoneNumber: 901448858,
     length: 9,
     talkTime: 0,
     betterAttempt: '1.Intento Valor',

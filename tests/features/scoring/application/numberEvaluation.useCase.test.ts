@@ -1,32 +1,46 @@
-import NumberEvaluationUseCase from '../../../../src/features/scoring/application/NumberEvaluation.useCase';
-import { Server } from '../../../../src/app/server';
-import {
-  expectedResultNumberEvaluation,
-  paramsNumberEvaluation,
-} from '../../../shared/mocks/useCase/NumberEvaluationUseCase.mock';
+import { Evaluation, EvaluationParams } from '../../../../src/features/scoring/domain/class/Evaluation';
 
-describe('NumberEvaluation Use Case', () => {
-  let server: Server;
-
-  beforeAll(async () => {
-    server = new Server(3000);
-    await server.start();
-  });
-
-  afterAll((done) => {
-    done();
-  });
-
-  it('should return scoring result', async () => {
+describe('Evaluation Number', () => {
+  it('should get 20 scoring', () => {
     // Given
-    const params = paramsNumberEvaluation;
-    const valuesExpected = expectedResultNumberEvaluation;
+    const params: EvaluationParams = {
+      score: 0,
+      entries: [
+        ['field', 'value1'],
+        ['database', 'value2'],
+      ],
+      data: [
+        {
+          campaign: 'campaign1',
+          columnName: 'field1',
+          columnType: 'number',
+          database: 'database1',
+          field: 'field1',
+          tableName: 'table1',
+          alias: 'field',
+          condition: '=',
+          valueCondition: 'value1',
+          valueScore: 10,
+        },
+        {
+          campaign: 'campaign1',
+          columnName: 'field1',
+          columnType: 'number',
+          database: 'database1',
+          field: 'field1',
+          tableName: 'table1',
+          alias: 'database',
+          condition: '<>',
+          valueCondition: 'value2',
+          valueScore: 10,
+        },
+      ],
+    };
 
     // When
-    const numberEvaluationUseCase = new NumberEvaluationUseCase();
-    const result = await numberEvaluationUseCase.execute(params);
+    const result = Evaluation.getScore(params);
 
     // Then
-    expect(result).toEqual(valuesExpected);
+    expect(result).toBe(10);
   });
 });
