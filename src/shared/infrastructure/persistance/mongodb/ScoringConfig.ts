@@ -13,7 +13,7 @@ export class ScoringConfig {
       synchronize: true,
       useUnifiedTopology: true,
       logging: true,
-      ssl: false,
+      ssl: true,
       entities: [SettingsFieldsEntity, ScoringHistoricEntity],
     };
   }

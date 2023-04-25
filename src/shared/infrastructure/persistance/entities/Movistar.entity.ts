@@ -21,7 +21,7 @@ export class MovistarEntity extends BaseEntity implements Movistar {
     name: 'documento',
     type: 'bigint',
   })
-  document!: number;
+  document!: string;
 
   @Column({
     name: 'nombre',

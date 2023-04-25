@@ -1,6 +1,6 @@
 export interface IOperatorEntityBase {
   operator: string;
-  document: number;
+  document: string;
   fullName: string;
   phoneNumber: number;
   origin: string;

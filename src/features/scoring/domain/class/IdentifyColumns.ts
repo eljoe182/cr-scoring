@@ -1,10 +1,26 @@
-import { getMetadataArgsStorage } from 'typeorm';
+import { getMetadataArgsStorage, ColumnType } from 'typeorm';
 import { TableMetadataArgs } from 'typeorm/metadata-args/TableMetadataArgs';
-import { ResultInfoCall } from '../contracts';
+import { EvaluationResult } from '../contracts';
 import { SettingsFields } from 'src/shared/infrastructure/persistance/entities';
 
+function setType(value: ColumnType, valueCondition: string) {
+  if (['number', 'decimal', 'float', 'double', 'int', 'integer', 'smallint', 'bigint'].includes(value.toString())) {
+    return Number(valueCondition);
+  }
+  if (['boolean', 'bool'].includes(value.toString())) {
+    return Boolean(valueCondition);
+  }
+  if (['tinyint'].includes(value.toString())) {
+    return Boolean(Number(valueCondition));
+  }
+  if (['date', 'datetime', 'timestamp'].includes(value.toString())) {
+    return new Date(valueCondition);
+  }
+  return valueCondition;
+}
+
 export class IdentifyColumns {
-  static getValues(data: SettingsFields[]): ResultInfoCall[] {
+  static getValues(data: SettingsFields[]): EvaluationResult[] {
     return data.map((config) => {
       const tableInfo: TableMetadataArgs = getMetadataArgsStorage().tables.find(
         (table) => table.name === config.tableName
@@ -19,11 +35,11 @@ export class IdentifyColumns {
         database: config.database,
         field: config.field,
         tableName: config.tableName,
-        valueCondition: config.valueCondition,
-        valueScore: config.valueScore,
-        columnName: columnInfo?.options.name,
-        alias: columnInfo?.propertyName,
-        columnType: columnInfo?.options.type?.toString(),
+        valueCondition: setType(columnInfo?.options.type || 'string', config.valueCondition),
+        valueScore: Number(config.valueScore),
+        alias: columnInfo?.propertyName || '',
+        columnName: columnInfo?.options.name || '',
+        columnType: columnInfo?.options.type?.toString() || '',
       };
     });
   }

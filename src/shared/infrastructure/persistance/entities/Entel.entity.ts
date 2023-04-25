@@ -21,7 +21,7 @@ export class EntelEntity extends BaseEntity implements Entel {
     name: 'documento',
     type: 'bigint',
   })
-  document!: number;
+  document!: string;
 
   @Column({
     name: 'nombre',

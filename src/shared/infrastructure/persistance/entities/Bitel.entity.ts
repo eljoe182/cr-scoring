@@ -21,7 +21,7 @@ export class BitelEntity extends BaseEntity implements Bitel {
     name: 'documento',
     type: 'bigint',
   })
-  document!: number;
+  document!: string;
 
   @Column({
     name: 'nombre',

@@ -5,10 +5,10 @@ import {
   GetManagementHistoryUseCaseResult,
 } from 'src/features/crMaster/domain/interface';
 import { GetSettingsFieldsUseCaseParams } from 'src/features/settingFields/domain/interface/ISettingsFieldsParams';
-import { SettingsFields } from 'src/shared/infrastructure/persistance/entities';
 import { SetNumberEvaluationUseCaseResult } from '../domain/contracts/INumberEvaluationResults';
-import SetNumberEvaluationUseCase from './SetNumberEvaluation.useCase';
+import { SetNumberEvaluationUseCase } from './SetNumberEvaluation.useCase';
 import { IResultPagination } from 'src/shared/infrastructure/interfaces';
+import { ResultInfoCall } from '../domain/contracts';
 
 export default class GetScoringUseCase implements IBaseUseCase {
   constructor(
@@ -18,7 +18,7 @@ export default class GetScoringUseCase implements IBaseUseCase {
     >,
     private readonly getSettingsFieldsUseCase: IBaseUseCase<
       GetSettingsFieldsUseCaseParams,
-      IResultPagination<SettingsFields[]>
+      IResultPagination<ResultInfoCall[]>
     >
   ) {}
 

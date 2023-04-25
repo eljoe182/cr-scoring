@@ -1,7 +1,7 @@
 import { GetManagementHistoryUseCaseResult } from 'src/features/crMaster/domain/interface';
-import { SettingsFields } from 'src/shared/infrastructure/persistance/entities';
+import { ResultInfoCall } from './ResultInfoCall';
 
 export interface SetNumberEvaluationUseCaseParams {
   data: GetManagementHistoryUseCaseResult;
-  fields: SettingsFields[];
+  fields: ResultInfoCall[];
 }

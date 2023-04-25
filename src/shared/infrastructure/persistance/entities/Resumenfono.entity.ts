@@ -8,8 +8,8 @@ export interface Resumenfono {
   invalidAttempt: number;
   intermediateStates: number;
   period: string;
-  CD: string;
-  CNE: string;
+  CD: number;
+  CNE: number;
   betterManagement: string;
   beastTry: string;
 }
@@ -65,14 +65,14 @@ export class ResumenfonoEntity extends BaseEntity implements Resumenfono {
     type: 'nvarchar',
     length: 8,
   })
-  CD!: string;
+  CD!: number;
 
   @Column({
     name: 'CNE',
     type: 'nvarchar',
     length: 8,
   })
-  CNE!: string;
+  CNE!: number;
 
   @Column({
     name: 'MEJOR_GEST',

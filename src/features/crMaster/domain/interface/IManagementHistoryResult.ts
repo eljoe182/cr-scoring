@@ -17,6 +17,6 @@ export interface IManagementHistoryDataRepository {
   betterManagementDate: string | null;
 }
 
-export interface GetManagementHistoryUseCaseResult extends ManagementHistoryData {
+export type GetManagementHistoryUseCaseResult = ManagementHistoryData & {
   operator: IOperatorEntityBase;
-}
+};
