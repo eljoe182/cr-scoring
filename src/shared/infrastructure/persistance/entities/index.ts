@@ -12,3 +12,4 @@ export * from './Resumenfono.entity';
 export * from './Scoring.entity';
 export * from './ScoringHistoric.entity';
 export * from './SettingsFields.entity';
+export * from './ScoringRules.entity';
