@@ -9,9 +9,6 @@ export default class VicidialListsRepository implements IVicidialListsRepository
     const orm = await this.orm.initialize();
     const repository = orm.manager.getRepository(VicidialListsEntity);
     const result = (await repository.find({
-      where: {
-        active: 'Y',
-      },
       order: {
         campaignId: 'ASC',
       }

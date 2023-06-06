@@ -14,6 +14,10 @@ export default class ResultScoringUseCase implements IBaseUseCase {
   async execute(params: ResultScoringParams): Promise<unknown> {
     const vicidialData = await this.getInfoVicidialUseCase.execute(params);
 
+    if (vicidialData.length === 0) {
+      throw new Error("No se encontraron datos en Vicidial");
+    }
+
     const phoneNumbers = vicidialData
       .filter((item) => item.phoneNumber.toString().length === 9)
       .map((item) => Number(item.phoneNumber));

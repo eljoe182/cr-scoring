@@ -51,10 +51,10 @@ export default class ResumenfonoRepository
     const repository = orm.manager.getRepository(ResumenfonoEntity);
     const result = await repository
       .createQueryBuilder()
-      .select(field, 'value')
+      .select(`[${field}]`, 'value')
       .distinct(true)
-      .where(`${field} IS NOT NULL`)
-      .orderBy(field, 'DESC')
+      .where(`[${field}] IS NOT NULL`)
+      .orderBy(`[${field}]`, 'DESC')
       .execute();
     orm.destroy();
     return result;

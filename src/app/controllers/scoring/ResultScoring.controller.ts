@@ -7,7 +7,11 @@ export default class ResultScoringController implements IBaseController {
 
   async run(req: Request, res: Response, _next: NextFunction): Promise<void> {
     const params = req.params as unknown as ResultScoringParams;
-    const scoring = await this.resultScoringUseCase.execute(params);
-    res.json(scoring);
+    try {
+      const scoring = await this.resultScoringUseCase.execute(params);
+      res.json(scoring);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
   }
 }
