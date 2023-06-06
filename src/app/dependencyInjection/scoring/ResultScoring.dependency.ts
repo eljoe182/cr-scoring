@@ -17,7 +17,9 @@ container
 container
   .register('Scoring.UseCase.Result', ResultScoringUseCase)
   .addArgument(new Reference('Vicidial.UseCase.GetInfo'))
-  .addArgument(new Reference('Scoring.UseCase.GetBulk'));
+  .addArgument(new Reference('Scoring.UseCase.GetBulk'))
+  .addArgument(new Reference('VicidialLists.Repository'))
+  .addArgument(new Reference('ScoringRules.Repository'));
 container
   .register('Scoring.Controller.Result', ResultScoringController)
   .addArgument(new Reference('Scoring.UseCase.Result'));

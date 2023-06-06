@@ -4,18 +4,23 @@ import RankNumbers from '../domain/class/RankNumbers';
 import ScoringData from '../domain/class/ScoringData';
 import { ResultScoringParams } from '../domain/contracts';
 import { ResultScoringResponse } from '../domain/contracts/IResultScoringResults';
+import { IVicidialListsRepository } from 'src/features/crMaster/infrastructure/interface';
+import { IScoringRulesRepository } from 'src/features/settingFields/infrastructure/interface/IScoringRulesRepository';
+import { ScoringRules, VicidialLists } from 'src/shared/infrastructure/persistance/entities';
 
 export default class ResultScoringUseCase implements IBaseUseCase {
   constructor(
     private getInfoVicidialUseCase: IBaseUseCase<ResultScoringParams, GetInfoVicidialUseCaseResponse[]>,
-    private getScoringBulkUseCase: IBaseUseCase<number[], ScoringData[]>
+    private getScoringBulkUseCase: IBaseUseCase<number[], ScoringData[]>,
+    private campaignRepository: IVicidialListsRepository<VicidialLists>,
+    private getScoringRules: IScoringRulesRepository<string, ScoringRules>
   ) {}
 
   async execute(params: ResultScoringParams): Promise<unknown> {
     const vicidialData = await this.getInfoVicidialUseCase.execute(params);
 
     if (vicidialData.length === 0) {
-      throw new Error("No se encontraron datos en Vicidial");
+      throw new Error('No se encontraron datos en Vicidial');
     }
 
     const phoneNumbers = vicidialData
@@ -56,7 +61,10 @@ export default class ResultScoringUseCase implements IBaseUseCase {
       return 0;
     });
 
-    const dataRanked = new RankNumbers(sortedData).getRank();
+    const campaignResult = await this.campaignRepository.getCampaignByListId(params.listId);
+    const scoringRulesResult = await this.getScoringRules.get(campaignResult.campaignId);
+
+    const dataRanked = new RankNumbers(sortedData).getRank(scoringRulesResult);
 
     return dataRanked;
   }

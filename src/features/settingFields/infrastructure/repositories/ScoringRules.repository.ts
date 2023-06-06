@@ -17,10 +17,7 @@ export class ScoringRulesRepository implements IScoringRulesRepository {
 
     orm.destroy();
 
-    return {
-      message: 'ScoringRules fetched successfully',
-      data: response,
-    };
+    return response;
   }
 
   async save(rules: ScoringRules) {
@@ -47,9 +44,6 @@ export class ScoringRulesRepository implements IScoringRulesRepository {
 
     orm.destroy();
 
-    return {
-      message: 'ScoringRules saved successfully',
-      data: response,
-    };
+    return response;
   }
 }
