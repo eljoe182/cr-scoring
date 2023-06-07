@@ -1,12 +1,18 @@
 import { IBaseUseCase } from 'src/shared/domain/BaseUseCase';
-import { ICampaigns } from '../domain/interface/ICampaigns';
-import { CRWalletEntity } from 'src/shared/infrastructure/persistance/entities';
-import { IWalletRepository } from '../infrastructure/interface/IWalletRepository';
+import { IVicidialListsRepository } from '../infrastructure/interface';
+import { VicidialLists } from 'src/shared/infrastructure/persistance/entities';
 
 export default class GetAllCampaignsUseCase implements IBaseUseCase {
-  constructor(private repository: IWalletRepository<CRWalletEntity>) {}
+  constructor(private repository: IVicidialListsRepository<VicidialLists>) {}
 
-  async execute(): Promise<ICampaigns[]> {
-    return this.repository.getAllWallets();
+  async execute() {
+    const result = await this.repository.getVicidialLists();
+
+    // get unique campaignId
+    const campaignIds = result
+      .map((item) => item.campaignId)
+      .filter((value, index, self) => self.indexOf(value) === index);
+
+    return campaignIds;
   }
 }

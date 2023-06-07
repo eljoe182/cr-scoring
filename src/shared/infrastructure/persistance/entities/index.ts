@@ -7,6 +7,8 @@ export * from './FRVicidialList.entity';
 export * from './FRVicidialList1121.entity';
 export * from './FRVicidialList2121.entity';
 export * from './FRVicidialLists.entity';
+export * from './FRVicidialLists1121.entity';
+export * from './FRVicidialLists2121.entity';
 export * from './Movistar.entity';
 export * from './Resumenfono.entity';
 export * from './Scoring.entity';

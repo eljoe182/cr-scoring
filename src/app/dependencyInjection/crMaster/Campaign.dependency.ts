@@ -5,7 +5,7 @@ import GetAllCampaignsUseCase from 'src/features/crMaster/application/GetAllCamp
 
 container
   .register('CRMaster.Campaign.UseCase.GetAll', GetAllCampaignsUseCase)
-  .addArgument(new Reference('Wallet.Repository'));
+  .addArgument(new Reference('VicidialLists.Repository'));
 
 container
   .register('CRMaster.Campaign.Controller.GetAll', GetAllCampaignsController)
