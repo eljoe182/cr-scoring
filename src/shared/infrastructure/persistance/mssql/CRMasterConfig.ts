@@ -6,6 +6,8 @@ import {
   FRVicidialList1121Entity,
   FRVicidialList2121Entity,
   VicidialListsEntity,
+  VicidialLists1121Entity,
+  VicidialLists2121Entity,
   CRWalletEntity,
   ManagementHistoryEntity,
 } from '../entities';
@@ -27,6 +29,8 @@ export class CRMasterConfig {
         FRVicidialList1121Entity,
         FRVicidialList2121Entity,
         VicidialListsEntity,
+        VicidialLists1121Entity,
+        VicidialLists2121Entity,
         ManagementHistoryEntity,
         CRWalletEntity,
       ],

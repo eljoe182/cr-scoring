@@ -1,15 +1,8 @@
 import { Entity, Column, PrimaryColumn, BaseEntity, VirtualColumn } from 'typeorm';
+import { VicidialLists } from './FRVicidialLists.entity';
 
-export interface VicidialLists {
-  listId: number;
-  listName: string;
-  campaignId: string;
-  active: string;
-  core?: string;
-}
-
-@Entity('FR_vicidial_lists')
-export class VicidialListsEntity extends BaseEntity implements VicidialLists {
+@Entity('FR_vicidial_lists_21_21')
+export class VicidialLists2121Entity extends BaseEntity implements VicidialLists {
   @PrimaryColumn({
     name: 'list_id',
     type: 'numeric',
@@ -39,7 +32,7 @@ export class VicidialListsEntity extends BaseEntity implements VicidialLists {
 
   @VirtualColumn({
     type: 'varchar',
-    query: () => "select 'CORE1' as core",
+    query: () => "select 'CORE21' as core",
   })
   core!: string;
 }
