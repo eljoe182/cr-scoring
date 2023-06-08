@@ -9,6 +9,8 @@ export const register = (router: Router) => {
   const saveController: IBaseController = container.get('SettingFields.Controller.Save');
   const destroyController: IBaseController = container.get('SettingFields.Controller.Destroy');
   const distinctFieldController: IBaseController = container.get('SettingFields.Controller.DistinctValue');
+  const saveRulesController: IBaseController = container.get('ScoringRules.Controller.Save');
+  const getRulesController: IBaseController = container.get('ScoringRules.Controller.Get');
 
   router.get('/scoring/settings/fields/get-fields', (req: Request, res: Response, next: NextFunction) => {
     return getFieldsController.run(req, res, next);
@@ -24,5 +26,11 @@ export const register = (router: Router) => {
   });
   router.delete('/scoring/settings/fields/destroy/:id', (req: Request, res: Response, next: NextFunction) => {
     return destroyController.run(req, res, next);
+  });
+  router.post('/scoring/settings/rules/save', (req: Request, res: Response, next: NextFunction) => {
+    return saveRulesController.run(req, res, next);
+  });
+  router.get('/scoring/settings/rules/get/:campaign', (req: Request, res: Response, next: NextFunction) => {
+    return getRulesController.run(req, res, next);
   });
 };
