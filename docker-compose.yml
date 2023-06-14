@@ -12,23 +12,10 @@ services:
     networks:
         - scoring
 
-  scoring_mongo:
-    container_name: scoring-mongo
-    image: mongo
-    restart: always
-    environment:
-      - INFISICAL_TOKEN=${INFISICAL_TOKEN_SCORING}
-    ports:
-      - "27018:27017"
-    volumes:
-      - ${MONGO_VOLUME}:/data/db
-
   scoring_service:
     container_name: scoring-service
-    image: eljoe182/cr-scoring:1.2.1
+    image: eljoe182/cr-scoring:1.11.1
     restart: always
-    environment:
-      - INFISICAL_TOKEN=${INFISICAL_TOKEN_SCORING}
     ports:
       - "3000:3000"
     depends_on:
