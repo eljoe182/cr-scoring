@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: ['master']
-  pull_request:
-    branches: ['master']
+    branches:
+      - master
+    if: github.event_name != 'pull_request'
 
 env:
   DOCKER_IMAGE_NAME: ${{ github.repository }}
