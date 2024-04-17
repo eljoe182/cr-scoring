@@ -62,7 +62,7 @@ export default class ResultScoringUseCase implements IBaseUseCase {
     });
 
     const campaignResult = await this.campaignRepository.getCampaignByListId(params.listId);
-    const campaignId = (campaignResult!==null)? campaignResult.campaignId : "";
+    const campaignId = campaignResult || ""
     const scoringRulesResult = await this.getScoringRules.get(campaignId);
 
     const dataRanked = new RankNumbers(sortedData).getRank(scoringRulesResult);
