@@ -4,7 +4,7 @@ import { IBaseController, IBaseUseCase } from 'src/shared/domain';
 interface VicidialListControllerResponse {
   listId: number;
   listName: string;
-  campaignId: string;
+  campaignId: string | null;
   active: string;
 }
 
